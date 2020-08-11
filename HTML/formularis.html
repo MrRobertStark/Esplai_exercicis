@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Formularis</title>
+</head>
+<body>
+    <form action="" method="post">
+        <label for="nom">Posa el teu nom</label>
+        <input type="text" placeholder="Nom" id="nom" size="4" name="nom">
+    </form>
+    <br>
+    Cognoms:
+    <input type="text" size="30" placeholder="Posa el teus cognoms" name="cognoms">
+    <br><br>
+    Edat:
+    <input type="text" placeholder="300"size="10" name="edat">
+    <br><br>
+    PassWord:
+    <input type="password" placeholder="Contrasenya" size="40" name="password">
+    <br><br>
+    Data de Naixement:
+    <input type="date" name="birthday" id="data"name="data" max="2020-05-3" min="2010-10-01">
+    <br><br>
+    Hora visita:
+    <input type="datetime-local" id="visita"name="visita">
+    <br><br>
+    Agafa un color:
+    <input type="color" id="color" name="color">
+    <br><br>
+    Escull una edat:
+    <input type="number" id="edat" name="edat" min="3" max="200" value="18">
+    <br><br>
+    Posa una URL:
+    <input type="url" id="url" name="url" size="50" placeholder="https://google.es">
+    <br><br>
+    Posa un correo:
+    <input type="email" id="email" name="email" placeholder="paquito@gmail.com" size="40">
+    <br><br>
+    Posa un comentari:
+    <br><br>
+    <textarea id="text" name="text" cols="50" rows="10"></textarea>
+    <br><hr>
+    <label for="opcions">Accepto que se'm envïi SPAM</label>
+    <input type="checkbox" id="opcions" name="opcions">
+    <br>
+    <label for="opcions2">NO ccepto que se'm envïi SPAM i per tant cedeixo la meva targeta de crèdit amb contrasenya inclosa! :)</label>
+    <input type="checkbox" id="opcions2" name="opcions2">
+    <br><hr>
+    Horari:<br><br>
+    <input type="radio" id="mati" name="horari" value="mati "checked>Matins<br>
+    <input type="radio" id="tarda" name="horari" value="tarda">Tardes<br>
+    <input type="radio" id="vespre" name="horari" value="vespre">Vespre<br>
+    <br><br>
+    Tria un dia de la setmana, paio:<br><br>
+    <select size="5" multiple id="setmana" name="setmana">
+        <option value="dilluns">Dilluns</option>
+        <option value="dimarts">Dimarts</option>
+        <option value="dimecres">Dimecres</option>
+        <option value="dijous">Dijous</option>
+        <option value="divendres">Divendres</option>
+        <option value="dissabte">Dissabte</option>
+        <option value="diumenge">Diumenge</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Acabar" id="submit">
+    <input type="reset" value="Esborra" id="borra">
+    <input type="button" value="Haz lo que quieras" id="neutre"
+</body>
+</html>

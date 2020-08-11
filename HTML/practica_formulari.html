@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+</head>
+<body>
+    <form action="" method="POST">
+        <table border="1">
+            <tr>
+                <th><label for="name">Nom:</label></th>
+                <td width="300" colspan="2"><input type="text" id="name" placeholder="Pepito de los Palomares" size="40"></td>
+            </tr>
+            <tr>
+                <th><label for="empresa">Empresa:</label></th>
+                <td colspan="2"><input type="text" id="empresa" placeholder="Empresas HD" size="40"></td>
+            </tr>
+            <tr>
+                <th><label for="tel">Telèfon:</label></th>
+                <td colspan="2"><input type="text" id="tel" placeholder="Telèfon" min="9" max="10" size="40"></td>
+            </tr>
+            <tr>
+                <th><label for="email">Email:</label></th>
+                <td colspan="2"><input type="email" id="email" placeholder="pepito@gmail.com" size="40"></td>
+            </tr>
+            <tr>
+                <th>Quantitat</th>
+                <th>Producte</th>
+                <th>Import</th>
+            </tr>
+            <tr>
+                <td><input type="number" id="quantitat" min="0" size="3" value="1"></td>
+                <td>
+                    <select name="producte">
+                        <option value=""></option>
+                        <option value="producte1">Producte 1</option>
+                        <option value="producte2">Producte 2</option>
+                        <option value="producte3">Producte 3</option>
+                        <option value="producte4">Producte 4</option>
+                    </select>
+                </td>
+                <td>Importe</td>
+            </tr>
+            <tr>
+                <td><input type="number" id="quantitat" min="0" size="3" value="1"></td>
+                <td>
+                    <select name="producte">
+                        <option value=""></option>
+                        <option value="producte1">Producte 1</option>
+                        <option value="producte2">Producte 2</option>
+                        <option value="producte3">Producte 3</option>
+                        <option value="producte4">Producte 4</option>
+                    </select>
+                </td>
+                 <td>Importe</td>
+            </tr>
+            <tr>
+                <td><input type="number" id="quantitat" min="0" size="3" value="1"></td>
+                <td>
+                    <select name="producte">
+                        <option value=""></option>
+                        <option value="producte1">Producte 1</option>
+                        <option value="producte2">Producte 2</option>
+                        <option value="producte3">Producte 3</option>
+                        <option value="producte4">Producte 4</option>
+                    </select>
+                </td>
+                <td>Importe</td>
+            </tr>
+            <tr>
+                <th>Total:</th>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <br>
+        <input type="radio" id="pagament1" name="metode_pago" value="Contra-reembolso">ContraReembolso<br>
+        <input type="radio" id="pagament2" name="metode_pago" value="Visa">Visa<br>
+        <input type="radio" id="pagament3" name="metode_pago" value="Paypal">Paypal<br>
+        <br>
+        <input type="checkbox" id="dret" name="drets">
+        <label for="dret">Accepto cedir les meves propietats a l'empresa sense opondre resistència alguna. Targetes de crèdit i el gos també!</label>
+
+    </form>
+</body>
+</html>
