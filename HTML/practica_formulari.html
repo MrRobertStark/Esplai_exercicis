@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <title>Page Title</title>
@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <th><label for="empresa">Empresa:</label></th>
-                <td colspan="2"><input type="text" id="empresa" placeholder="Empresas HD" size="40"></td>
+                <td colspan="2"><input type="text" id="empresa" placeholder="Empresa de Pepito" size="40"></td>
             </tr>
             <tr>
                 <th><label for="tel">Telèfon:</label></th>
@@ -54,7 +54,7 @@
                 </td>
                  <td>Importe</td>
             </tr>
-            <tr>
+            <tr >
                 <td><input type="number" id="quantitat" min="0" size="3" value="1"></td>
                 <td>
                     <select name="producte">
@@ -74,13 +74,13 @@
             </tr>
         </table>
         <br>
-        <input type="radio" id="pagament1" name="metode_pago" value="Contra-reembolso">ContraReembolso<br>
+        <input type="radio" id="pagament1" name="metode_pago" value="Contra-reembolso" checked>ContraReembolso<br>
         <input type="radio" id="pagament2" name="metode_pago" value="Visa">Visa<br>
         <input type="radio" id="pagament3" name="metode_pago" value="Paypal">Paypal<br>
         <br>
         <input type="checkbox" id="dret" name="drets">
         <label for="dret">Accepto cedir les meves propietats a l'empresa sense opondre resistència alguna. Targetes de crèdit i el gos també!</label>
-
+        <br><br><input type="submit" value="Enviar">
     </form>
 </body>
 </html>
