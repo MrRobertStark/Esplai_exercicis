@@ -3,9 +3,65 @@
 <head>
     <meta charset="utf-8" />
     <title>Pàgina principal</title>
+    <style type="text/css">
+        .inici, #dades_basiques tr:nth-child(13){
+            background-color:turquoise;
+            height:40pt;
+        }
+        .seccio1{
+            background-color:rgb(0, 255, 42);
+            font-family:Arial;
+        }
+        .seccio2{
+            background-color:rgb(78, 245, 150);
+            font-family:Cambria;
+            font-family:italic;
+            text-decoration:overline;
+        }
+        .seccio3{
+            background-color:rgb(102, 207, 255);
+            text-decoration:underline;
+        }
+        table:first-child .inici{
+            font-size:20pt;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        #dades_basiques tr:nth-child(10)~tr{
+            background-color:violet;
+        }
+        #dades_basiques,#academia{
+            background-color:rgb(182, 179, 179);
+        }
+        #dades_basiques tr:nth-child(11)~tr:nth-child(even){
+            background-color:rgb(60, 228, 60);
+        }
+        #desempleado{
+            background-color:aquamarine;
+            font-size:15pt;
+        }
+        #academia tr:nth-child(1)~tr{
+            background-color:indianred;
+            font-size:14pt;
+        }
+        #academia tr:nth-child(4)~tr{
+            background-color:rgb(49, 245, 49);
+        }
+        #academia tr:nth-child(8)~tr{
+            background-color:rgb(115, 112, 255);
+            font-size:14pt;
+        }
+        tr{
+            background-color:rgb(124, 131, 233);
+            font-size:14pt;
+        }
+        #fotos tr{
+            background-color:white;
+        }
+
+    </style>
 </head>
 <body>
-    <table align="center">
+    <table id="fotos"align="center">
         <tr>
             <td><img src="imatges/union_europea.jpg" alt="Unión Europea" title="EU" width="150"></td>
             <td><img src="imatges/garantia_juvenil.jpg" alt="Logo garantia juvenil" title="Garantia Juvenil" width="150"/></td>
@@ -18,45 +74,53 @@
     <h4 align="center">PLAN DE CAPACITACIÓN 2020 | PICE</h4>
     <form action="" method="">
         <div align="center">
-            <table border="1">
+            <table id="dades_basiques" border="1">
+                <colgroup>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                </colgroup>
                 <tr>
-                    <th colspan="6">Datos Básicos</th>
+                    <th class="inici"colspan="6">Datos Básicos</th>
                 </tr>
 
                 <tr>
-                    <th width="232"><label for="name"><strong>NOMBRE</strong></label></th>
+                    <th class="seccio1"width="232"><label for="name"><strong>NOMBRE</strong></label></th>
                     <td colspan="5" width="300"><input type="text" id="name"size="30"></td>
                 </tr>
 
                 <tr>
-                    <th><label for="apellidos">APELLIDOS</label></th>
+                    <th class="seccio2"><label for="apellidos">APELLIDOS</label></th>
                     <td colspan="5"><input type="text" id="apellidos"size="30"></td>
                 </tr>
 
                 <tr>
-                    <th><label for="nie">NIF/NIE</label></th>
+                    <th class="seccio3"><label for="nie">NIF/NIE</label></th>
                     <td colspan="5"><input type="text" id="nie"minlength="8"size="30"></td>
                 </tr>
 
                 <tr>
-                    <th><label for="casa">DOMICILIO</label></th>
+                    <th class="seccio1"><label for="casa">DOMICILIO</label></th>
                     <td colspan="5"><input type="text" id="casa"size="30"></td>
                 </tr>
 
                 <tr>
-                    <th><label for="localidad">LOCALIDAD</th>
+                    <th class="seccio2"><label for="localidad">LOCALIDAD</th>
                     <td colspan="5"><input type="text" id="localidad"size="30"></td>
                 </tr>
                 <tr>
-                    <th><label for="postal">CÓDIGO POSTAL</th>
+                    <th class="seccio3"><label for="postal">CÓDIGO POSTAL</th>
                     <td colspan="5"><input type="number" id="postal" minlength="4" size="30"></td>
                 </tr>
                 <tr>
-                    <th><label for="tel">TELÉFONO</label></th>
+                    <th class="seccio1"><label for="tel">TELÉFONO</label></th>
                     <td colspan="5"><input type="number" id="tel"minlength="9"size="30"></td>
                 </tr>
                 <tr>
-                    <th><label for="mail">E-MAIL</th>
+                    <th class="seccio2"><label for="mail">E-MAIL</th>
                     <td colspan="5"><input type="email" id="mail"size="30"></td>
                 </tr>
                 <tr>
@@ -69,7 +133,7 @@
                     <td width="100" align="center"><input type="radio" name="situacion_laboral" value="inactivo" id="inactivo"></td>
                 </tr>
                 <tr>
-                    <td rowspan="3">Desempleado (inscrito en SEPE)</td>
+                    <td id="desempleado"rowspan="3">Desempleado (inscrito en SEPE)</td>
                     <td><label for="sis_mesos"></label>Menos de 6 meses inscrito</td>
                     <td align="center"><input type="radio" name="situacion_laboral" id="sis_mesos" value="sis_mesos" ></td>
                 </tr>
@@ -83,9 +147,11 @@
                 </tr>
             </table>
             <br><br><br>
-            <table border="1">
+            <table border="1" id="academia">
                 <tr>
-                    <th rowspan="14" width="100">NIVEL MÁXIMO DE ESTUDIOS ALCANZADO (marcar una opción)</th>
+                    <th class="inici"rowspan="14" width="100">NIVEL MÁXIMO DE ESTUDIOS ALCANZADO (marcar una opción)</th>
+                </tr>
+                <tr>
                     <td colspan="2"><label for="no_primaria">Sin enseñanza primaria</label></td>
                     <td width="90" align="center"><input type="radio" name="educacion" id="no_primaria" value="no_primaria"></td>
                 </tr>
@@ -138,8 +204,10 @@
             <br><br>
 
             <table border="1">
-                <tr height="30">
-                    <td rowspan="3" width="200" height ="150" align="center" ><strong>OTROS DATOS DEL JOVEN (CUMPLIMENTACIÓN VOLUNTARIA) <br><br> Marcar las opciones que correspondan</strong></td>
+                <tr>
+                    <td class="inici"rowspan="4" width="200" height ="150" align="center" ><strong>OTROS DATOS DEL JOVEN (CUMPLIMENTACIÓN VOLUNTARIA) <br><br> Marcar las opciones que correspondan</strong></td>
+                </tr>
+                <tr>
                     <td><label for="sense_casa">¿Personas sin hogar o afectadas por la exlusión en material de vivienda?</label></td>
                     <td width="70" align="center"><input type="checkbox" id="sense_casa"name="problemes"value="sense_casa"></td>
                 </tr>
