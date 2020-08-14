@@ -3,9 +3,26 @@
 <head>
     <meta charset="utf-8" />
     <title>Page Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style type="text/css">
+        table{
+            border-radius:10px;
+            border:5px inset blueviolet;
+        }
+        #associacions{
+            border:none;
+        }
+        thead:first-child{
+            font-family: 'Bebas Neue', cursive;
+            font-size:30px;
+            color:rgb(51, 47, 47);
+            background: rgb(89,221,222);
+            background: linear-gradient(90deg, rgba(89,221,222,1) 0%, rgba(165,217,173,1) 57%, rgba(132,87,184,1) 100%);
+        }
+    </style>
 </head>
 <body>
-    <table align="center">
+    <table id="associacions" align="center">
         <tr>
             <td><img src="imatges/union_europea.jpg" alt="Unión Europea" title="EU" width="150"></td>
             <td><img src="imatges/garantia_juvenil.jpg" alt="Logo garantia juvenil" title="Garantia Juvenil" width="150"/></td>
@@ -20,11 +37,15 @@
         <h4>PLAN DE CAPACITACIÓN 2020 | PICE</h4>
     </div>
     <form>
+        <!--Primera Taula && Dades Bàsiques-->
         <div align="center">
             <table border="1">
+            <thead>
                 <tr>
                     <th colspan="2" align="center" width="1090">DATOS BÁSICOS</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td width="300"><label for="nom"><strong>NOMBRE</strong></label></td>
                     <td width="500"><input type="text"  id="nom" size="30"></td>
@@ -53,15 +74,24 @@
                     <td><strong>CÁMARA DE COMERCIO</strong></td>
                     <td align="center">GIRONA</td>
                 </tr>
+            </tbody>
+            <tbody>
                 <tr>
                     <th colspan="2" height="30">COMPETENCIAS Y HABILIDADES DEL JOVEN</th>
                 </tr>
+            </tbody>
             </table>
             <br>
+
+            <!--Segona taula && Dades académiques-->
             <table border="1">
+                <thead>
                 <tr>
                     <th width="1090"colspan="6" height="30">DATOS ACADÉMICOS</th>
                 </tr>
+                </thead>
+
+                <tbody>
                 <tr>
                     <th width="160"><label>Nivel (ver nota de pie)<sup>1</sup></label></th>
                     <th width="160"><label>Título</th>
@@ -102,12 +132,17 @@
                     <td><input type="text" id="destacable4"></td>
                     <td><input type="text" id="coneixements_adquirits4"></td>
                 </tr>
+                </tbody>
+
+            <!--Tercera taula && Experiència Laboral-->
             </table>
             <br><br>
             <table border="1">
+            <thead>
                 <tr>
                     <th colspan="6" width="1090">EXPERIENCIA LABORAL</th>
                 </tr>
+            </thead>
                 <tr>
                     <th rowspan="6" colspan="3">Tipo desempleo:</th>
                 </tr>
@@ -179,10 +214,13 @@
                 <tr>
                     <th colspan="6" height="30">FORMACIÓN PRÀCTICA</th>
                 </tr>
+            </thead>
+            <tfoot>
                 <tr>
                     <th colspan="2" height="40">Ámbitos de interés para el empleo</th>
                     <td colspan="4" height="40"> Programación Informática</td>
                 </tr>
+            </tfoot>
             </table>
             <br>
             <input type="submit" value="Enviar">
