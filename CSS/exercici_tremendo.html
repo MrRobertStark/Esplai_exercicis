@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>This is a Bear Page</title>
+    <style type="text/css">
+        #contenidor{
+            margin:100px auto;
+            width:700px;
+        }
+        img{
+            width:600px;
+        }
+        .etiqueta{
+            position:absolute;
+            width:320px;
+            height:200px;
+            border:1px solid blueviolet;
+        }
+        #etiqueta1{
+            top:15%;
+            left:23%;
+            transition: top 2s,left 2s;
+            background-color:green;
+        }
+        #etiqueta2{
+            top:15%;
+            right:30%;
+            transition: top 2s,right 2s;
+            background-color:goldenrod;
+        }
+        #etiqueta3{
+            bottom:25%;
+            left:23%;
+            transition:bottom 2s, left 2s;
+            background-color:blue;
+        }
+        #etiqueta4{
+            bottom:25%;
+            right:30%;
+            transition:bottom 2s, right 2s;
+            background-color:red;
+        }
+        #etiqueta1:hover{
+            top:60px;
+            left:60px;
+        }
+        #etiqueta2:hover{
+            top:60px;
+            right:60px;
+        }
+        #etiqueta3:hover{
+            bottom:60px;
+            left:60px;
+        }
+        #etiqueta4:hover{
+            bottom:60px;
+            right:60px;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenidor">
+        <img src="../HTML/imatges/bear.jpg"/>
+        <div class="etiqueta" id="etiqueta1"></div>
+        <div class="etiqueta" id="etiqueta2"></div>
+        <div class="etiqueta" id="etiqueta3"></div>
+        <div class="etiqueta" id="etiqueta4"></div>
+    </div>
+</body>
+</html>
