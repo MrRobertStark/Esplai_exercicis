@@ -1,0 +1,15 @@
+#contenidor{
+    width:90%;
+    background-color:#ffa;
+    height:1000px;     
+}
+.paragraf{
+    width:200px;
+    margin:10px;
+    padding:20px;
+    border:1px solid blueviolet;
+    border-radius:10px;
+    background-color:turquoise;
+    position:relative;
+    float:left;
+}
