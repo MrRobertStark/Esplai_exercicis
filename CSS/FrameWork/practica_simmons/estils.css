@@ -1,0 +1,48 @@
+:root{
+    --color_botons_pegatines:#7C2855;
+}
+.academics{
+    margin:50px;
+    margin-bottom:20px;
+    padding:30px;
+    font-size:150%;
+    line-height:35px;
+}
+.academics h1{
+    margin-bottom:40px;
+}
+img{
+    width:100%;
+}
+#journey{
+    font-size:80%;
+}
+#container_info .row{
+    margin:20px;
+    margin-top:20%;
+}
+.pegatinaA,.pegatinaB{
+    background-color:white;
+    padding:50px;
+    margin:10px;
+    height:100%;
+    width:87%;
+}
+.pegatinaA h1, .pegatinaB h1{
+    margin-bottom:30px;
+}
+#container_info p, #container_info a{
+    font-size:15pt;
+}
+#container_info a{
+    display:block;
+    text-align:center;
+    background-color:var(--color_botons_pegatines);
+    padding:10px 15px;
+    margin-top:35px;
+    width:70%;
+    color:white;
+}
+.pegatinaA{
+    transform: translateX(30%);
+}
