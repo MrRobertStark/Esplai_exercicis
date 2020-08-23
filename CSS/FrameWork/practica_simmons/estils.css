@@ -1,5 +1,9 @@
 :root{
     --color_botons_pegatines:#7C2855;
+    --color_enllasos_research:#0A60B0;
+    --color_stats: #E6F1FC;
+    --color_info: #007377;
+    --color_step:#00A881;
 }
 .academics{
     margin:50px;
@@ -13,28 +17,29 @@
 }
 img{
     width:100%;
+    display:block;
 }
 #journey{
     font-size:80%;
 }
+
 #container_info .row{
     margin:20px;
-    margin-top:20%;
+    margin-top:10%;
 }
-.pegatinaA,.pegatinaB{
+.pegatina{
     background-color:white;
-    padding:50px;
-    margin:10px;
-    height:100%;
-    width:87%;
+    padding:60px;
+    padding-right:15%;
+    width:95%;
 }
-.pegatinaA h1, .pegatinaB h1{
+.pegatina h1{
     margin-bottom:30px;
 }
-#container_info p, #container_info a{
-    font-size:15pt;
+.pegatina p, .pegatina a{
+    font-size:18pt;
 }
-#container_info a{
+.pegatina a{
     display:block;
     text-align:center;
     background-color:var(--color_botons_pegatines);
@@ -42,7 +47,153 @@ img{
     margin-top:35px;
     width:70%;
     color:white;
+    font-size:15pt;
+    border:1px solid var(--color_botons_pegatines);
+
+    transition:background-color 0.7s, color 0.7s;
+}
+.pegatina a:hover{
+    background-color:white;
+    color:black;
+    text-decoration:none;
+}
+#container_info li>a{
+    background-color:white;
+    margin:30px;
+    color:var(--color_enllasos_research);
+    margin:0px;
+    text-align:left;
+    font-size:16pt;
+    border:none;
+}
+#container_info li>a:hover{
+    text-decoration:underline;
+}
+#container_info li{
+    color:var(--color_botons_pegatines);
 }
 .pegatinaA{
-    transform: translateX(30%);
+    position:relative;
+    transform:translateX(18%);
+    margin-top:50px;
+}
+.pegatinaB{
+    position:relative;
+    transform:translateX(-10%);
+    margin-top:30px;
+}
+#container_info ul{
+    padding-left:0px;
+}
+
+#know_stats{
+    background-color:var(--color_stats);
+    padding:3% 0px;
+    margin-top:10%;
+    margin-bottom:10%;
+}
+#know_stats .row{
+    margin:5% auto;
+}
+#know_stats .col-lg{
+    background-color:white;
+    margin:20px;
+    padding:30px 35px;
+}
+#know_stats .col-lg> h1{
+    color:var(--color_botons_pegatines);
+    font-size:70pt;
+}
+#know_stats .col-lg>h3{
+    font-size:16pt;
+    margin-bottom:25px;
+}
+#know_stats>h3{
+    position: relative;;
+    color:var(--color_enllasos_research);
+    text-align:center;
+    width:300px;
+    font-size:20pt;
+    left:50%;
+    top:35px;
+    margin:20px -150px;
+    background-color:var(--color_stats);
+}
+#mes_info{
+    background-color:var(--color_info);
+    padding:10% 20px;
+    margin-top:10%;
+}
+#mes_info .col-xl-3, #mes_info .col-lg-4, #mes_info .col-md-6 {
+    display:flex;
+    flex-wrap:wrap;
+}
+.pegatina2{
+    background-color:white;
+    padding:20px;
+    margin:10px;
+    width:100%;
+}
+.pegatina2 h3, .pegatina2 a{
+    color:var(--color_enllasos_research);
+    font-size:15pt;
+    margin-bottom:20px;
+}
+.pegatina2 p{
+    font-size:13pt;
+}
+.pegatina2 img{
+    margin-bottom:20px;
+}
+#next_step{
+    padding:5% 0px;
+    background-color:var(--color_step);
+    border-bottom:7px solid rgb(168,168,168);
+}
+#next_step h1{
+    font-size:180%;
+    color:white;
+    position:relative;
+    top:30px;
+    left:10px;
+    background-color:var(--color_step);
+    width:450px;
+    padding:10px;
+    padding-right:0px;
+}
+hr{
+    width:95%;
+}
+#next_step a{
+    display:block;
+    border:4px solid rgb(168, 168, 168);
+    background-color:white;
+    color:black;
+    text-decoration:none;
+    font-size:14pt;
+    text-align:center;
+    padding:15px;
+    margin:20px;
+    margin-top:10px;
+    font-weight:bold;
+    letter-spacing:1px;
+
+    transition:background-color 0.5s;
+}
+#next_step a:hover{
+    background-color:rgb(168,168,168);
+}
+#menu_secundari{
+    height:70px;
+    padding:20px;
+    background-color:var(--color_stats);
+}
+#menu_secundari a{
+    padding-left:80px;
+}
+#menu_secundari span{
+    margin:15px;
+}
+#menu_secundari a,#menu_secundari span{
+    font-size:13pt;
 }
