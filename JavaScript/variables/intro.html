@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Introduccio Variables</title>
+    <style type="text/css">
+        #button{
+            border:1px solid black;
+            border-radius:20px;
+            margin:15px;
+            padding:15px 30px;
+            font-size:15pt;
+            background-color:teal;
+            color:white;
+            transition:background-color 0.5s,color 0.5s;
+        }
+        #button:hover{
+            background-color:white;
+            color:black;
+        }
+    </style>
+    <script language="javascript">
+        var sumador=0;
+        function comptador(){
+            sumador++;
+            if(sumador===1)window.alert("Has clicat "+sumador+" vegada el botó!");
+            else window.alert("Has clicat "+sumador+" vegades el botó!");
+        }
+    </script>
+</head>
+<body>
+    <h1>Sumador Online</h1>
+    <p>Clica el següent botó les vegades que vulguis! Jo les contaré i te les diuré!</p>
+    <input id="button" type="button" value="I'm a Button!" onclick="comptador()"/>
+</body>
+</html>

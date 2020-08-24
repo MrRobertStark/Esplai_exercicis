@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pestanya Restador</title>
+    <script language="javascript">
+        var comptador=10;
+        function restar(){
+            comptador--;
+            window.alert("El llindar s'ha actualitzat al valor: "+comptador);
+        }
+    </script>
+    <style type="text/css">
+        #button{
+            border:1px solid black;
+            border-radius:20px;
+            margin:15px;
+            padding:15px 30px;
+            font-size:15pt;
+            background-color:teal;
+            color:white;
+            transition:background-color 0.5s,color 0.5s;
+        }
+        #button:hover{
+            background-color:white;
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora Online: Restador</h1>
+    <p>Hauràs de clicar el següent botó per tal de restar el llindar inicial (10):</p>
+    <input type="button" id="button" value="I'm a Button" onclick="restar()"/>
+</body>
+</html>

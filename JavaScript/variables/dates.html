@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pestanya Dates</title>
+    <script language="javascript">
+        const mesos=['Gener','Febrer','Març','Abril','Maig','Juny','Juliol','Agost','Septembre','Octubre','Novembre','Desembre']
+        function mostrar_data(){
+            var d= new Date();
+            console.log("Avui som dia "+d.getDate());
+            console.log("Som al mes "+mesos[d.getMonth()]);
+        }
+    </script>
+    <style type="text/css">
+        
+        #button{
+            padding:15px 30px;
+            margin:10px;
+            margin-top:0px;
+            border:1px solid black;
+            font-size:15pt;
+            border-radius:15px;
+        }
+        h1,p{
+            font-size:30pt;
+            font-family:sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Títol principal de la pàgina principal</h1>
+    <p>Clica'm per saber la data d'avui!</p>
+    <input type="button" id="button" value="I'm a Button" onclick="mostrar_data()"/>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pestanya Divisor</title>
+    <script language="javascript">
+        var global=1024;
+        function divisor(){
+            global/=2;
+            window.alert("El llindar té un valor de: "+global);
+        }
+    </script>
+    <style type="text/css">
+        #button{
+            border:1px solid black;
+            border-radius:20px;
+            margin:15px;
+            padding:15px 30px;
+            font-size:15pt;
+            background-color:teal;
+            color:white;
+            transition:background-color 0.5s,color 0.5s;
+        }
+        #button:hover{
+            background-color:green;
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora Online: Divisor</h1>
+    <p>Clica el següent botó per dividir el valor global per 2:</p>
+    <input type="button" id="button" value="I'm a Button" onclick="divisor()"/>
+</body>
+</html>
