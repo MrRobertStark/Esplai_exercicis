@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Funcions</title>
+    <script language="javascript">
+        function saluda(missatge){
+            console.log(missatge);
+        }
+    </script>
+    <style type="text/css">
+        .benvinguda, .acomiat{
+            display:block;
+            border:1px solid black;
+            border-radius:20px;
+            padding:30px;
+            margin:40px 50px;
+            background-color:rgb(41, 41, 248);
+            color:white;
+            font-size:20pt;
+            position:relative;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+    <input class="benvinguda" type="button" value="Digues Hola!" onclick="saluda('Bon dia Senyor, Com és vostè?')"/>
+    <input class="acomiat" type="button" value="Digues Adéu!" onclick="saluda('Que tinguis un Bon Dia Senyor! Adéu!')"/>
+</body>
+</html>

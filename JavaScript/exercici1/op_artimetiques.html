@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Operacions Aritmètiques</title>
+    <script language="javascript">
+        function mates(num1,num2,operacio){
+            let resultat=undefined;
+            if(operacio==='suma')resultat=num1+num2;
+            else if(operacio==='resta')resultat=num1-num2;
+            else if(operacio==='multiplicacio')resultat=num1*num2;
+            else resultat=num1/num2;
+
+            window.alert(resultat);
+        }
+    </script>
+    <style type="text/css">
+        .op{
+            display:block;
+            padding:10px;
+            margin:10px;
+            position:relative;
+            float:left;
+            font-size:12pt;
+            width:100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora Online</h1>
+    <p>Si us plau, cliqueu un botó per operar amb els nombres 10 i 2. Els resultats es veuran en un alert.</p>
+    <br><br>
+    <input class="op" type="button" value="Suma" onclick="mates(document.getElementById('num1').value,document.getElementById('num2').value,'suma')"/>
+    <input class="op" type="button" value="Resta" onclick="mates(10,2,'resta')"/>
+    <input class="op" type="button" value="Producte" onclick="mates(10,2,'multiplicacio')"/>
+    <input class="op" type="button" value="Divisió" onclick="mates(10,2,'divisio')"/>
+
+    <input type="text" id="num1" name="num1"/>
+    <input type="text" id="num2" name="num2"/>
+</body>
+</html>
