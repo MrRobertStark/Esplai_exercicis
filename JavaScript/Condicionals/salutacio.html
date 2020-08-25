@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Pestanya Salutació</title>
+    <script language="javascript">
+        function saludar(nom){
+            window.alert("Hello "+nom+"! Welcome to this page!");
+        }
+    </script>
+    <style type="text/css">
+        #button{
+            padding:15px;
+            border:1px solid black;
+            border-radius:15px;
+            font-size:12pt;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to this page, user!</h1>
+    <p>The page wants to welcome you but he doesn't know how are you called. What's your name?</p>
+
+    <label for="name">User's Name:</label>
+    <input type="text" id="text_nom"/>
+    <br><br>
+    <input id="button" type="button" value="Tell the page your Name!" onclick="saludar(document.getElementById('text_nom').value)"/>
+</body>
+</html>

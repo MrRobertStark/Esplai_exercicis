@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Age Control</title>
+    <script language="javascript">
+        function age_comprovation(age){
+            if(age>=18 && age<=100)window.alert("Perfect! You can enter the Page!");
+            else if(age=="" || age<=0 || age>100)window.alert("Enter a reasonable age!");
+            else window.alert("You are too young! It's late, go to bed!");
+        }
+    </script>
+    <style type="text/css">
+        #button{
+            padding:15px;
+            margin-top:50px;
+            font-size:17pt;
+            border:1px solid black;
+            border-radius:15px;
+            width:60%;
+            height:70px;
+            text-align:center;
+            left:120px;
+            position:relative;
+            background-color:beige;
+
+        }
+        #container{
+            width:50%;
+            background-color:white;
+            padding:40px;
+            margin:50px auto;
+            height:400px;
+            border-radius:25px;
+        }
+        body{
+            font-size:15pt;
+            background-color:rgb(28, 134, 255);
+            font-family:sans-serif;
+        }
+        h1{
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Greetings, User!</h1>
+        <p>In order to enter to this page, first we must ask you your age!</p>
+        <label for="etiqueta">How old are you? :</label>
+        <input type="text" id="etiqueta"/>
+        <br>
+        <input type="button" id="button" value="Check my Age!" onclick="age_comprovation(document.getElementById('etiqueta').value)"/>
+    </div>
+</body>
+</html>

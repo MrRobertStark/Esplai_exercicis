@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Conditionals</title>
+    <script language="javascript">
+        const contra="M@nolo78";
+        function comprobation(proposta_contrasenya){
+            if(proposta_contrasenya==contra)alert("Correct PassWord! Looks like you are the Captain after all!");
+            else if(proposta_contrasenya=="")alert("Get Out! Robot!")
+            else alert("Seems that you are an intruder! Get Out, Robotic-Alien-Hacker!");
+        }
+    </script>
+    <style type="text/css">
+        #button{
+            padding:15px;
+            margin-top:20px;
+            font-size:12pt;
+            border:1px solid black;
+            border-radius:15px;
+        }
+        #container{
+            width:50%;
+            background-color:white;
+            padding:40px;
+            margin:50px auto;
+            height:400px;
+        }
+        body{
+            font-size:15pt;
+            background-color:rgb(28, 134, 255);
+            font-family:sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Greetings, SpaceShip's Captain!</h1>
+        <p>Let's comprove you are the real Captain so you can enter to your SpaceShip. Enter your password!</p>
+        <label for="passsword">PassWord:</label>
+        <input type="password" id="password"/>
+        <br>
+        <input type="button" id="button" value="I'm the Captain!" onclick="comprobation(document.getElementById('password').value)"/>
+    </div>
+</body>
+</html>

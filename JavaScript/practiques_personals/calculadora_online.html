@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Calculadora Online</title>
+    <script language="javaScript">
+        function mates(num1,num2,operacio){
+            var solucio=undefined;
+            if(operacio==='suma')solucio=num1+num2;
+            window.alert(solucio);
+        }
+    </script>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+    <h1>Calculadora Online per a Tothom</h1>
+    <p>Let's do some mathematical operations. First, introduce two numbers and then click the operation you wish to execute! We will show you the answer throughout an Alert!</p>
+    <input type="button" value="SUMA" onclick="mates(document.getElementByID('num1').value)"/>
+</body>
+</html>

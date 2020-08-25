@@ -11,6 +11,7 @@
             else if(operacio==='multiplicacio')resultat=num1*num2;
             else resultat=num1/num2;
 
+            console.log(typeof(num1));
             window.alert(resultat);
         }
     </script>
@@ -29,13 +30,13 @@
 <body>
     <h1>Calculadora Online</h1>
     <p>Si us plau, cliqueu un botó per operar amb els nombres 10 i 2. Els resultats es veuran en un alert.</p>
-    <br><br>
-    <input class="op" type="button" value="Suma" onclick="mates(document.getElementById('num1').value,document.getElementById('num2').value,'suma')"/>
-    <input class="op" type="button" value="Resta" onclick="mates(10,2,'resta')"/>
-    <input class="op" type="button" value="Producte" onclick="mates(10,2,'multiplicacio')"/>
-    <input class="op" type="button" value="Divisió" onclick="mates(10,2,'divisio')"/>
-
     <input type="text" id="num1" name="num1"/>
     <input type="text" id="num2" name="num2"/>
+    <br><br>
+
+    <input class="op" type="button" value="Suma" onclick="mates(document.getElementById('num1').value,document.getElementById('num2').value,'suma')"/>
+    <input class="op" type="button" value="Resta" onclick="mates(document.getElementById('num1').value,document.getElementById('num2').value,'resta')"/>
+    <input class="op" type="button" value="Producte" onclick="mates(document.getElementById('num1').value,document.getElementById('num2').value,'multiplicacio')"/>
+    <input class="op" type="button" value="Divisió" onclick="mates(document.getElementById('num1').value,document.getElementById('num2').value,'divisio')"/>
 </body>
 </html>
