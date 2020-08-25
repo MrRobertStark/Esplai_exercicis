@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Pepito's Great Restaurant</title>
+    <style type="text/css">
+        body{
+            background-color:rgb(0, 196, 114);
+        }
+        #main_container{
+            background-color:white;
+            width:80%;
+            padding:40px;
+            margin:50px auto;
+            text-align:center;
+        }
+        #head{
+            text-align:center;
+            padding:30px;
+        }
+        img{
+            width:150px;
+        }
+    </style>
+    <script language="javascript">
+        function show_first_food(food){
+            var primer=document.getElementById('first_place');
+            
+            if(food=='paella')primer.innerHTML="<img src='restaurant/paella.jpg'/>";
+            else if(food=='truita_patata')primer.innerHTML="<img src='restaurant/truita.jpg'/>";
+            else if(food=='macarrons')primer.innerHTML="<img src='restaurant/macarrons.jpg'/>";
+        }
+        function show_second_food(food){
+            var segon=document.getElementById('second_place');
+
+            if(food=='salmo')segon.innerHTML="<img src='restaurant/salmon.jpg'/>";
+            else if(food=='amanida_formatge')segon.innerHTML="<img src='restaurant/amanida.jpg'/>";
+            else if(food=='botifarra_arros')segon.innerHTML="<img src='restaurant/botifarra.jpg'/>";
+        }
+        function show_third_food(food){
+            var tercer=document.getElementById('third_place')
+
+            if(food=='cheesecake')tercer.innerHTML="<img src='restaurant/cheesecake.jpg'/>";
+            else if(food=='coulant')tercer.innerHTML="<img src='restaurant/coulant.jpg'/>";
+            else tercer.innerHTML="<img src='restaurant/cafe.jpg'/>";
+        }
+    </script>
+  </head>
+  <body>
+
+    <div id="main_container">
+        <div class="row">
+            <div class="col" id="head">
+                <h1>Pepito's Great Restaurant!</h1>
+                <h2>Choose your menu, Good People:</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h1>First Dish</h1>
+                <select id="first_dish" onchange="show_first_food(document.getElementById('first_dish').value)">
+                    <option value="nothing"></option>
+                    <option value="paella">Spanish Paella</option>
+                    <option value="truita_patata">"Truita de Patata"</option>
+                    <option value="macarrons">Italian's Pasta</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <h1>Second Dish</h1>
+                <select id="second_dish" onchange="show_second_food(document.getElementById('second_dish').value)">
+                    <option value="nothing"></option>
+                    <option value="salmo">Salmon</option>
+                    <option value="amanida_formatge">Salad with Goat's cheese</option>
+                    <option value="botifarra_arros">Botifarra with Rice</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <h1>Desert</h1>
+                <select id="third_dish" onchange="show_third_food(document.getElementById('third_dish').value)">
+                    <option value="nothing"></option>
+                    <option value="cheesecake">CheeseCake</option>
+                    <option value="coulant">Coulant</option>
+                    <option value="cafe">Coffee</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4" id="first_place"></div>
+            <div class="col-4" id="second_place"></div>
+            <div class="col-4" id="third_place"></div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Product Selection</title>
+    <style type="text/css">
+        body{
+            background-color:#3ae;
+            font-family:sans-serif;
+            font-size:15pt;
+        }
+        img{
+            width:300px;
+            display:block;
+            margin: 0px auto;
+        }
+        #container{
+            width:80%;
+            padding:30px;
+            background-color:beige;
+            margin:50px auto;
+            border-radius:20px;
+            padding-left:50px;
+        }
+        h1{
+            text-align:center;
+        }
+        #producte_final{
+            width:40%;
+            background-color:white;
+            height:300px;
+            margin-top:20px;
+            padding:10px;
+            margin:0px auto;
+            background-repeat:none;
+            background-size:cover;
+        }
+    </style>
+    <script language="javascript">
+        function mostrar_producte(producte){
+            var resultat=document.getElementById('producte_final');
+
+            if(producte=='bicicleta')resultat.style.backgroundImage= "url('../imatges/bike.jpg')";
+            else if(producte=='patinets')resultat.style.backgroundImage= "url('../imatges/patinets.jpg')";
+            else if(producte=='patins')resultat.style.backgroundImage="url('../imatges/patins.jpg')";
+            else resultat.style.backgroundImage="url('../imatges/interrogant.jpg')";
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h1>Let's choose a Product!</h1>
+        <p>In the following section you will have to choose a product so we can show it to you!</p>
+        <label for="productes">Choose something!:</label>
+        <select id="productes" onchange="mostrar_producte(document.getElementById('productes').value)">
+            <option value=""></option>
+            <option value="bicicleta">Bicicleta</option>
+            <option value="patinets">Patinets</option>
+            <option value="patins">Patins</option>
+        </select>
+        <div id="producte_final">
+        </div>
+    </div>
+</body>
+</html>
