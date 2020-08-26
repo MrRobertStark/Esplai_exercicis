@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Conditionals</title>
+    <script language="javascript">
+        function weekend_control(){
+            var time=new Date();
+            var day=time.getDay();
+
+            switch(day){
+                case 0:
+                    window.alert("Diumenge");
+                    
+                case 1:
+                    window.alert("Dilluns");
+                    break;
+                case 2:
+                    window.alert("Dimarts");
+                    break;
+                case 3:
+                    window.alert("Dimecres");
+                    break;
+                case 4:
+                    window.alert("Dijous");
+                    break;
+                case 5:
+                    window.alert("Divendres");
+                    break;
+                case 6:
+                    window.alert("Dissabte");
+                    break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Weekend Control</h1>
+    <p>In the following page you'll have to click the next button to engage a function:</p>
+    <input type="button" id="button" value="I'm a Button" onclick="weekend_control()"/>
+</body>
+</html>

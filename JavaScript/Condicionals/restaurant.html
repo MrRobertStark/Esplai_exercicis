@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -15,7 +15,8 @@
             --color_verd:rgb(0,196,114);
         }
         body{
-            background-color:var(--color_verd);
+            background: rgb(0,251,252);
+            background: linear-gradient(90deg, rgba(0,251,252,1) 0%, rgba(34,244,71,1) 52%, rgba(168,93,255,1) 100%);   
         }
         #main_container{
             background-color:beige;
@@ -75,12 +76,57 @@
 
             transition:width 0.5s, height 0.5s;
         }
-        #request:active{
+        .section{
+            background-color:rgb(111, 0, 255);
+            color:white;
+            position:relative;
+            left:-40px;
+            width:40%;
+            font-size:23pt;
+            border-top-right-radius:20px;
+            border-bottom-right-radius:20px;
+            padding:20px;
+            border:1px solid black;
+            margin-top:40px;
+            margin-bottom:60px;
+            font-weight:bold;
+            
+            transition: width 0.5s;
+        }
+        .section:hover{
+            width: 60%;
+        }
+        .opcions{
+            text-align:left;
+            width:100%;
+            font-size:15pt;
+            margin:0px 0px;
+            color:black;
+            padding-left:20px;
+            padding:30px;
+            border-radius:none;
+            font-weight:bold;
+        }
+        select{
+            margin:10px auto;
+            position:relative;
+        }
+        label{
+            width:120px;
+        }
+        #resultat_gelat{
+            padding:30px;
+        }
+        #container_foto2{
+            background-color:white;
             width:90%;
-            height:70px;
+            height:250px;
+            margin:40px auto;
         }
     </style>
     <script language="javascript">
+
+        /*A partir  d'aquest punt hi ha las funciones que gestionen els plats i el que seria el menu a triar del restaurant*/
         function show_first_food(food){
             var primer=document.getElementById('first_place');
             
@@ -106,20 +152,31 @@
             window.alert("Your Meal is ordered! Enjoy!");
             location.reload();
         }
+
+        /*A Partir d'aquest punt hi ha les funcions que gestionen tota la gelateria a triar del restaurant*/
+        
+
     </script>
   </head>
   <body>
 
+    <!--Aquí es troba el títol i el Logo de l'empresa a més a més de la frase estrella-->
     <div id="main_container">
         <div class="row" id="head">
             <div class="col-xl-8 col-sm-12">
                 <h1>Pepito's Great Restaurant!</h1>
-                <h2>Choose your <b>DELICIOUS</b> menu!</h2>
+                <h2>Where all the food is more than <b>DELICIOUS</b>!</h2>
             </div>
             <div class="col-xl-4 col-sm-12">
                 <img src="restaurant/chef.jpg" alt="A real Cheff!"/>
             </div>
         </div>
+    
+    <!--Aquí hi haurà una pestanya per dividir la secció-->
+        <p class="section">CHOOSE YOUR MENU:</p>
+
+    <!--Aquí hi haurà la secció de Plats/Menús/ i les seves respectives fotografies-->
+
         <div class="row">
             <div class="col pegatina">
                 <h1>1st Dish</h1>
@@ -152,11 +209,61 @@
                 <div class="foto" id="third_place"></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <input class="shadow-lg" type="button" value="Request your Meal!" id="request" onclick="request()"/>
+        <!--Pegatina per dividir la secció Gelat-->
+        <p class="section">ICE CREAMS SECTION!</p>
+
+        <!--Secció dels gelats-->
+        <div class="row gelateria">
+            <div class="col opcions">
+                <h3>Options:</h3><br>
+
+                <!--Gust-->
+                <label for="gust">Taste:</label>
+                <select id="gust" onchange="control_gust(document.getElementById('gust').value)">
+                    <option value="">Choose an option</option>
+                    <option value="maduixa">Strawberries</option>
+                    <option value="vainilla">Vanilla</option>
+                    <option value="xocolata">Chocolate</option>
+                </select>
+                <br>
+
+                <!--Tipus-->
+                <label for="tipus">Type:</label>
+                <select id="tipus" onchange="control_tipus(document.getElementById('tipus').value)">
+                    <option value="">Choose an option</option>
+                    <option value="tarrina">Tub</option>
+                    <option value="cucurutxu">Cone</option>
+                    <option value="bol">Great Bol</option>
+                </select>
+                <br>
+
+                <!--Mida-->
+                <label for="mida">Size:</label>
+                <select id="mida" onchange="control_mida(document.getElementBydId('mida').value)">
+                    <option value="">Choose an option</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="Big">Big</option>
+                </select>
+                <br>
+
+                <!--Toppings-->
+                <label for="toppings">Toppings:</label>
+                <select id="toppings" onchange="control_toppings(document.getElementById('toppings').value)">
+                    <option value="">Choose an option</option>
+                    <option value="salsa_maduixa">Strawberries Sause</option>
+                    <option value="salsa_kiwi">Kiwi Sause</option>
+                    <option value="oreo">Oreo</option>
+                </select>
+                </label>
+            </div>
+
+            <div class="col" id="resultat_gelat">
+                <h3>Result of your command:</h3>
+                <div id="container_foto2"></div>
             </div>
         </div>
+        
     </div>
 
     <!-- Optional JavaScript -->
