@@ -10,90 +10,152 @@
 
     <title>Pepito's Great Restaurant</title>
     <style type="text/css">
+        :root{
+            --color_opcio:rgb(57,169,219);
+            --color_verd:rgb(0,196,114);
+        }
         body{
-            background-color:rgb(0, 196, 114);
+            background-color:var(--color_verd);
         }
         #main_container{
-            background-color:white;
-            width:80%;
+            background-color:beige;
             padding:40px;
+            width:80%;
             margin:50px auto;
             text-align:center;
+            border-radius:20px;
         }
         #head{
             text-align:center;
             padding:30px;
         }
-        img{
-            width:150px;
+        #head h2{
+            margin-bottom:20px;
+        }
+        #head h1{
+            padding-top:30px;
+            font-size:39pt;
+            margin-bottom:20px;
+        }
+        #head img{
+            width:300px;
+        }
+        .pegatina{
+            background-color:var(--color_opcio);
+            height:450px;
+            padding:30px;
+            margin:10px;
+            border-radius:20px;
+        }
+        .pegatina h1,#request{
+            margin-bottom:20px;
+            background-color:white;
+            width:100%;
+            height:70px;
+            padding-top:10px;
+            border-radius:20px;
+        }
+        .pegatina .foto{
+            background-color:white;
+            width:95%;
+            height:50%;
+            margin:50px auto;
+            background-repeat: none;
+            background-size:cover;
+        }
+        #request{
+            margin:10px;
+            padding:0px;
+            background-color:rgb(0, 196, 186);
+            font-size:25pt;
+            height:80px;
+            font-weight:bold;
+            border-width:1px;
+            margin:30px auto;
+
+            transition:width 0.5s, height 0.5s;
+        }
+        #request:active{
+            width:90%;
+            height:70px;
         }
     </style>
     <script language="javascript">
         function show_first_food(food){
             var primer=document.getElementById('first_place');
             
-            if(food=='paella')primer.innerHTML="<img src='restaurant/paella.jpg'/>";
-            else if(food=='truita_patata')primer.innerHTML="<img src='restaurant/truita.jpg'/>";
-            else if(food=='macarrons')primer.innerHTML="<img src='restaurant/macarrons.jpg'/>";
+            if(food=='paella')primer.style.backgroundImage="url('restaurant/paella.jpg')";
+            else if(food=='truita_patata')primer.style.backgroundImage="url('restaurant/truita.jpg')";
+            else if(food=='macarrons')primer.style.backgroundImage="url('restaurant/macarrons.jpg')";
         }
         function show_second_food(food){
             var segon=document.getElementById('second_place');
 
-            if(food=='salmo')segon.innerHTML="<img src='restaurant/salmon.jpg'/>";
-            else if(food=='amanida_formatge')segon.innerHTML="<img src='restaurant/amanida.jpg'/>";
-            else if(food=='botifarra_arros')segon.innerHTML="<img src='restaurant/botifarra.jpg'/>";
+            if(food=='salmo')segon.style.backgroundImage="url('restaurant/salmon.jpg')";
+            else if(food=='amanida_formatge')segon.style.backgroundImage="url('restaurant/amanida.jpg')";
+            else if(food=='botifarra_arros')segon.style.backgroundImage="url('restaurant/botifarra.jpg')";
         }
         function show_third_food(food){
             var tercer=document.getElementById('third_place')
 
-            if(food=='cheesecake')tercer.innerHTML="<img src='restaurant/cheesecake.jpg'/>";
-            else if(food=='coulant')tercer.innerHTML="<img src='restaurant/coulant.jpg'/>";
-            else tercer.innerHTML="<img src='restaurant/cafe.jpg'/>";
+            if(food=='cheesecake')tercer.style.backgroundImage="url('restaurant/cheesecake.jpg')";
+            else if(food=='coulant')tercer.style.backgroundImage="url('restaurant/coulant.jpg')";
+            else tercer.style.backgroundImage="url('restaurant/cafe.jpg')";
+        }
+        function  request(){
+            window.alert("Your Meal is ordered! Enjoy!");
+            location.reload();
         }
     </script>
   </head>
   <body>
 
     <div id="main_container">
-        <div class="row">
-            <div class="col" id="head">
+        <div class="row" id="head">
+            <div class="col-xl-8 col-sm-12">
                 <h1>Pepito's Great Restaurant!</h1>
-                <h2>Choose your menu, Good People:</h2>
+                <h2>Choose your <b>DELICIOUS</b> menu!</h2>
+            </div>
+            <div class="col-xl-4 col-sm-12">
+                <img src="restaurant/chef.jpg" alt="A real Cheff!"/>
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
-                <h1>First Dish</h1>
+            <div class="col pegatina">
+                <h1>1st Dish</h1>
                 <select id="first_dish" onchange="show_first_food(document.getElementById('first_dish').value)">
-                    <option value="nothing"></option>
+                    <option value="nothing">Choose an option!</option>
                     <option value="paella">Spanish Paella</option>
                     <option value="truita_patata">"Truita de Patata"</option>
                     <option value="macarrons">Italian's Pasta</option>
                 </select>
+                <div class="foto" id="first_place"></div>
             </div>
-            <div class="col-4">
-                <h1>Second Dish</h1>
+            <div class="col pegatina">
+                <h1>2nd Dish</h1>
                 <select id="second_dish" onchange="show_second_food(document.getElementById('second_dish').value)">
-                    <option value="nothing"></option>
+                    <option value="nothing">Choose an option!</option>
                     <option value="salmo">Salmon</option>
                     <option value="amanida_formatge">Salad with Goat's cheese</option>
                     <option value="botifarra_arros">Botifarra with Rice</option>
                 </select>
+                <div class="foto" id="second_place"></div>
             </div>
-            <div class="col-4">
-                <h1>Desert</h1>
+            <div class="col pegatina">
+                <h1>Dessert</h1>
                 <select id="third_dish" onchange="show_third_food(document.getElementById('third_dish').value)">
-                    <option value="nothing"></option>
+                    <option value="nothing">Choose an option!</option>
                     <option value="cheesecake">CheeseCake</option>
                     <option value="coulant">Coulant</option>
                     <option value="cafe">Coffee</option>
                 </select>
+                <div class="foto" id="third_place"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-4" id="first_place"></div>
-            <div class="col-4" id="second_place"></div>
-            <div class="col-4" id="third_place"></div>
+            <div class="col-12">
+                <input class="shadow-lg" type="button" value="Request your Meal!" id="request" onclick="request()"/>
+            </div>
         </div>
     </div>
 

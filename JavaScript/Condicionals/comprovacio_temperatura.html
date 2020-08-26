@@ -9,49 +9,56 @@
 
             if(temp>=25){
                 resultat.innerHTML="<img src='../imatges/summer.jpg'>";
+                document.body.style.backgroundColor="yellow";
+                window.alert("It's hot! Go and take an ice cream and then Surf!");
             }
             else if(temp<15){
                 resultat.innerHTML="<img src='../imatges/winter.jpg'>";
+                document.body.style.backgroundColor="turquoise";
+                window.alert("It's COLD! Better put on a jacket!");
             }
             else {
                 resultat.innerHTML="<img src='../imatges/spring.jpg'>";
+                document.body.style.backgroundColor="rgb(212, 9, 94)";
+                window.alert("Perfect climate! Have a nice day!");
             }
         }
     </script>
     <style type="text/css">
         img{
             display:block;
-            width:300px;
+            min-width:400px;
             margin:0px auto;
+            min-height:300px;
         }
         #button{
-            display:block;
-            padding:15px;
-            margin-top:30px;
-            margin-bottom:20px;
-            margin-left:17%;
+           padding:15px;
+            margin:20px;
             font-size:17pt;
             border:1px solid black;
             border-radius:15px;
-            width:60%;
-            height:70px;
             text-align:center;
-            position:relative;
             background-color:rgb(15, 139, 255);
             color:white;
+            width:300px;
+
+            position:relative;
+            left:50%;
+            margin-left:-150px;
         }
         #container{
             width:50%;
             background-color:white;
             padding:40px;
             margin:50px auto;
-            height:470px;
+            min-height:470px;
             border-radius:25px;
         }
         body{
             font-size:15pt;
-            background-color:#3f4;
+            background-color:#93a;
             font-family:sans-serif;
+            transition:background-color 2s;
         }
         h1{
             text-align:center;
@@ -72,7 +79,7 @@
         <input type="button" id="button" value="Enter temperature" onclick="control_temperatura(document.getElementById('temperatura').value)"/>
         
         <div id="resultat">
-
+            
         </div>
     </div>
 </body>
