@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <style type="text/css"></style>
+    <script language="javascript">
+        function greetings(){
+            var d=new Date();
+            
+            var mes=d.getMonth()+1;
+            if(mes==7)window.alert("It's August! Why don't you go to the beach?");
+            else window.alert("Be Patient! August has to strike sooner o later!");
+        }
+    </script>
+</head>
+<body>
+    <h1>Greetings new User!</h1>
+    <p>In order to say hello, click the following button:</p>
+    <input type="button" value="Say Hello!"id="boto" onclick="greetings()"/>
+</body>
+</html>

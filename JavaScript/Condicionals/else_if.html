@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Summer Control</title>
+    <script language="javascript">
+        function summertime(){
+            var temps=new Date();
+            var mes=temps.getMonth();
+
+            if(mes==6)window.alert("Summer is around the corner!");
+            else if(mes==7)window.alert("Summer has arrived! Enjoy going to the beach!");
+            else if(mes==8)window.alert("Summer has gone! Go back to work!");
+            else window.alert("Be patient! Summer has to come sooner or later...");
+        }
+        function summertime2(){
+            var temps=new Date();
+            var mes=temps.getMonth();
+
+            if(mes==6)window.alert("Summer is around the corner");
+            else{
+                if(mes==7)window.alert("Summer time! Go to the Beach!");
+                else{
+                    if(mes==8)window.alert("Summer time is over... :( You'll have to get back to work!");
+                    else window.alert("Be patient, summer has to come sooner or later!");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Let's control Summer time!</h1>
+    <p>Click the following button so that we can tell you where you are!</p>
+    <input type="button" value="Click on me!" onclick="summertime()"/>
+</body>
+</html>

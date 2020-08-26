@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script language="javascript">
+        function study_age(age){
+            if((age>=18) && (age<=25))window.alert("Adult detected! Friend or Foe? Whatever, you can do the Course :D");
+            else if(age<18)window.alert("it's a shame but you are too young to enter! It's late, go to bed!");
+            else window.alert("You surpass the maximum age. Sorry sir but you cannot enter!");
+        }
+    </script>
+</head>
+<body>
+    <h1>Entrance to the Brand New Course!</h1>
+    <p>First, let's comprove your age to see whether you can enter or not:</p>
+    <label for="text_edat">Age:</label>
+    <input type="text" id="text_edat"/>
+
+    <input type="button" value="Send Age" onclick="study_age(document.getElementById('text_edat').value)"/>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Station Page</title>
+    <style type="text/css">
+        body{
+            background-color:rgb(47, 47, 255);
+            font-size:14pt;
+            font-family:sans-serif;
+            transition: background-color 2s;
+        }
+        h1{
+            text-align:center;
+        }
+        img{
+            width:100%;
+        }
+        #main_container{
+            width:80%;
+            border:1px solid black;
+            border-radius:20px;
+            background-color:white;
+            margin:50px auto;
+            padding:30px;
+        }
+        #container_foto{
+            width:30%;
+            height:200px;
+            margin:10px auto;
+        }
+    </style>
+    <script language="javascript">
+        function season_comprovation(){
+            var time= new Date();
+
+            //Variables i control de temps
+            var mes=time.getMonth()-5;
+            var dia=time.getDate()-5;
+            var hora=time.getHours()-10;
+            var minuts= time.getMinutes()-30;
+            var espai_foto=document.getElementById("container_foto");
+
+            //Control de les dades del temps
+            console.log("Mes actual: "+mes);
+            console.log("Dia actual: "+dia);
+            console.log("Hora actual: "+hora);
+            console.log("Minuts actual: "+minuts)
+
+            //Comprovació Hivern
+            if((mes>=0 && mes<2) || (mes==2 && dia<21) || (mes==11 && dia>21) || ((mes==11 && dia==21 && hora>=5) || (mes==11 && dia==21 && hora==5 && minuts>=19))){
+                window.alert("It's winter! Put on a Jacket!");
+                espai_foto.innerHTML="<img src='../imatges/winter.jpg'/>";
+                document.body.style.backgroundColor="turquoise";
+            }
+
+            //Comprovació Primavera
+            else if((mes>2 && mes<5) || (mes==2 && dia>21)||(mes==5 && dia<21) || ((mes==2 && dia==21 && hora>=2) || (mes==2 && dia==21 && hora==2 && minuts>=50))){
+                window.alert("It's Spring! Go and take out your doggy!");
+                espai_foto.innerHTML="<img src='../imatges/spring.jpg'/>";
+                document.body.style.backgroundColor="rgb(212, 9, 94)";
+            }
+
+            //Comprovació Estiu
+            else if((mes>5 && mes<8) || (mes==5 && dia>21)||(mes==8 && dia<21) || ((mes==5 && dia==21 && hora>=23) || (mes==5 && dia==21 && hora==23 && minuts>=44))){
+                window.alert("It's summer time! Go to the Beach and surf with your doggy-boy!");
+                espai_foto.innerHTML="<img src='../imatges/summer.jpg'/>";
+                document.body.style.backgroundColor="gold";
+            }
+
+            //Comprovació  Tardor
+            else{
+                window.alert("It's Fall. Seems it's going to rain today!");
+                espai_foto.innerHTML="<img src='../imatges/fall.jpg'/>";
+                document.body.style.backgroundColor="brown";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="main_container">
+        <!--Missatge Inicial-->
+        <h1>Hello Worlds! Let's check in which season you are!</h1>
+        <p>First, click the following button to comprove it:</p>
+
+        <!--Contro de l'estació i container foto resultant-->
+        <input type="button" value="Check Season" id="check" onclick="season_comprovation()"/>
+        <div id="container_foto"></div>
+    </div>
+</body>
+</html>
