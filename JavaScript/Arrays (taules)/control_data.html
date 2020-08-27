@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script language="javascript">
+        var mesos = ['de Gener','de Febrer','de Març',"d'Abril",'de Maig','de Juny','de Juliol',"d'Agost",'de Septembre',"d'Octubre",'de Novembre','de Desembre'];
+        var dies = ['Diumenge','Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte'];
+
+        function show_date(){
+            var d = new Date();
+            var dia = d.getDay();
+            var dia_mes = d.getDate();
+            var mes = d.getMonth();
+            
+            window.alert("Avui som "+dies[dia]+' '+dia_mes+' '+mesos[mes]+' del '+d.getFullYear());
+        }
+    </script>
+</head>
+<body>
+    <h1>Per què no et dic la data d'avui?</h1>
+    <p>Si vols que et digui la data d'aviu</p>
+    <input type="button" id="control_data" value="Click on me!" onclick="show_date()"/>
+</body>
+</html>

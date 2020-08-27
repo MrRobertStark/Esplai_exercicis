@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Pepito's Restaurant</title>
+    <script language="javascript">
+        var menu_and_gelats = [
+            /*Primer, es trobaran els plats del menu principal [0,8]*/
+            'imatges/menu/paella.jpg',
+            'imatges/menu/truita.jpg',
+            'imatges/menu/macarrons.jpg',
+            'imatges/menu/salmon.jpg',
+            'imatges/menu/amanida.jpg',
+            'imatges/menu/botifarra.jpg',
+            'imatges/menu/cheesecake.jpg',
+            'imatges/menu/coulant.jpg',
+            'imatges/menu/cafe.jpg',
+
+            /*A partir d'aquí, es trobaran els plats del menu dels gelats [9,108]*/
+
+            //XOCOLATA
+            //xocolata tarrina
+            'imatges/gelats/chocolate/xoco_tarrina_small.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_small_maduixasalsa.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_small_kiwisalsa.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_small_oreosalsa.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_medium.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_medium_maduixasalsa.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_medium_kiwisalsa.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_medium_oreosalsa.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_big.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_big_maduixasalsa.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_big_kiwisalsa.jpg',
+            'imatges/gelats/chocolate/xoco_tarrina_big_oreosalsa.jpg',
+
+            //xocolata conus
+            'imatges/gelats/chocolate/xoco_conus_small.jpg',
+            'imatges/gelats/chocolate/xoco_conus_small_maduixasalsa.jpg',
+            'imatges/gelats/chocolate/xoco_conus_small_kiwisalsa.jpg',
+            'imatges/gelats/chocolate/xoco_conus_small_oreosalsa.jpg',
+            'imatges/gelats/chocolate/xoco_conus_medium.jpg',
+            'imatges/gelats/chocolate/xoco_conus_medium_maduixasalsa.jpg',
+            'imatges/gelats/chocolate/xoco_conus_medium_kiwisalsa.jpg',
+            'imatges/gelats/chocolate/xoco_conus_medium_oreosalsa.jpg',
+            'imatges/gelats/chocolate/xoco_conus_big.jpg',
+            'imatges/gelats/chocolate/xoco_conus_big_maduixasalsa.jpg',
+            'imatges/gelats/chocolate/xoco_conus_big_kiwisalsa.jpg',
+            'imatges/gelats/chocolate/xoco_conus_big_oreosalsa.jpg',
+
+            //xocolata bol
+            'imatges/gelats/chocolate/xoco_bol_small.jpg',
+            'imatges/gelats/chocolate/xoco_bol_small_maduixasalsa.jpg',
+            'imatges/gelats/chocolate/xoco_bol_small_kiwisalsa.jpg',
+            'imatges/gelats/chocolate/xoco_bol_small_oreosalsa.jpg',
+            'imatges/gelats/chocolate/xoco_bol_medium.jpg',
+            'imatges/gelats/chocolate/xoco_bol_medium_maduixasalsa.jpg',
+            'imatges/gelats/chocolate/xoco_bol_medium_kiwisalsa.jpg',
+            'imatges/gelats/chocolate/xoco_bol_medium_oreosalsa.jpg',
+            'imatges/gelats/chocolate/xoco_bol_big.jpg',
+            'imatges/gelats/chocolate/xoco_bol_big_maduixasalsa.jpg',
+            'imatges/gelats/chocolate/xoco_bol_big_kiwisalsa.jpg',
+            'imatges/gelats/chocolate/xoco_bol_big_oreosalsa.jpg',
+
+            //MADUIXA
+            //maduixa tarrina
+            'imatges/gelats/maduixa/maduixa_tarrina_small.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_small_maduixasalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_small_kiwisalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_small_oreosalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_medium.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_medium_maduixasalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_medium_kiwisalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_medium_oreosalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_big.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_big_maduixasalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_big_kiwisalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_tarrina_big_oreosalsa.jpg',
+
+            //maduixa conus
+            'imatges/gelats/maduixa/maduixa_conus_small.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_small_maduixasalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_small_kiwisalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_small_oreosalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_medium.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_medium_maduixasalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_medium_kiwisalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_medium_oreosalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_big.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_big_maduixasalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_big_kiwisalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_conus_big_oreosalsa.jpg',
+
+            //maduixa bol
+            'imatges/gelats/maduixa/maduixa_bol_small.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_small_maduixasalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_small_kiwisalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_small_oreosalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_medium.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_medium_maduixasalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_medium_kiwisalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_medium_oreosalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_big.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_big_maduixasalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_big_kiwisalsa.jpg',
+            'imatges/gelats/maduixa/maduixa_bol_big_oreosalsa.jpg',
+
+            //VAINILLA
+            //vainilla tarrina
+            'imatges/gelats/vainilla/vanilla_tarrina_small.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_small_maduixasalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_small_kiwisalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_small_oreosalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_medium.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_medium_maduixasalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_medium_kiwisalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_medium_oreosalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_big.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_big_maduixasalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_big_kiwisalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_tarrina_big_oreosalsa.jpg',
+            
+            //vainilla conus
+            'imatges/gelats/vainilla/vanilla_conus_small.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_small_maduixasalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_small_kiwisalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_small_oreosalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_medium.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_medium_maduixasalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_medium_kiwisalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_medium_oreosalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_big.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_big_maduixasalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_big_kiwisalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_conus_big_oreosalsa.jpg',
+
+            //vainilla bol
+            'imatges/gelats/vainilla/vanilla_bol_small.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_small_maduixasalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_small_kiwisalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_small_oreosalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_medium.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_medium_maduixasalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_medium_kiwisalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_medium_oreosalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_big.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_big_maduixasalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_big_kiwisalsa.jpg',
+            'imatges/gelats/vainilla/vanilla_bol_big_oreosalsa.jpg',
+        ];
+
+        function view_dish(pos_menjar){
+            var espai_desti;
+            if(pos_menjar<3)espai_desti=document.getElementById("container_1r_plat");//Agafa l'espai on posaràs el primer plat
+            else if(pos_menjar<6)espai_desti=document.getElementById("container_2n_plat");//Agafa l'espai on posaràs el segon plat
+            else if(pos_menjar<9)espai_desti=document.getElementById("container_3r_plat");//Agafa l'espai on posaràs el tercer plat
+            else document.getElementById("container_gelat_resultat");
+
+            espai_desti.innerHTML="<img src = "+menu_and_gelats[pos_menjar]+" alt='foto_menjar_menu_o_gelat'/>";
+        }
+    </script>
+    <style type="text/css">
+    
+    </style>
+  </head>
+  <body>
+    <h1>Pepito's Restaurant</h1>
+
+    <!--Selecció del Menú-->
+    <!--Primer Plat-->
+    <selection id="primer_plat" onchange="view_dish(document.getElementById('primer_plat').value)">
+        <option value=""></option>
+        <option value="0">Paella</option>
+        <option value="1">Truita de patates</option>
+        <option value="2">Macarrons</option>
+    </selection>
+    <!--Segon Plat-->
+
+    <!--Tercer Plat-->
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
