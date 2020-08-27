@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script language="javascript">
+
+        var postres = [
+            [
+                [
+                    ['maduixa_conus_small','maduixa_conus_medium','maduixa_conus_big']
+                ],
+                [
+                    ['maduixa_tarrina_small','maduixa_tarrina_medium','maduixa_tarrina_big']
+                ],
+                [
+                    ['maduixa_bol_small','maduixa_bol_medium','maduixa_bol_big']
+                ]
+            ],
+            [
+                [
+                    ['vainilla_conus_small','vainilla_conus_medium','vainilla_conus_big']
+                ],
+                [
+                    ['vainilla_tarrina_small','vainilla_tarrina_medium','vainilla_tarrina_big']
+                ],
+                [
+                    ['vainilla_bol_small','vainilla_bol_medium','vainilla_bol_big']
+                ]
+            ],
+            [
+                [
+                    ['xocolata_conus_small','xocolata_conus_medium','xocolata_conus_big']
+                ],
+                [
+                    ['xocolata_tarrina_small','xocolata_tarrina_medium','xocolata_tarrina_big']
+                ],
+                [
+                    ['xocolata_bol_small','xocolata_bol_medium','xocolata_bol_big']
+                ]
+            ]
+            [
+                [
+                    ['llimona_conus_small','llimona_conus_medium','llimona_conus_big']
+                ],
+                [
+                    ['llimona_tarrina_small','llimona_tarrina_medium','llimona_tarrina_big']
+                ],
+                [
+                    ['llimona_bol_small','llimona_bol_medium','llimona_bol_big']
+                ]
+            ]
+        ];
+
+        function view_gelat(){
+            var gust=document.getElementById('gust').value;
+            var mida=document.getElementById('mida').value;
+            var tipus=document.getElementByID('tipus').value;
+            var desti=document.getElementById('container_foto');
+
+            if(gust!="" && mida!="" && tipus!=""){
+                desti.innerHTML="<img src= '"+postres[gust][mida]+"' />";
+            }
+            else console.log("Dona'm més opcions!");
+        }
+    </script>
+    <style>
+        img{
+            width:300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Anem a escollir un gelat personalitzat!</h1>
+    <p>Abans, has d 'escollir el que vols dins de la selecció que hi ha a continuació:</p>
+    <select id="gust" onchange="view_gelat()">
+        <option value=""></option>
+        <option value=0>Maduixa</option>
+        <option value=1>Vainilla</option>
+        <option value=2>Xocolata</option>
+        <option value=3>Llimomna</option>
+    </select>
+    <select id="mida" onchange="view_gelat()">
+        <option value=""></option>
+        <option value=0>Petit</option>
+        <option value=1>Mitjà</option>
+        <option value=2>Gran</option>
+    </select>
+    <select id="tipus">
+        <option value=""></option>
+        <option value="0">Tarrina</option>
+        <option value="1">Cucurutxu</option>
+        <option value="2">Bol</option>
+    </select>
+    <div id="container_foto"></div>
+</body>
+</html>
