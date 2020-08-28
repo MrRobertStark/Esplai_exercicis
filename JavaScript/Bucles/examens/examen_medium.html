@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Test-medium</title>
+    <script language="javascript">
+        function mark_me(){
+
+        }
+    </script>
+    <style type="text/css">
+        body{
+            margin:20px;
+        }
+        .container_resposta{
+            background-color:green;
+            width:50px;
+            height:50px;
+            margin-left:10px;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>This is a text level-medium!</h1>
+    <p>In this page you must pass the exam below. Choose all your answers and then click the <b>Comprove</b> button to mark your results!</p>
+    <table>
+        <tr>
+            <td>
+                <label for="pregunta0">Which is the season where you can go to the beach?</label>
+                <select id="pregunta0">
+                    <option value="">Select your Answer</option>
+                    <option value="summer">Summer</option>
+                    <option value="spring">Spring</option>
+                    <option value="winter">Winter</option>
+                    <option value="whatever">I can go whenever I want!</option>
+                </select>
+            </td>
+            <td>
+                <div class="container_resposta"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="pregunta1">How many monkeys there are in my house?</label>
+                <select id="pregunta1">
+                    <option value="">Select your Answer</option>
+                    <option value=0>You have no monkeys!</option>
+                    <option value=2>Two monkeys!</option>
+                    <option value=1>One monkey!</option>
+                    <option value="doggy">Hey! You have a doggy!</option>
+                </select>
+            </td>
+            <td>
+                <div class="container_resposta"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="pregunta2">Where is the place where you can do all your human needs?</label>
+                <select id="pregunta2">
+                    <option value="">Select your Answer</option>
+                    <option value="garden">The Garde!</option>
+                    <option value="kitchen">Wasn't that the Kitchen?</option>
+                    <option value="bathroom">Of course, the bathroom!</option>
+                    <option value="laundry">The laundry. I wash myself there!</option>
+                </select>
+            </td>
+            <td>
+                <div class="container_resposta"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="pregunta3">Who teaches you to drive for free in some states of the USA?</label>
+                <select id="pregunta3">
+                    <option value="">Select your Answer</option>
+                    <option value="public_teacher">A teacher from any public school for driving</option>
+                    <option value="parents">Parents teach you!</option>
+                    <option value="paid_teacher">Any teacher paid by my parents and not by me!</option>
+                    <option value="unicorn">I once went to Narnia and saw a unicorn teaching...</option>
+                </select>
+            </td>
+            <td>
+                <div class="container_resposta"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="pregunta4">How many eyes does a cyclope has?</label>
+                <select id="pregunta4">
+                    <option value="">Select your Answer</option>
+                    <option value=0>They don't have eyes. They are blind!</option>
+                    <option value=1>An eye</option>
+                    <option value=2>They have two eyes like me, right?</option>
+                    <option value=3>THey have three eyes</option>
+                </select>
+            </td>
+            <td>
+                <div class="container_resposta"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="pregunta5">An easy one: How much water glasses should you drink per day?</label>
+                <select id="pregunta5">
+                    <option value="">Select your answer</option>
+                    <option value=8>We need to drink up to 8 glasses of water</option>
+                    <option value=4>With 4 glasses it is enough for us to live.</option>
+                    <option value=10>We need to drink at least 10 bottles of water</option>
+                    <option value=0>Who says we need water to survive?</option>
+                </select>
+            </td>
+            <td>
+                <div class="container_resposta"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="pregunta6">How much is 1+1?</label>
+                <select id="pregunta6">
+                    <option value="">Select your Answer</option>
+                    <option value=2>The answer is 2.1!</option>
+                    <option value=1>Maybe the answer is 11...?</option>
+                    <option value=2>That's easy. The answer is logarythm of 200 with base 10!</option>
+                    <option value=3>I don't know :D !</option>
+                </select>
+            </td>
+            <td>
+                <div class="container_resposta"></div>
+            </td>
+        </tr>  
+        <tr>
+            <td>
+                <label for="pregunta7">So, are you doing well so far?</label>
+                <select id="pregunta7">
+                    <option value="">Select your Answer</option>
+                    <option value=0>Not happy! I'm boring!</option>
+                    <option value=1>Very happy! As always!</option>
+                    <option value=2>What is the purpose of this test?</option>
+                    <option value=3>Mneh...</option>
+                </select>
+            </td>
+            <td>
+                <div class="container_resposta"></div>
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="Mark me!" onclick="mark_me()"/>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

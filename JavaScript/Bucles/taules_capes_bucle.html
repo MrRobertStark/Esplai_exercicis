@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script language="javascript">
+        var fotos=[
+        '../Condicionals/restaurant/cheesecake.jpg',
+        '../Condicionals/restaurant/macarrons.jpg',
+        '../Condicionals/restaurant/cafe.jpg'
+        ];
+
+        function mostra_fotos(){
+            var pos=0;
+            for(pos=0; pos<fotos.length; pos++){
+                let capa=document.getElementById("capa"+pos);
+                capa.innerHTML="<img src = '" + fotos[pos] + "' />";
+            }
+        }
+    </script>
+    <style type="text/css">
+        body{
+            padding:40px;
+        }
+        img{
+            display:block;
+            width:300px;
+            position:relative;
+            float:left;
+            margin:20px;
+        }
+
+    </style>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+      <h1>Pàgina per veure fotografies!</h1>
+      <div id="container">
+          <input type="button" value="Click on me!" onclick="mostra_fotos()"/>
+          <div class="row" id="container_foto">
+              <div class="col" id="capa0"></div>
+              <div class="col" id="capa1"></div>
+              <div class="col" id="capa2"></div>
+          </div>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

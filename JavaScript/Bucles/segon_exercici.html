@@ -6,7 +6,8 @@
 
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>Calculadora Online!</h1>
+    <p>Introdueix un enterper calcular la seva taula de multiplicació.</p>
     <label for="num">Num:</label>
     <input type="text" id="num"/>
     <input type="button" value="Calculate!" onclick="generate_table()"/>
@@ -16,9 +17,9 @@
                 let num1=document.getElementById("num").value;
                 let num2=0;
 
+                document.write("<h1>La taula de multiplicació del "+num1+" és el següent:</h1>");
+                document.write("<p>El resultt és el següent:</p>")
                 document.write("<table border=1 width=500px height=300px>");
-
-                let capa = document.getElementById("taula");
                 
                 for(num2=0; num2<=10; num2++){  
                     document.write("<tr><td>"+num1+"</td>");

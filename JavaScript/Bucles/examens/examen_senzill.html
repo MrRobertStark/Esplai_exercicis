@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script language="javascript">
+
+        function results(){
+            let resposta = document.getElementById("pregunta").value;
+            let espai_resultat = document.getElementById("container_foto");
+            if(resposta=='bathroom'){
+                espai_resultat.innerHTML="<img src='correcte.jpg'/>";
+            }
+            else  if(resposta=='firulais')espai_resultat.innerHTML="<h1>You are Sick!</h1>";
+            else espai_resultat.innerHTML="<img src= 'incorrect.jpg' />";
+        }
+    </script>
+    <style type="text/css">
+        img{
+            width:200px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>Test to achieve the master's life!</h1>
+    <p>In the following test, you will have to answer all of the questions below. Then, click the <b>Comprove Button</b> in order to mark your results. Good luck! We hope you pass!</p>
+    
+    <div id="questions_container">
+        <label for="pregunta">Your house has an area where you can make all your human needs. How is it called?</label>
+        <select id="pregunta">
+            <option value="">Choose an option:</option>
+            <option value="garden">The Garden</option>
+            <option value="living_room">The Living Room!</option>
+            <option value="kitchen">The Kitchen</option>
+            <option value="bathroom">The BathRoom</option>
+            <option value="firulais">Your Doggy!</option>
+        </select>
+        <div id="container_foto"></div>
+    </div>
+
+    <br><input type="button" id="button" value="Mark me!" onclick="results()"/>
+</body>
+</html>
