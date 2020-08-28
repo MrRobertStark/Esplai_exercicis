@@ -1,97 +1,161 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8" />
-    <title>Page Title</title>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
     <script language="javascript">
 
-        var postres = [
-            [
-                [
-                    ['maduixa_conus_small','maduixa_conus_medium','maduixa_conus_big']
-                ],
-                [
-                    ['maduixa_tarrina_small','maduixa_tarrina_medium','maduixa_tarrina_big']
-                ],
-                [
-                    ['maduixa_bol_small','maduixa_bol_medium','maduixa_bol_big']
-                ]
-            ],
-            [
-                [
-                    ['vainilla_conus_small','vainilla_conus_medium','vainilla_conus_big']
-                ],
-                [
-                    ['vainilla_tarrina_small','vainilla_tarrina_medium','vainilla_tarrina_big']
-                ],
-                [
-                    ['vainilla_bol_small','vainilla_bol_medium','vainilla_bol_big']
-                ]
-            ],
-            [
-                [
-                    ['xocolata_conus_small','xocolata_conus_medium','xocolata_conus_big']
-                ],
-                [
-                    ['xocolata_tarrina_small','xocolata_tarrina_medium','xocolata_tarrina_big']
-                ],
-                [
-                    ['xocolata_bol_small','xocolata_bol_medium','xocolata_bol_big']
-                ]
-            ]
-            [
-                [
-                    ['llimona_conus_small','llimona_conus_medium','llimona_conus_big']
-                ],
-                [
-                    ['llimona_tarrina_small','llimona_tarrina_medium','llimona_tarrina_big']
-                ],
-                [
-                    ['llimona_bol_small','llimona_bol_medium','llimona_bol_big']
-                ]
-            ]
-        ];
+      var postres = [[
+          //Secció Maduixa
+          ['imatges/gelats/maduixa/maduixa_tarrina_small.jpg','imatges/gelats/maduixa/maduixa_tarrina_medium.jpg','imatges/gelats/maduixa/maduixa_tarrina_big.jpg'],//tarrina
+          ['imatges/gelats/maduixa/maduixa_conus_small.jpg','imatges/gelats/maduixa/maduixa_conus_medium.jpg','imatges/gelats/maduixa/maduixa_conus_big.jpg'],//conus
+          ['imatges/gelats/maduixa/maduixa_bol_small.jpg','imatges/gelats/maduixa/maduixa_bol_medium.jpg','imatges/gelats/maduixa/maduixa_bol_big.jpg']],//bol
+          
+          //Secció Vainilla
+          [['imatges/gelats/vainilla/vanilla_tub_small.jpg','imatges/gelats/vainilla/vanilla_tub_medium.jpg','imatges/gelats/vainilla/vanilla_tub_big.jpg'],//tarrina
+          ['imatges/gelats/vainilla/vanilla_conus_small.jpg','imatges/gelats/vainilla/vanilla_conus_medium.jpg','imatges/gelats/vainilla/vanilla_conus_big.jpg'],//conus
+          ['imatges/gelats/vainilla/vanilla_bol_small.jpg','imatges/gelats/vainilla/vanilla_bol_medium.jpg','imatges/gelats/vainilla/vanilla_bol_big.jpg']],//bol
+          
+          //Secció Xocolata
+          [['imatges/gelats/chocolate/xoco_tarrina_small.jpg','imatges/gelats/chocolate/xoco_tarrina_medium.jpg','imatges/gelats/chocolate/xoco_tarrina_big.jpg'],//tarrina
+          ['imatges/gelats/chocolate/xoco_conus_small.jpg','imatges/gelats/chocolate/xoco_conus_medium.jpg','imatges/gelats/chocolate/xoco_conus_big.jpg'],//Conus
+          ['imatges/gelats/chocolate/xoco_bol_small.jpg','imatges/gelats/chocolate/xoco_bol_medium.jpg','imatges/gelats/chocolate/xoco_bol_big.jpg']//Bol
+          
+          ]];
 
-        function view_gelat(){
-            var gust=document.getElementById('gust').value;
-            var mida=document.getElementById('mida').value;
-            var tipus=document.getElementByID('tipus').value;
-            var desti=document.getElementById('container_foto');
+      function view_gelat(){
+          var gust=document.getElementById('gust').value;
+          var tipus=document.getElementById('tipus').value;
+          var mida=document.getElementById('mida').value;
+          var espai_desti=document.getElementById('container_foto');
 
-            if(gust!="" && mida!="" && tipus!=""){
-                desti.innerHTML="<img src= '"+postres[gust][mida]+"' />";
-            }
-            else console.log("Dona'm més opcions!");
-        }
-    </script>
-    <style>
-        img{
-            width:300px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Anem a escollir un gelat personalitzat!</h1>
-    <p>Abans, has d 'escollir el que vols dins de la selecció que hi ha a continuació:</p>
-    <select id="gust" onchange="view_gelat()">
-        <option value=""></option>
-        <option value=0>Maduixa</option>
-        <option value=1>Vainilla</option>
-        <option value=2>Xocolata</option>
-        <option value=3>Llimomna</option>
-    </select>
-    <select id="mida" onchange="view_gelat()">
-        <option value=""></option>
-        <option value=0>Petit</option>
-        <option value=1>Mitjà</option>
-        <option value=2>Gran</option>
-    </select>
-    <select id="tipus">
-        <option value=""></option>
-        <option value="0">Tarrina</option>
-        <option value="1">Cucurutxu</option>
-        <option value="2">Bol</option>
-    </select>
-    <div id="container_foto"></div>
-</body>
+          if(gust!="" && tipus!="" && mida!=""){
+              espai_desti.innerHTML="<img src = "+postres[gust][tipus][mida]+" />";
+          }
+          else espai_desti.innerHTML="<h3>Emplena totes les caselles per que vegis el resultat de la teva comanda!</h3>";
+      }
+  </script>
+  <style>
+      body{
+          background-color:rgb(0, 0, 124);
+          font-size:13pt;
+      }
+      #main_container{
+          background-color:beige;
+          width:80%;
+          padding:40px;
+          margin:40px auto;
+          border-radius:20px;
+          background-image:"url(imatges/cow.jpg)";
+      }
+      #container_foto{
+          height:250px;
+          border-radius:20px;
+      }
+      select{
+          width:250px;
+          margin:20px;
+      }
+      img{
+          display:block;
+          height:100%;
+          margin:0px auto;
+      }
+      h3{
+          padding:20px;
+          padding-top:60px;
+          margin-top:20px;
+          text-align:center;
+      }
+      #container_selects{
+        padding-top:50px;
+      }
+      #header p{
+          font-size:14pt;
+          margin-bottom:0px;
+      }
+      p{
+          font-size:17pt;
+      }
+      #header{
+          margin:20px auto;
+          padding:20px;
+          background-color:#fff;
+          width:80%;
+          border-radius:20px;
+      }
+      #header h2{
+          padding-top:50px;
+          font-size:260%;
+          line-height:60px;
+          text-align:center;
+          margin:30px auto;
+      }
+      #header img{
+          width:100%;
+          margin: 30px auto;
+          
+      }
+      #header #contenidor_logo{
+          width:100%;
+          margin:20px;
+      }
+  </style>
+  </head>
+  <body>
+    <div class="row" id="header">
+        <div class="col-6">
+            <p>Pepito's Restaurant presents...</p>
+            <h2><b>DELICIOUS</b> Ice Creams <br>of the <b><u>GRANDMA</u></b>!</h2>
+        </div>
+        <div class="col-6">
+            <div id="contenidor_logo">
+                <img src="../Condicionals/restaurant/chef.jpg" alt="logo_delicious"/>
+            </div>
+        </div>
+    </div>  
+
+    <div id="main_container">
+        <p id="explicacio">Abans, has d 'escollir el que vols dins de la selecció que hi ha a continuació:</p>
+        <div class="row">
+            <div class="col" id="container_selects">
+                <select id="gust" onchange="view_gelat()">
+                    <option value="">Tria una opció:</option>
+                    <option value=0>Maduixa</option>
+                    <option value=1>Vainilla</option>
+                    <option value=2>Xocolata</option>
+                </select>
+                <select id="tipus" onchange="view_gelat()">
+                    <option value="">Tria una opció:</option>
+                    <option value="0">Tarrina</option>
+                    <option value="1">Cucurutxu</option>
+                    <option value="2">Bol</option>
+                </select>
+                <select id="mida" onchange="view_gelat()">
+                    <option value="">Tria una opció:</option>
+                    <option value=0>Petit</option>
+                    <option value=1>Mitjà</option>
+                    <option value=2>Gran</option>
+                </select>
+            </div>
+            <div class="col">
+                <div id="container_foto">
+                    <h3>Emplena totes les caselles per que vegis el resultat de la teva comanda!</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
 </html>
