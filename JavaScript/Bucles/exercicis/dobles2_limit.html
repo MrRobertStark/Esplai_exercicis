@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>DoblesLimit</title>
+
+    <script language = "javascript">
+    
+        function dobles_limit(){
+            //Preparació dels límits del while
+            var limit = document.getElementById("text_numero").value;
+            var n_actual = 1;
+
+            //While el n_actual sigui inferior al límit ves multiplicant per 2
+            while(n_actual < limit){
+                n_actual*=2;
+                console.log(n_actual);
+            }
+
+            //Com que el nombre actual no pot ser mai igual al limit ni superior, s'haurà de dividir per 2. 
+            n_actual /=2;
+            document.getElementById("resultat").innerHTML = "<h2>Resultats</h2><p>El numero que no supera ni iguala el llindar és: "+n_actual;
+        }
+
+    </script>
+</head>
+<body>
+    <!--Introducció del programa-->
+    <h1>Exercici bucles: Dobles amb un limit!</h1>
+    <p>Anem a multiplicar per 2 un nombre inicial fins que el seu valor no superi el limit que indiquis tu, usuari!</p>
+    
+    <!--Input-->
+    <label for = "text_numero">Límit: </label>
+    <input type = "text" id="text_numero"/>
+
+    <!--Execució del programa-->
+    <input type = "button" value = "Calcular" onclick = "dobles_limit()"/>
+    <div id = "resultat"></div>
+    
+</body>
+</html>

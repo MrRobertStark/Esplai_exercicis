@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Fibonacci Límit</title>
+
+    <script language = "javascript">
+    
+        function fibonacci(){
+            //Declaració de les variables
+            var limit = document.getElementById("text_numero").value;
+            var n_previ = 0;
+            var n_actual = 1;
+            var comptador = 0;
+
+            //Generació de la sèrie Fibonacci
+            while (n_actual < limit){
+                var aux = n_previ + n_actual;
+                n_previ = n_actual;
+                n_actual = aux;
+
+                comptador++;
+                console.log(n_actual);
+            }
+            
+            //Resultats
+            window.alert("El darrer valor que no supera el límit "+limit+" de la sèrie Fibonacci és: "+n_previ+". És l'element "+ (comptador-1) );
+            document.getElementById("resultat").innerHTML = "<h2>Resultats</h2><p>El darrer valor que no supera el límit "+limit+" de la sèrie Fibonacci és "+n_previ+". És l'element "+(comptador-1)+"</p>";
+        }
+
+    </script>
+</head>
+<body>
+    <!--Introducció del programa-->
+    <h1>Fibbonacci amb limits!</h1>
+    <p>Anem a calcular l'últim element de la sèrie Fibonacci que no superi un valor. El valor el donaràs tu, usuari!</p>
+    
+    <!--Input-->
+    <label for = "text_numero">Entra un nombre enter: </label>
+    <input type = "text" id="text_numero"/>
+
+    <!--Execució del programa-->
+    <input type = "button" value = "Calcular" onclick = "fibonacci()"/>
+    <div id = "resultat"></div>
+    
+</body>
+</html>

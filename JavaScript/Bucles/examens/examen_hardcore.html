@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Test-medium</title>
+    <script language="javascript">
+        /* Below, we have the arrays that we will need in order to verify whether the student's answer and the solution matches*/
+        //Answer's array
+        var respostes = ['summer','0','bathroom','parents','1','8','2','happy'];
+
+        //Question's array
+        var preguntes = [
+            'Which is the season where you usually go to the beach?',
+            'How many monkeys there are in my house?',
+            'Where is the place where you can do all your human needs?',
+            'Who teaches you to drive for free in some states of the USA?',
+            'How many eyes does a cyclope has?',
+            'An easy one: How much water glasses should you drink per day?',
+            'How much is 1+1?',
+            'So, are you doing well so far?'
+        ];
+        function mark_me(){
+        //Pre:true//Post:The function has counted the correct and wrong answers in order to give a final mark to the student
+
+            var  comptador = 0;
+            var nota_final = 0;
+
+            for(comptador = 0; comptador < respostes.length; comptador++){
+                //Variables declaration: Where we will put the tick or the cross, get the answer and the solution
+                var espai_correcio = document.getElementById("container_resposta"+comptador);
+                var solucio = respostes[comptador];
+                var resposta_actual;
+
+                if(comptador == 6)resposta_actual = document.getElementsByName('pregunta6').value;
+                else resposta_actual = document.getElementById('pregunta'+comptador).value;
+                console.log(resposta_actual);
+                
+                //If the answer is correct, put the green tick and add 1 point to the note. 
+                if(resposta_actual == solucio){
+                    espai_correcio.innerHTML = "<img src = 'correcte.jpg' />";
+                    nota_final++;
+                }
+                //If it is not correct and not in blank, substract 1 point to the note
+                else if(resposta_actual != solucio && resposta_actual != ""){
+                    espai_correcio.innerHTML = "<img src = 'incorrect.jpg' />";
+                    nota_final--;
+                }
+            }
+
+            //Final mark calculation
+            if(nota_final<0)nota_final = 0;
+            nota_final = (nota_final/preguntes.length)*10;
+
+            if(nota_final>=5)window.alert("Congratulations! You passed the exam with a mark of: "+nota_final);
+            else window.alert("Sorry, you have not passed the exam... Your mark is: "+nota_final+". Maybe next time!");
+        }
+    </script>
+    <style type="text/css">
+        header>p{
+            margin-top:30px;
+        }
+        body{
+            margin:20px;
+        }
+        .container_resposta{
+            width:50px;
+            height:50px;
+            margin-left:50px;
+        }
+        .container_resposta img{
+            width:100%;
+        }
+        body{
+            margin:40px;
+        }
+        table{
+            margin-left:50px;
+        }
+        #mark{
+            display:block;
+            font-size:17pt;
+            background-color:rgb(13, 192, 0);
+            padding:10px;
+            margin: 30px auto;
+            border-radius:10px;
+            width:200px;
+        }
+        #logo{
+            display:block;
+            position:absolute;
+            right:0px;
+            top:0px;
+        }
+        header{
+            margin:2%;
+            width:70%;
+        }
+        @media screen and (max-width:1280px){
+            td{
+                padding:10px;
+            }
+            table{
+                margin-left:0px;
+            }
+            body>img{
+                width:300px;
+                margin-left:-150px;
+                left:50%;
+                margin-bottom:20px;
+            }
+            header{
+                margin-top:350px;
+                width:100%;
+            }
+            header h1{
+                text-align:center;
+                margin-bottom:30px;
+            }
+        }
+    </style>
+  </head>
+  <body>
+
+    <td><img id="logo" src = 'logo.jpg' /></td>
+
+    <header>
+        <td><h1>Masters' Life Final Exam</h1></td>
+        <p>Greetings, student. You are going to do the final test to get the masters' life title. You have infinite time and you can even cheat if you want. We hope you pass the exam! Time starts... NOW</p>
+    </header>
+
+    <table>
+        <tr>
+            <td>
+                <label for="pregunta0"><div id ="enunciat0"></div></label>
+                <select id="pregunta0">
+                    <option value="">Select your Answer</option>
+                    <option value="summer">Summer</option>
+                    <option value="spring">Spring</option>
+                    <option value="winter">Winter</option>
+                    <option value="whenever">I can go whenever I want!</option>
+                </select>
+            </td>
+            <td>
+                <div class = "container_resposta" id="container_resposta0"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id ="enunciat1" for="pregunta1"></label>
+                <select id="pregunta1">
+                    <option value="">Select your Answer</option>
+                    <option value=0>You have no monkeys!</option>
+                    <option value=2>Two monkeys!</option>
+                    <option value=1>One monkey!</option>
+                    <option value="doggy">Hey! You have a doggy!</option>
+                </select>
+            </td>
+            <td>
+                <div class = "container_resposta" id="container_resposta1"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id ="enunciat2" for="pregunta2"></label>
+                <select id="pregunta2">
+                    <option value="">Select your Answer</option>
+                    <option value="garden">The Garde!</option>
+                    <option value="kitchen">Wasn't that the Kitchen?</option>
+                    <option value="bathroom">Of course, the bathroom!</option>
+                    <option value="laundry">The laundry. I wash myself there!</option>
+                </select>
+            </td>
+            <td>
+                <div class = "container_resposta" id="container_resposta2"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id ="enunciat3" for="pregunta3"></label>
+                <select id="pregunta3">
+                    <option value="">Select your Answer</option>
+                    <option value="public_teacher">A teacher from any public school for driving</option>
+                    <option value="parents">Parents teach you!</option>
+                    <option value="paid_teacher">Any teacher paid by my parents and not by me!</option>
+                    <option value="unicorn">I once went to Narnia and saw a unicorn teaching...</option>
+                </select>
+            </td>
+            <td>
+                <div class = "container_resposta" id="container_resposta3"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id ="enunciat4" for="pregunta4"></label>
+                <select id="pregunta4">
+                    <option value="">Select your Answer</option>
+                    <option value=0>They don't have eyes. They are blind!</option>
+                    <option value=1>One eye</option>
+                    <option value=2>They have two eyes like me, right?</option>
+                    <option value=3>THey have three eyes</option>
+                </select>
+            </td>
+            <td>
+                <div class = "container_resposta" id="container_resposta4"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id ="enunciat5" for="pregunta5"></label>
+                <select id="pregunta5">
+                    <option value="">Select your answer</option>
+                    <option value=8>We need to drink up to 8 glasses of water</option>
+                    <option value=4>With 4 glasses it is enough for us to live.</option>
+                    <option value=10>We need to drink at least 10 bottles of water</option>
+                    <option value=0>Who says we need water to survive?</option>
+                </select>
+            </td>
+            <td>
+                <div class = "container_resposta" id="container_resposta5"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id ="enunciat6" for="pregunta6"></label>
+                <div id="pregunta6">
+                    <input type = "radio" value = "0" id = "opcioa" name = "pregunta6" />
+                    <label for = "opcioa">0</label><br>
+                    
+                    <input type = "radio" value = "1" id = "opciob" name = "pregunta6" />
+                    <label for = "opciob">1</label><br>
+
+                    <input type = "radio" value = "2"  id = "opcioc" name = "pregunta6" />
+                    <label for = "opcioc">2</label><br>
+
+                    <input type = "radio" value = "return"  id = "opciod" name = "pregunta6" /> 
+                    <label for = "opciod">You have gone too far. Return to option C</label><br>
+                </div>
+            </td>
+            <td>
+                <div class = "container_resposta" id="container_resposta6"></div>
+            </td>
+        </tr>  
+        <tr>
+            <td>
+                <label id ="enunciat7" for="pregunta7"></label>
+                <select id="pregunta7">
+                    <option value="">Select your Answer</option>
+                    <option value="unhappy">Not happy! I'm boring!</option>
+                    <option value="happy">Very happy! As always!</option>
+                    <option value="sceptic">What is the purpose of this test?</option>
+                    <option value="mneh">Mneh...</option>
+                </select>
+            </td>
+            <td>
+                <div class = "container_resposta" id="container_resposta7"></div>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        var comptador = 0;
+        for(comptador = 0; comptador < preguntes.length; comptador++){
+            var capa = document.getElementById("enunciat"+comptador);
+            capa.innerHTML = preguntes[comptador];
+        }
+    </script>
+
+    <input type="button" id="mark" value="Mark me!" onclick="mark_me()"/>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

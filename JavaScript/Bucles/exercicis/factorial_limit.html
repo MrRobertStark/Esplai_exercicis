@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Factorial_limit</title>
+
+    <script language = "javascript">
+    
+        function factorial_limit(){
+            //Declaració de les variables
+            var limit = document.getElementById("text_numero").value;
+            var comptador = 0;
+            var n = 1; //inici de la sèrie factorial!
+            var resultat = 0;
+
+            //Execució del Bucle
+            while (n < limit){
+                comptador++;
+                n *= comptador;
+                console.log(n+", "+comptador);
+            }
+            
+            //Resultats
+            window.alert("El darrer factorial que no supera el límit "+limit+" és: "+ (comptador-1));
+            document.getElementById("resultat").innerHTML = "<h2>Resultats</h2><p>El factorial de "+(comptador-1)+" és: "+(n/comptador)+"</p>";
+        }
+
+    </script>
+</head>
+<body>
+    <!--Introducció del programa-->
+    <h1>Exercici Factorial amb Limits</h1>
+    <p>Anem a calcular el darrer factorial que no superi ni iguali el límit que tu ens diguis, usuari</p>
+    
+    <!--Input-->
+    <label for = "text_numero">Entra un nombre enter (límit): </label>
+    <input type = "text" id="text_numero"/>
+
+    <!--Execució del programa-->
+    <input type = "button" value = "Calcular" onclick = "factorial_limit()"/>
+    <div id = "resultat"></div>
+    
+</body>
+</html>

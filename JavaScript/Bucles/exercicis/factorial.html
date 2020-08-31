@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Factorial</title>
+
+    <script language = "javascript">
+    
+        function factorial(){
+            //Declaració de les variables
+            var input = document.getElementById("text_numero").value;
+            var i = input;
+            var resultat = 1;
+
+            //Execució del Bucle
+            for (i = input; i > 1; i--){
+                resultat *= i;
+                console.log(resultat);
+            }
+
+            window.alert("El factorial de "+input+" és: "+resultat);
+            document.getElementById("resultat").innerHTML = "<h2>Resultats</h2><p>El factorial de "+input+" és: "+resultat+"</p>";
+        }
+
+    </script>
+</head>
+<body>
+    <!--Introducció del programa-->
+    <h1>Exercici Factorial: calculadora Online</h1>
+    <p>Anem a calcular el factorial del nombre que tu ens diguis, usuari!</p>
+    
+    <!--Input-->
+    <label for = "text_numero">Entra un nombre enter: </label>
+    <input type = "text" id="text_numero"/>
+
+    <!--Execució del programa-->
+    <input type = "button" value = "Calcular" onclick = "factorial()"/>
+    <div id = "resultat"></div>
+    
+</body>
+</html>
