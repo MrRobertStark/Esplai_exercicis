@@ -1,0 +1,61 @@
+header>p{
+    margin-top:30px;
+}
+body{
+    margin:20px;
+}
+.container_resposta{
+    width:50px;
+    height:50px;
+    margin-left:50px;
+}
+.container_resposta img{
+    width:100%;
+}
+body{
+    margin:40px;
+}
+table{
+    margin-left:50px;
+}
+#mark{
+    display:block;
+    font-size:17pt;
+    background-color:rgb(13, 192, 0);
+    padding:10px;
+    margin: 30px auto;
+    border-radius:10px;
+    width:200px;
+}
+#logo{
+    display:block;
+    position:absolute;
+    right:0px;
+    top:0px;
+}
+header{
+    margin:2%;
+    width:70%;
+}
+@media screen and (max-width:1280px){
+    td{
+        padding:10px;
+    }
+    table{
+        margin-left:0px;
+    }
+    body>img{
+        width:300px;
+        margin-left:-150px;
+        left:50%;
+        margin-bottom:20px;
+    }
+    header{
+        margin-top:350px;
+        width:100%;
+    }
+    header h1{
+        text-align:center;
+        margin-bottom:30px;
+    }
+}

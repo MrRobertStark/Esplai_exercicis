@@ -124,19 +124,30 @@
     <div id="main_container">
         <p id="explicacio">Abans, has d 'escollir el que vols dins de la selecció que hi ha a continuació:</p>
         <div class="row">
+            
+            <!--Contenidor de les opcions a escollir per als gelats-->
             <div class="col" id="container_selects">
+                
+                <!-- Selecció del gust del gelat (maduixa, vainilla o xocolata) -->
+                <label for = "gust">Gust del Gelat:</label>
                 <select id="gust" onchange="view_gelat()">
                     <option value="">Tria una opció:</option>
                     <option value=0>Maduixa</option>
                     <option value=1>Vainilla</option>
                     <option value=2>Xocolata</option>
                 </select>
+
+                <!-- Selecció del tipus del Gelat (tarrina, conus o bol) -->
+                <label for = "tipus">Tipus del Gelat:</label>
                 <select id="tipus" onchange="view_gelat()">
                     <option value="">Tria una opció:</option>
                     <option value="0">Tarrina</option>
                     <option value="1">Cucurutxu</option>
                     <option value="2">Bol</option>
                 </select>
+
+                <!-- Selecció de la mida del gelat (petit, mitjà o gran) -->
+                <label for = "mida">Mida del Gelat:</label>
                 <select id="mida" onchange="view_gelat()">
                     <option value="">Tria una opció:</option>
                     <option value=0>Petit</option>
@@ -144,6 +155,8 @@
                     <option value=2>Gran</option>
                 </select>
             </div>
+
+            <!--Contenidors de l'imatge final-->
             <div class="col">
                 <div id="container_foto">
                     <h3>Emplena totes les caselles per que vegis el resultat de la teva comanda!</h3>

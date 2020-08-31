@@ -1,40 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="utf-8" />
-    <title>Page Title</title>
-    <script language="javascript">
-        var plats = [
-            '../Condicionals/restaurant/macarrons.jpg',
-            '../Condicionals/restaurant/cheesecake.jpg',
-            '../Condicionals/restaurant/amanida.jpg',
-            '../Condicionals/restaurant/paella.jpg'
-            ];
-        function enviar_plat(pos_plats){
-            document.getElementById("container").innerHTML = "<img src = "+plats[pos_plats]+" />" ;
-        }
-    </script>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Pepito's Great Restaurant</title>
     <style type="text/css">
-        img{
-            width:500px;
+        :root{
+            --color_opcio:rgb(57,169,219);
+            --color_verd:rgb(0,196,114);
+        }
+        body{
+            background-color:rgb(1, 1, 126);  
+        }
+        #main_container{
+            background-color:beige;
+            padding:40px;
+            width:80%;
+            margin:50px auto;
+            text-align:center;
+            border-radius:20px;
+        }
+        #head{
+            text-align:center;
+            padding:30px;
+        }
+        #head h2{
+            margin-bottom:20px;
+        }
+        #head h1{
+            padding-top:30px;
+            font-size:39pt;
+            margin-bottom:20px;
+        }
+        #head img{
+            width:300px;
+        }
+        .pegatina{
+            background-color:var(--color_opcio);
+            height:450px;
+            padding:30px;
+            margin:10px;
+            border-radius:20px;
+        }
+        .pegatina h1,#request{
+            margin-bottom:20px;
+            background-color:white;
+            width:100%;
+            height:70px;
+            padding-top:10px;
+            border-radius:20px;
+        }
+        .pegatina .foto{
+            width:95%;
+            height:50%;
+            margin:50px auto;
+            background-repeat: none;
+            background-size:cover;
+        }
+        #request{
+            margin:10px;
+            padding:0px;
+            background-color:rgb(0, 196, 186);
+            font-size:25pt;
+            height:80px;
+            font-weight:bold;
+            border-width:1px;
+            margin:30px auto;
+
+            transition:width 0.5s, height 0.5s;
+        }
+        .section{
+            background-color:rgb(111, 0, 255);
+            color:white;
+            position:relative;
+            left:-40px;
+            width:400px;
+            font-size:23pt;
+            border-top-right-radius:20px;
+            border-bottom-right-radius:20px;
+            padding:20px;
+            border:1px solid black;
             margin-top:40px;
+            margin-bottom:60px;
+            font-weight:bold;
+            
+            transition: width 0.5s;
+        }
+        .section:hover{
+            width: 500px;
+        }
+        .opcions{
+            text-align:left;
+            width:100%;
+            font-size:15pt;
+            margin:0px 0px;
+            color:black;
+            padding-left:20px;
+            padding:30px;
+            border-radius:none;
+            font-weight:bold;
+            padding-top:0px;
+        }
+        select{
+            margin:10px auto;
+            position:relative;
+        }
+        label{
+            width:120px;
+        }
+        .pegatina img{
+            width:100%;
+        }
+        @media screen and (max-width:750px){
+            .section{
+                width:60%;
+            }
+            .section:hover{
+                width:70%;
+            }
+            .pegatina .foto{
+                width:90%;
+                margin-top:10px;
+            }
         }
     </style>
-</head>
-<body>
-    <h1>Desplegable/Selecció de comandes</h1>
-    <p>Clica la teva comanda de la següent selecció:</p>
+    <script language="javascript">
+        var food = [
+            'restaurant/imatges/menu/paella.jpg',
+            'restaurant/imatges/menu/truita.jpg',
+            'restaurant/imatges/menu/macarrons.jpg',
+            'restaurant/imatges/menu/salmon.jpg',
+            'restaurant/imatges/menu/amanida.jpg',
+            'restaurant/imatges/menu/botifarra.jpg',
+            'restaurant/imatges/menu/cheesecake.jpg',
+            'restaurant/imatges/menu/coulant.jpg',
+            'restaurant/imatges/menu/cafe.jpg'
+        ];
+        /*A partir  d'aquest punt hi ha las funciones que gestionen els plats i el que seria el menu a triar del restaurant*/
+        function show_food(pos_menjar){
+            var capa_desti;
+            if(pos_menjar!=""){
+                if(pos_menjar < 3)capa_desti = document.getElementById('first_plate');
+                else if(pos_menjar < 6)capa_desti = document.getElementById('second_plate');
+                else capa_desti = document.getElementById('third_plate');
 
-    <label for="plat">Plats:</label>
-    <select id="plat" onchange="enviar_plat(document.getElementById('plat').value)">
-        <option value="">Escull una opció</option>
-        <option value="0">Macarrons</option>
-        <option value="1">Cheesecake</option>
-        <option value="2">Amanida</option>
-        <option value="3">Paella</option>
-    </select>
-    <div id="container">
+                capa_desti.innerHTML = "<img src = '"+ food[pos_menjar] +"' />";
+            }
+            else window.alert("You must choose a dish in every option!");
+        }
 
+    </script>
+  </head>
+  <body>
+
+    <!--Aquí es troba el títol i el Logo de l'empresa a més a més de la frase estrella-->
+    <div id="main_container">
+        <div class="row" id="head">
+            <div class="col-xl-8 col-sm-12">
+                <h1>Pepito's Great Restaurant!</h1>
+                <h2>Where all the food is more than <b>DELICIOUS</b>!</h2>
+            </div>
+            <div class="col-xl-4 col-sm-12">
+                <img src="restaurant/chef.jpg" alt="A real Cheff!"/>
+            </div>
+        </div>
+    
+    <!--Aquí hi haurà una pestanya per dividir la secció-->
+        <p class="section">CHOOSE YOUR MENU:</p>
+
+    <!--Aquí hi haurà la secció de Plats/Menús/ i les seves respectives fotografies-->
+
+        <div class="row">
+            <div class="col pegatina">
+                <h1>1st Dish</h1>
+                <select id="first_dish" onchange="show_food(document.getElementById('first_dish').value)">
+                    <option value="">Choose an option!</option>
+                    <option value="0">Spanish Paella</option>
+                    <option value="1">"Truita de Patata"</option>
+                    <option value="2">Italian's Pasta</option>
+                </select>
+                <div class="foto" id="first_plate"></div>
+            </div>
+            <div class="col pegatina">
+                <h1>2nd Dish</h1>
+                <select id="second_dish" onchange="show_food(document.getElementById('second_dish').value)">
+                    <option value="">Choose an option!</option>
+                    <option value="3">Salmon</option>
+                    <option value="4">Salad with Goat's cheese</option>
+                    <option value="5">Botifarra with Rice</option>
+                </select>
+                <div class="foto" id="second_plate"></div>
+            </div>
+            <div class="col pegatina">
+                <h1>Dessert</h1>
+                <select id="third_dish" onchange="show_food(document.getElementById('third_dish').value)">
+                    <option value="">Choose an option!</option>
+                    <option value="6">CheeseCake</option>
+                    <option value="7">Coulant</option>
+                    <option value="8">Coffee</option>
+                </select>
+                <div class="foto" id="third_plate"></div>
+            </div>
+        </div>        
     </div>
-</body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
 </html>

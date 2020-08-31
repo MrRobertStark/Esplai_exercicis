@@ -5,87 +5,55 @@
     <meta charset="utf-8">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="estils.css" type="text/css">
 
-    <title>Test-medium</title>
+    <title>Test-Difficult</title>
     <script language="javascript">
-
+        /* Below, we have the arrays that we will need in order to verify whether the student's answer and the solution matches*/
+        //Answer's array
         var respostes = ['summer','0','bathroom','parents','1','8','2','happy'];
 
+        //Question's array
+        var preguntes = [
+            'Which is the season where you usually go to the beach?',
+            'How many monkeys there are in my house?',
+            'Where is the place where you can do all your human needs?',
+            'Who teaches you to drive for free in some states of the USA?',
+            'How many eyes does a cyclope has?',
+            'An easy one: How much water glasses should you drink per day?',
+            'How much is 1+1?',
+            'So, are you doing well so far?'
+        ];
         function mark_me(){
+        //Pre:true//Post:The function has counted the correct and wrong answers in order to give a final mark to the student
+
             var  comptador = 0;
+            var nota_final = 0;
+
             for(comptador = 0; comptador < respostes.length; comptador++){
-                var resposta_actual = document.getElementById("pregunta"+comptador).value;
+                //Variables declaration: Where we will put the tick or the cross, get the answer and the solution
                 var espai_correcio = document.getElementById("container_resposta"+comptador);
+                var resposta_actual = document.getElementById("pregunta"+comptador).value;
                 var solucio = respostes[comptador];
-                
-                if(resposta_actual == solucio)espai_correcio.innerHTML = "<img src = 'correcte.jpg' />";
-                else espai_correcio.innerHTML = "<img src = 'incorrect.jpg' />";
+                //If the answer is correct, put the green tick and add 1 point to the note. 
+                if(resposta_actual == solucio){
+                    espai_correcio.innerHTML = "<img src = 'correcte.jpg' />";
+                    nota_final++;
+                }
+                //If it is not correct and not in blank, substract 1 point to the note
+                else if(resposta_actual != solucio && resposta_actual != ""){
+                    espai_correcio.innerHTML = "<img src = 'incorrect.jpg' />";
+                    nota_final--;
+                }
             }
+            //Final mark calculation
+            if(nota_final<0)nota_final = 0;
+            nota_final = (nota_final/preguntes.length)*10;
+
+            if(nota_final>=5)window.alert("Congratulations! You passed the exam with a mark of: "+nota_final);
+            else window.alert("Sorry, you have not passed the exam... Your mark is: "+nota_final+". Maybe next time!");
         }
     </script>
-    <style type="text/css">
-        header>p{
-            margin-top:30px;
-        }
-        body{
-            margin:20px;
-        }
-        .container_resposta{
-            width:50px;
-            height:50px;
-            margin-left:50px;
-        }
-        .container_resposta img{
-            width:100%;
-        }
-        body{
-            margin:40px;
-        }
-        table{
-            margin-left:50px;
-        }
-        #mark{
-            display:block;
-            font-size:17pt;
-            background-color:rgb(13, 192, 0);
-            padding:10px;
-            margin: 30px auto;
-            border-radius:10px;
-            width:200px;
-        }
-        #logo{
-            display:block;
-            position:absolute;
-            right:0px;
-            top:0px;
-        }
-        header{
-            margin:2%;
-            width:70%;
-        }
-        @media screen and (max-width:1280px){
-            td{
-                padding:10px;
-            }
-            table{
-                margin-left:0px;
-            }
-            body>img{
-                width:300px;
-                margin-left:-150px;
-                left:50%;
-                margin-bottom:20px;
-            }
-            header{
-                margin-top:350px;
-                width:100%;
-            }
-            header h1{
-                text-align:center;
-                margin-bottom:30px;
-            }
-        }
-    </style>
   </head>
   <body>
 
@@ -99,7 +67,7 @@
     <table>
         <tr>
             <td>
-                <label for="pregunta0">Which is the season where you usually go to the beach?</label>
+                <label for="pregunta0"><div id ="enunciat0"></div></label>
                 <select id="pregunta0">
                     <option value="">Select your Answer</option>
                     <option value="summer">Summer</option>
@@ -114,7 +82,7 @@
         </tr>
         <tr>
             <td>
-                <label for="pregunta1">How many monkeys there are in my house?</label>
+                <label id ="enunciat1" for="pregunta1"></label>
                 <select id="pregunta1">
                     <option value="">Select your Answer</option>
                     <option value=0>You have no monkeys!</option>
@@ -129,7 +97,7 @@
         </tr>
         <tr>
             <td>
-                <label for="pregunta2">Where is the place where you can do all your human needs?</label>
+                <label id ="enunciat2" for="pregunta2"></label>
                 <select id="pregunta2">
                     <option value="">Select your Answer</option>
                     <option value="garden">The Garde!</option>
@@ -144,7 +112,7 @@
         </tr>
         <tr>
             <td>
-                <label for="pregunta3">Who teaches you to drive for free in some states of the USA?</label>
+                <label id ="enunciat3" for="pregunta3"></label>
                 <select id="pregunta3">
                     <option value="">Select your Answer</option>
                     <option value="public_teacher">A teacher from any public school for driving</option>
@@ -159,7 +127,7 @@
         </tr>
         <tr>
             <td>
-                <label for="pregunta4">How many eyes does a cyclope has?</label>
+                <label id ="enunciat4" for="pregunta4"></label>
                 <select id="pregunta4">
                     <option value="">Select your Answer</option>
                     <option value=0>They don't have eyes. They are blind!</option>
@@ -174,7 +142,7 @@
         </tr>
         <tr>
             <td>
-                <label for="pregunta5">An easy one: How much water glasses should you drink per day?</label>
+                <label id ="enunciat5" for="pregunta5"></label>
                 <select id="pregunta5">
                     <option value="">Select your answer</option>
                     <option value=8>We need to drink up to 8 glasses of water</option>
@@ -189,12 +157,12 @@
         </tr>
         <tr>
             <td>
-                <label for="pregunta6">How much is 1+1?</label>
+                <label id ="enunciat6" for="pregunta6"></label>
                 <select id="pregunta6">
                     <option value="">Select your Answer</option>
                     <option value="2.1">The answer is 2.1!</option>
                     <option value=1>Maybe the answer is 11...?</option>
-                    <option value=2>That's easy. The answer is logarythm of 200 with base 10!</option>
+                    <option value=2>That's easy. The answer is logarythm of 100 with base 10!</option>
                     <option value=3>I don't know :D !</option>
                 </select>
             </td>
@@ -204,7 +172,7 @@
         </tr>  
         <tr>
             <td>
-                <label for="pregunta7">So, are you doing well so far?</label>
+                <label id ="enunciat7" for="pregunta7"></label>
                 <select id="pregunta7">
                     <option value="">Select your Answer</option>
                     <option value="unhappy">Not happy! I'm boring!</option>
@@ -218,6 +186,15 @@
             </td>
         </tr>
     </table>
+
+    <script>
+        var comptador = 0;
+        for(comptador = 0; comptador < preguntes.length; comptador++){
+            var capa = document.getElementById("enunciat"+comptador);
+            capa.innerHTML = preguntes[comptador];
+        }
+    </script>
+
     <input type="button" id="mark" value="Mark me!" onclick="mark_me()"/>
 
     <!-- Optional JavaScript -->
