@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script language = "javascript">
+        //Taula dels dies de la setmana
+        var dies = ['Dilluns','Dimarts','Dimecres','Dijous','Divendres'];
+
+        //Propietats && comandes
+        // dies.push("Dissabte");
+        // dies.unshift("Diumenge");
+        dies.splice(2, 0, 'Potato Day');
+        dies.splice(2,1);
+
+        //Bucle for per mostrar els elements de la taula
+        for (var i = 0; i < dies.length; i++){
+            document.write(dies[i]+"<br>");
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

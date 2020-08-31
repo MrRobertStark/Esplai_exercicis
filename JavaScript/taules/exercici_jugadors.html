@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Jugadors</title>
+
+    <!--Javascript del programa-->
+
+    <script language = "javascript">
+        //Taula dels jugadors, inicialment buida
+        var jugadors = [];
+
+        function mostrar_jugadors(){
+            //Pre: taula.length>=0//Post: Es mostren tots els jugadors de la taula jugadors
+            var i = 0;
+            var capa = document.getElementById("resultat");
+            
+            //Preparació per mostrar els resultats i bucle per mostrar els elements de la taula
+            capa.innerHTML = "<h1>Llistat dels jugadors:</h1><br>";
+            for (i in jugadors){
+                capa.innerHTML += i+") "+jugadors[i]+"<br>";
+            }
+        }
+        function afegir_fi(){
+            //Pre: cert //Post: Un string (nom d'un jugador) és afegit a la taula jugadors
+            var nou_jugador = document.getElementById("entrada").value;
+            jugadors.push(nou_jugador);
+            mostrar_jugadors();
+        }
+        function afegir_inici(){
+            //Pre: n_elements taula>=0 //Post: S'afegeix el nom del nou jugador a l'inici de la taula
+            var nou_jugador = document.getElementById("entrada").value;
+            jugadors.unshift(nou_jugador);
+            mostrar_jugadors();
+        }
+        function treure_ultim(){
+            //Pre:n_elements_taula>=0 //Post: Es treu l'últim element de la taula
+            jugadors.pop();
+            mostrar_jugadors();
+        }
+        function treure_primer(){
+            //Pre:n_elements_taula>=0 //Post: Es treu el primer element de la taula
+            jugadors.shift();
+            mostrar_jugadors();
+        }
+        function substituir(){
+            //Pre:cert//Post: Jugador substituit
+            var seccio_substitut = document.getElementById("substitucio");
+            seccio_substitut.innerHTML = "<p> Amb quin ho vols substituir? (Escriu la posició d'aquest) </p> <input id = 'subs' type = 'text' /> <input type = 'button' value = 'Endavant!' onclick = 'substituir2()'/>";
+        }
+        function substituir2(){
+            //Pre: n_elements_taula>=0 //Post: Jugador substituit
+
+            //Declaració nou jugador, es desa la posició a canviar i es substitueix
+            var nou_jugador = document.getElementById("entrada").value;
+            var pos_vell_jugador = document.getElementById("subs").value;
+            jugadors.splice(pos_vell_jugador,1,nou_jugador);
+
+            //Es treu la secció de substitució i es mostra la nova taula
+            var seccio_substitut = document.getElementById("substitucio");
+            seccio_substitut.innerHTML = "";
+            mostrar_jugadors();
+        }
+    </script>
+
+    <!--CSS del programa principal-->
+
+    <style type = "text/css">
+
+        #container_comandes{
+            margin-top:20px;
+        }
+
+    </style>
+</head>
+<body>
+    <!--Introducció del programa-->
+    <h1>Crea el teu propi equip de futbol!</h1>
+    <p>Anem a crear un llistat de membres del teu  equip de futbol per que el tinguis tot organitzat! Escriu els noms dins del següent requadre i clica el botó per afegir-li!</p>
+    
+    <!--Entrada del nom del jugador-->
+    <label for = "entrada">Nom del Jugador:</label>
+    <input type = "text" id = "entrada"/>
+    
+    <!--Execució del botó-->
+    <div id = "container_comandes">
+            <input type = "button" value = "Afegir" onclick = "afegir_fi()"/>
+            <input type = "button" value = "Afegir a l'inici" onclick = "afegir_inici()"/>
+            <input type = "button" value = "Treure últim jugador" onclick = "treure_ultim()"/>
+            <input type = "button" value = "Treure primer jugador" onclick = "treure_primer()"/>
+            <input type = "button" value = "Substituir jugador" onclick = "substituir()"/>
+            <div id = "substitucio"></div>
+    </div>
+
+    <!--Resultats-->
+    <div id = "resultat"></div>
+</body>
+</html>
