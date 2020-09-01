@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+
+    <!--JavaScript de la pàgina Web-->
+    <script language = "javascript">
+
+        intents= 2; //n_intents que l'usuari té per endevinar la contrasenya
+        comptador_aux = 0; //Comptador que servirà per veure si s'ha endevinat la contrasenya o no
+
+        var contrasenya_usuari = [];
+        var contrasenya = [];
+
+        for(var pos = 0; pos <3; pos++){ //Generació de la nova contrasenya
+            contrasenya.push(Math.round(Math.random()*50));console.log(contrasenya[pos]);
+        }
+
+        function password(){
+            if(intents!= 0 && comptador_aux!=3){ //Si no has guanyat però tampoc perdut... fes
+                
+                for(var pos = 0; pos < 3; pos++){
+                    var capa = document.getElementById("pista"+pos);
+                    var num = document.getElementById("nombre"+pos).value;
+                    var contra = contrasenya[pos];
+
+                    if(num == "")num = 0;
+
+                //Verificació de cada número introduit
+                    if(num == contra){
+                        capa.innerHTML= capa.innerHTML = "<img src = 'imatges/correcte.jpg' alt = 'foto' />";
+                        comptador_aux++;
+                    }
+                    else if (num > contra) capa.innerHTML= capa.innerHTML = "<img src = 'imatges/inferior.jpg' alt = 'foto' />";
+                    else capa.innerHTML =  capa.innerHTML= capa.innerHTML = "<img src = 'imatges/superior.jpg' alt = 'foto' />";
+                }
+
+                // Comunicació a l'usuari si l'ha encertada o no
+                if(comptador_aux==3)window.alert("FELICITATS, HAS GUANYAT!");
+                else {
+                    window.alert("Alerta! T'has equivocat! Tens "+comptador+ " vegades més per intentar-ho!");
+                    intents--;
+                }
+            }
+            //Si ja has guanyat, refresca la pàgina
+            else if (comptador_aux == 3)window.alert("Però si ja has guanyat! Refresca la pàgina!");
+
+            //Si has perdut, refresca la pàgina
+            else window.alert("Has perdut! Refresca la pàgina!");
+        }
+
+    </script>
+
+    <!--CSS de la pàgina Web-->
+    <style type = "text/css">
+        body{
+            font-family:sans-serif,Arial, Helvetica, sans-serif;
+            background-color:black;
+            color:white;
+            padding:0px;
+            margin:0px;
+        }
+        
+        img{
+            display:block;
+            width:100%;
+        }
+        #introduccio h1{
+            padding-top:90px;
+            font-size:80pt;
+            margin:30px;
+            text-align:center;
+        }
+        #introduccio h2{
+            font-size:30pt;
+            padding-left:30px;
+            margin: 150px auto;
+            text-align:center;
+        }
+
+        #resultat h3{
+            display:block;
+            width:600px;
+            padding-left:23%;
+            margin:50px auto;
+            font-size:27pt;
+        }
+
+        #instruccions{
+            font-size:34pt;
+            margin:200px auto;
+            padding:30px;
+        }
+
+        #button{
+            display:block;
+            font-size:20pt;
+            text-align:center;
+            margin:40px auto;
+            width:50%;
+            padding:20px;
+            border-radius:30px;
+            background-color:rgb(177, 0, 0);
+            color:white;
+            font-weight:bolder;
+            border: 5px dashed black;
+
+            margin-top:-45%;
+        }
+
+        .input{
+            width:200px;
+            height:200px;
+            border-radius:10px;
+            font-size:50pt;
+            text-align:center;
+            margin:10px;
+        }
+        .pegatina{
+            position:relative;
+            float:left;
+            height:300px;
+            margin:10px auto;
+            margin-left:7%;
+¡        }
+        #container_sorteig{
+            padding-top:50px;
+            margin-top:300px;
+            width:85%;
+            margin:350px auto;
+            height:700px;
+            padding-left:7%;
+            background-color:beige;
+            border-radius:10px;
+        }
+        .pegatina img{
+            width:60px;
+            height:100px;
+            display:block;
+            margin: 30px auto;
+            margin-bottom:30px;
+            padding-left:30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id = "main_container">
+        <!--Introducció-->
+        <div id = "introduccio">
+            <h1>Official bets of the Narnia Government!</h1>
+            <h2>Multiply your money! You could <u><b>be rich!</b></u></h2>
+            
+        </div>
+
+        <img src = "imatges/bets.jpg" alt = "apostes hardcore"/>
+
+        <!--Instruccions-->
+        <div id = "instruccions">
+            <h4>Instructions:</h4>
+            <p>First, you have to enter 3 numbers and clue the password the webpage has created automatically. If you are right, you win! Else we will guide you to discover it!<br><br>However, if you fail 3 times then you loose and you will have to refresh the page!</p>
+
+            <!--Execució del programa-->
+            <div id = "container_sorteig">
+                <div class="pegatina">
+                    <input type = "text" class = "input" id = "nombre0"/>
+                    <div id = "pista0"></div>
+                </div>
+                <div class="pegatina">
+                    <input type = "text" class = "input" id = "nombre1"/>
+                    <div id = "pista1"></div>
+                </div>
+                <div class="pegatina">
+                    <input type = "text" class = "input" id = "nombre2"/>
+                    <div id = "pista2"></div>
+                </div>
+                <br>
+            </div>
+            <input type = "button" value = "Comprove" id = "button" onclick = "password()"/>
+        </div>
+        <!-- <div id="anunci1">Anunci1</div>
+        <div id="anunci2">Anunci2</div>
+        <div id="anunci3">Anunci3</div>   -->
+    </div>
+</body> 
+</html>

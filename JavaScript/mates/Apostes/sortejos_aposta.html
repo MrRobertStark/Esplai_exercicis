@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+
+    <!--JavaScript de la pàgina Web-->
+    <script language = "javascript">
+
+        function ordenacio_i_deteccio_aposta(taula){
+        //Pre: taula.length  >= 0 && win = false//Post:taula ordenada
+            var i = 0;
+            var win = false;
+            var aposta = document.getElementById("aposta").value;
+            if(aposta == "")aposta = 0;
+
+            for(i = 0; i < taula.length; i++){
+                var j = i;
+                if(taula[j]==aposta)win = true;
+
+                while(j>0 && taula[j]<taula[j-1]){
+                    var aux = taula[j];
+                    taula[j]=taula[j-1];
+                    taula[j-1]= aux;
+                    j--;
+                }
+            }
+            if(win)window.alert("HAS GUANYAT !!! SEGUEIX APOSTANT!");
+            else window.alert("Ohh... Has perdut... Demà vendrem la teva casa! LOOSER");
+        }
+
+        function generate(){
+            //Pre:cert //Post:S'han generat 6 números aleatoris entre 1 i 49 inclosos
+            var comptador = 0;
+            var taula_aux = [];
+            var win = false;
+            
+            //Generem els 6 números aleatoris i els desem a una taula
+            for(comptador = 0; comptador < 6; comptador++){
+                var random_number = Math.random();
+                random_number = Math.round(random_number * 50);
+                taula_aux.push(random_number);
+            }
+            //Ordenem la taula
+            ordenacio_i_deteccio_aposta(taula_aux);
+
+            //Mostrar el resultat de la generació dels nombres
+            var capa = document.getElementById("resultat");
+            capa.innerHTML = "<h3>Results of the Roll:</h3><br>";
+            for(comptador = 0; comptador < taula_aux.length; comptador++){
+                capa.innerHTML+= "<div class = 'pegatina'><p> "+ taula_aux[comptador] +" </p></div>";
+            }
+        }
+    </script>
+
+    <!--CSS de la pàgina Web-->
+    <style type = "text/css">
+        body{
+            font-family:sans-serif,Arial, Helvetica, sans-serif;
+            background-color:black;
+            color:white;
+            padding:0px;
+            margin:0px;
+        }
+
+        .pegatina>p{
+            position:relative;
+            float:left;
+            margin:20px;
+            padding:20px;
+            font-size: 20pt;
+            background-color:beige;
+            font-size:30pt;
+            width:50px;
+            text-align:center;
+        }
+        
+        img{
+            display:block;
+            width:100%;
+        }
+        #introduccio h1{
+            padding-top:90px;
+            font-size:80pt;
+            margin:30px;
+            text-align:center;
+        }
+        #introduccio h2{
+            font-size:30pt;
+            padding-left:30px;
+            margin: 150px auto;
+            text-align:center;
+        }
+
+        .pegatina{
+            display:block;
+            padding-left:18%;
+        }
+
+        #resultat h3{
+            display:block;
+            width:600px;
+            padding-left:23%;
+            margin:50px auto;
+            font-size:27pt;
+        }
+
+        #instruccions{
+            font-size:34pt;
+            margin:200px auto;
+            padding:30px;
+        }
+
+        #generation{
+            background-color:rgb(60, 57, 255);
+            width:90%;
+            height:700px;
+            padding:30px;
+            margin:300px auto;
+            font-size:15pt;
+            border-radius:20px;
+        }
+
+        #button{
+            display:block;
+            font-size:20pt;
+            text-align:center;
+            margin:40px auto;
+            width:50%;
+            padding:20px;
+            border-radius:30px;
+            background-color:rgb(177, 0, 0);
+            color:white;
+            font-weight:bolder;
+            border: 5px dashed black;
+        }
+
+        h3,.pegatina>p{
+            color:black;
+        }
+
+        #generation #bet, #generation #aposta{
+            font-size:25pt;
+        }
+        #input{
+            width:700px;
+            margin:30px auto;
+            padding:0px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id = "main_container">
+        <!--Introducció-->
+        <div id = "introduccio">
+            <h1>Official bets of the Narnia Government!</h1>
+            <h2>Multiply your money! You could <u><b>be rich!</b></u></h2>
+            
+        </div>
+
+        <img src = "imatges/bets.jpg" alt = "apostes hardcore"/>
+
+        <!--Instruccions-->
+        <div id = "instruccions">
+            <h4>Instructions:</h4>
+            <p>First, you have to enter your number bet and then click the "Generate" button to generate your six-number combination.<br><br> If your number is in the generation, you win! Else, we sell your house! Is that simple!!! Remember that if you don't introduce anything, then you are entering a 0!</p>
+
+            <!--Execució del programa-->
+            <div id = "generation">
+                <input type = "button" id = "button" value = "SPIN AND BURST!" onclick = "generate()"/>
+                <div id = "input">
+                    <label for = "aposta" id= "bet">Enter your bet:</label>
+                    <input type = "text" id = "aposta"/>
+                </div>
+                <div id = "resultat"></div>  
+            </div>
+        </div>
+        <!-- <div id="anunci1">Anunci1</div>
+        <div id="anunci2">Anunci2</div>
+        <div id="anunci3">Anunci3</div>   -->
+    </div>
+</body> 
+</html>
