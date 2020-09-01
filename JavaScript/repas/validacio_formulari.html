@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script language = "javascript">
+
+        var contrasenya = "pepito";
+        contrasenya = contrasenya.toLowerCase();
+
+        function validacio(){
+            //Control de dades
+            var correcte = false;
+
+            //Recepció de les dades
+            var formulari = document.getElementById("formulari");
+            var nom = document.getElementById("text_nom").value;
+            var password = document.getElementById("text_pass").value; 
+            password = password.trim(); password = password.toLowerCase();
+            var email = document.getElementById("text_correu").value;
+            
+            
+            //Validacions Nom
+            if (nom == "") console.log("Has d'emplenar les dades!");
+            else if (nom.length <= 3) console.log("El nom ha de tenir més de 3 caràcters!");
+            else {correcte = true; console.log ("Nom correcte!");}
+
+            //Validacions Contrasenya
+            if(password == contrasenya)console.log("Contrasenya correcte");
+            else {console.log("Contrasenya Incorrecte"); correcte = false;}
+
+            //Validacio correu electrónic
+            var pos_arroga = email.indexOf("@");
+            if(pos_arroga == -1 || email.lastIndexOf(".") < pos_arroga){console.log("No és un correu electrónic!");correcte = false;}
+            else console.log("Correu electrónic vàlid!");
+
+            //Resultats
+            if(correcte)window.alert("Perfecte!");
+            else window.alert("Alguna cosa ha fallat!");
+            console.log ( "-----------------" );
+        }
+    </script>
+</head>
+<body>
+    <h2>Validació d'un formulari</h2>
+    <form method = "POST" action = "" id  = "formulari">
+        <p>Les dades amb un * són obligatoris</p>
+        <!--Entrada de les dades-->
+        <!--Nom-->
+        <label for = "text_nom">Nom(*): </label>
+        <input type = "text" name = "nom" id = "text_nom"/><br><br>
+
+        <!--Contrasenya-->
+        <label for = "text_pass">Contrasenya(*):</label>
+        <input type = "text" id = "text_pass"><br><br>
+        
+        <!--Correu electrónic-->
+        <label for = "text_correu">Correu Electrónic(*):</label>
+        <input type = "text" id = "text_correu"/><br><br>
+        
+        <!--Enviament de les dades-->
+        <input type = "button" value = "Enviar" onclick = "validacio()"/>
+    </form>
+</body> 
+</html>
