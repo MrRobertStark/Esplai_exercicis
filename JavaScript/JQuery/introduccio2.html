@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <style type = "text/css">
+        body{
+           text-align:center; 
+           font-family:sans-serif;
+        }
+        #main_container{
+            padding:20px;
+            margin:100px auto;
+            background-color:rgb(122, 255, 81);
+            font-size:30pt;
+            border:2px solid black;
+            border-radius:20px;
+            width:40%;
+            text-align:center;
+        }
+        .boto{
+            font-size:14pt;
+            padding:20px;
+            border-radius:10px;
+            margin:10px 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Introducció JQuery</h1>
+    <input type = "button" class = "boto" id = "boto1" value = "Hide!"/>
+    <input type = "button" class = "boto" id = "boto2" value = "Show!"/>
+    <input type = "button" class = "boto" id = "boto3" value = "Ninja Mode!"/>
+    <div id = "main_container">
+        <p>Això és una capa!</p>
+    </div>
+    
+    <script language = "javascript">
+        
+
+        $(document).ready(function(){
+            $("#boto1").click(function(){
+                $("#main_container").slideUp();
+            });
+
+            $("#boto2").click(function(){
+                $("#main_container").slideDown();
+            });
+            $("#boto3").click(function(){
+                $("#main_container").slideToggle();
+            });
+        });
+    </script>
+</body>
+</html>

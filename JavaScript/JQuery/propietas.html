@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <style type = "text/css">
+        #capa1{
+            background-color:beige;
+            padding:30px;
+            margin:30px;
+            width:40%;
+        }
+    </style>
+</head>
+<body>
+    <!--Entrada del nom-->
+    <br><br>
+    <label for ="text_nom">Nom: </label>
+    <input type = "text"id ="text_nom"/>
+    <!--Capa principal a treballar-->
+    <div id = "capa1">
+        <h1>Títol principal del contingut</h1>
+        <p>Aquest és un paràgraf!</p>
+    </div>
+    <!--Botó-->
+    <input type = "button" id = "boto1" value = "Click on me!"/>
+
+    <script language = "javascript">
+        $(document).ready(function(){
+            $("#boto1").click(function(){
+                //$("#text_nom").val("Hola Manolo!");
+                window.alert($("#capa1").html());
+                $("#capa1").html("<h2>Títol principal del contingut</h2><p>Aquest és un altre paràgraf</p>");
+            });
+        });
+    </script>
+</body>
+</html>

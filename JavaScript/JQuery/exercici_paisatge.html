@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Play a Game!</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <style type = "text/css">
+        #seccio_botons{
+            padding:20px;
+            width:80%;
+            margin:20px auto;
+            text-align:center;
+        }
+        .boto{
+            padding:20px;
+            font-size:16pt;
+            border-radius:15px;
+            width:180px;
+            margin:10px 20px;
+        }
+        table{
+            width:100%;
+            text-align:center;
+        }
+        td{
+            width:100px;
+            height:200px;
+        }
+        td p{
+            font-size:30pt;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Let's play a funny game!</h1>
+    <p>On the following page you will have to click four buttons in order to show the hidden photo! Each one does something different from the others! Be smart</p>
+    <div id = "seccio_botons">
+        <input type="button" class = "boto" id = "boto0" value="Click 1">
+        <input type="button" class = "boto" id = "boto1" value="Click 2">
+        <input type="button" class = "boto" id = "boto2" value="Click 3">
+        <input type="button" class = "boto" id = "boto3" value="Click 4">
+    </div>
+    <table>
+        <tr>
+            <td><div class="foto"><p id = "imatge0">H</p></div></td>
+            <td><div class="foto"><p id = "imatge1">O</p></div></td>
+            <td><div class="foto"><p id = "imatge2">L</p></div></td>
+            <td><div class="foto"><p id = "imatge3">A</p></div></td>
+        </tr>
+    </table>
+
+    <script language = "javascript">
+        $(document).ready(function(){
+            $("#boto0").click(function(){
+                $("#imatge0,#imatge2").hide();//BE
+            });
+            $("#boto1").click(function(){
+                $("#imatge0, #imatge3").show(); //BE
+            });
+            $("boto2").click(function(){
+                $("td>p").toggle(); // MALAMENT
+            });
+            $("boto3").click(function(){
+                $("#imatge1,#imatge4").show(); //
+            });
+        });
+    </script>
+</body>
+</html>
