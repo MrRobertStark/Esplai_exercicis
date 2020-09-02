@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Formulari repàs</title>
+
+    <!--JQuery  FrameWork-->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <!--CSS-->
+
+    <style type = "text/css">
+       #text_comentari{
+           width:400px;
+           height:100px;
+       } 
+    </style>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Formulari per que et donem una CocaCola imaginària</h1>
+    <p>Emplena el següent formulari per tal d'accedir a tots els nostres serveis!</p>
+    <form method = "POST" action = "">
+        <!--Entrada de dades: NOM-->
+        <label for = "text_nom">Nom: </label>
+        <input type = "text" class = "camp" id = "text_nom"  name = "text_nom"/><br><br>
+
+        <!--Entrada de dades: Email-->
+        <label for = "text_email">Email: </label>
+        <input type = "text" class = "camp" id = "text_email" name = "text_email"/><br><br>
+
+        <!--Entrada de dades: Telèfon:-->
+        <label for = "text_telefon">Telefon: </label>
+        <input type = "text" class = "camp" id = "text_telefon" name = "text_telefon"/><br><br>
+
+        <!--Entrada de dades: Comentaris-->
+        <label for = "text_comentari">Comentaris:<br><br></label>
+        <input type = "text" class = "camp" id = "text_comentari" name = "text_comentari"/><br><br>
+    </form>
+
+    <!--Enviament de dades-->
+    <input type = "button" value = "Enviar" id = "botoEnviar" name = "botoEnviar"/>
+
+    <!--JavaScript-->
+    <script language = "javascript">
+        $(document).ready(function(){
+
+            //Click del botó Enviar
+            $("#botoEnviar").click(function(){
+                //Rebut dels camps
+                var nom = $("#text_nom");
+                var email = $("#text_email");
+                var telefon = $("#text_telefon");
+                var comentaris = $("#text_comentari"
+                ).val();
+
+                //Validacions: NOM
+                if(nom.val() == "" || nom.val().length < 4){
+                    nom.css("background-color","red");
+                }
+                //Validacions: Email
+                if(email.val() == ""){
+                    email.css("background-color","red");
+                }
+                //Validacions: Telèfon
+                if(telefon.val()==""){
+                    telefon.css("background-color","red");
+                }
+                //Validacions: Comentari
+            });
+            //Més codi: Focus i Blur
+            $(".camp").focus(function(){
+                $(this).css("background-color","white");
+            });
+        
+
+        });
+    </script>
+</body>
+</html>

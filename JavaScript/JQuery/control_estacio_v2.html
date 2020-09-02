@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Control Estació MK2</title>
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!--CSS-->
+    <style type = "text/css">
+        body{
+            font-family:sans-serif;
+            background-color:bisque;
+        }
+        #option_container{
+            width:100%;
+            text-align:center;
+            margin: 60px auto;
+        }
+        .boto{
+            margin:10px;
+            padding:20px;
+            font-size:16pt;
+            width:300px;
+        }
+        #intro{
+            text-align:center;
+            margin:50px auto;
+            font-size:21pt;
+            width:90%;
+        }
+        #venda_container{
+            margin:20px auto;
+            width:80%;
+            background-color:beige;
+            text-align:center;
+            border-radius:20px;
+            padding-bottom:40px;
+        }
+        #venda_container img{
+            margin:20px;
+            width:70%;
+        }
+        #venda_container p{
+            width:70%;
+            margin:20px auto;
+            padding:30px;
+            font-size:15pt;
+            text-align:justify;
+        }
+        #preu_final{
+            background-color:azure;
+            border-radius:30px;
+            position:absolute;
+            bottom:-100%;
+            right:10px;
+            padding:30px;
+            font-size:20pt;
+            background-color:greenyellow;
+            border:6px dashed black;
+            margin-top:10%;
+        }
+    </style>
+</head>
+<body>
+    <div id = "option_container">
+        <input type="button" class ="boto" id = "boto0" value="Primavera">
+        <input type="button" class ="boto" id = "boto1" value="Estiu">
+        <input type="button" class ="boto" id = "boto2" value="Tardor">
+        <input type="button" class ="boto" id = "boto3" value="Hivern">
+    </div>
+    <div id = "intro">
+        <h1>Aconsegueix un viatge a qualsevol país del món!</h1>
+        <h3>Només cal seleccionar el  temporal!</h3>
+    </div>
+    <div id = "venda_container">
+        <div id = "seccio_foto"><img src = "imatges/viaje.jpg" alt = "producte"/></div>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta accusantium veritatis veniam amet et ex saepe, rerum sequi tempore voluptatum laudantium mollitia, pariatur distinctio. Omnis quibusdam soluta nobis architecto provident.
+        Eligendi dignissimos, sint repellendus voluptas vel illo at? Dicta ipsum iure sequi quae eligendi rem rerum totam laudantium sunt, reprehenderit hic, aperiam itaque? Atque, incidunt hic! Nulla temporibus magni earum?
+        Ea aut neque placeat assumenda sit modi similique consectetur dolores facere hic maxime, dolorum, esse ipsa? Earum dignissimos officiis explicabo, esse reiciendis, tempore illo facilis impedit repudiandae porro optio at?
+        Aperiam quas a architecto labore non aliquam animi nostrum magnam minima beatae eos consequatur illo sed saepe, dignissimos nobis similique officia eligendi provident deleniti dolores quisquam ducimus quam? Hic, ut?
+        </p>
+    </div>
+    <h2 id = "preu_final"></h1>
+
+    <script language = "javascript">
+        $(document).ready(function(){
+
+            var mes = new Date().getMonth();
+            if(mes < 3)hivern();
+            else if(mes < 6)primavera();
+            else if (mes < 9)estiu();
+            else tardor();
+            console.log(mes);
+
+            //Accionament botó: Primavera
+            $("#boto0").click(function(){
+                primavera();
+            });
+            //Accionament botó: Estiu
+            $("#boto1").click(function(){
+                estiu();
+            });
+            //Accionament botó: Tardor
+            $("#boto2").click(function(){
+                tardor()
+            });
+            //Accionament botó: Hivern
+            $("#boto3").click(function(){
+                hivern()
+            });
+
+            function primavera(){
+                $("#seccio_foto").html("<img src = 'imatges/primavera.jpg' alt = 'primavera'/>");
+                $("body p").css("color","tomato");
+                $("body").css("background-color","rgb(125, 255, 86)");
+                $("#intro").html("<h1>La primavera és l'estació perfecte per sortir!</h1>");
+                $("#preu_final").html("<h2>Preu Final: 200€</h2>");
+            }
+            function estiu(){
+                $("#seccio_foto").html("<img src = 'imatges/estiu.jpg' alt = 'estiu'/>");
+                $("body p").css("color","goldenrod");
+                $("body").css("background-color","orange");
+                $("#intro").html("<h1>L'estiu és ideal per anar a la platja!</h1>");
+                $("#preu_final").html("<h2>Preu Final: 900€</h2>");
+            }
+            function tardor(){
+                $("#seccio_foto").html("<img src = 'imatges/tardor.jpg' alt = 'tardor'/>");
+                $("body p").css("color","brown");
+                $("body").css("background-color","rgb(255, 111, 86)");
+                $("#intro").html("<h1>La tardor és perfecte per quedar-te a casa i veure la pluja!!</h1>");
+                $("#preu_final").html("<h2>Preu Final: 520€</h2>");
+            }
+            function hivern(){
+                $("#seccio_foto").html("<img src = 'imatges/hivern.jpg' alt = 'hivern'/>");
+                $("body p").css("color","blue");
+                $("body").css("background-color","rgb(86, 125, 255)");
+                $("#intro").html("<h1>Hivern? Feliç Nadal! Gaudeix de regals i de la neu</h1>");
+                $("#preu_final").html("<h2>Preu Final: 700€</h2>");
+                $("#preu_final").css("margin-top","20%");
+            }
+        });
+    </script>
+</body>
+</html>
