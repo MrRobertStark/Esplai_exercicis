@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-    <h1>Let's play a funny game!</h1>
+    <h1>This is a impossible game!</h1>
     <p>On the following page you will have to click four buttons in order to show the hidden photo! Each one does something different from the others! Be smart</p>
     <div id = "seccio_botons">
         <input type="button" class = "boto" id = "boto0" value="Click 1">
@@ -48,22 +48,48 @@
             <td><img class = "imatge" id = "imatge2" src = "imatges/mig_dreta.jpg" alt = "paisatge_cat"/></td>
             <td><img class = "imatge" id = "imatge3" src = "imatges/dreta.jpg" alt = "paisatge_cat"/></td>
         </tr>
-    </table>
-
     <script language = "javascript">
         $(document).ready(function(){
+
+            //Verificadors d'en pantalla:
+            var enPantalla0 = false;
+            var enPantalla1 = false;
+            var enPantalla2 = false;
+            var enPantalla3 = false;
+
             $("#boto0").click(function(){
-                $("#imatge0,#imatge2").hide();//BE
+                $("#imatge0, #imatge3").hide();
+                enPantalla0 = false;
+                enPantalla3 = false;
+                win();
             });
+
             $("#boto1").click(function(){
-                $("#imatge0, #imatge3").show(); //BE
+                $("#imatge3, #imatge2").show();
+                enPantalla3 = true;
+                enPantalla2 = true;
+                win();
             });
+
             $("#boto2").click(function(){
-                $(".imatge").toggle(); // MALAMENT
+                $("#imatge1, #imatge0").toggle();
+                enPantalla1 = !enPantalla1;
+                enPantalla0 = !enPantalla0;
+                win();
             });
+            
             $("#boto3").click(function(){
-                $("#imatge1,#imatge4").show(); //
+                $("#imatge2, #imatge1").hide();
+                enPantalla2 = false;
+                enPantalla1 = false;
+                win();
             });
+            
+            function win(){
+                if(enPantalla0 && enPantalla1 && enPantalla2 && enPantalla3){
+                    window.alert("FELICITATS! HAS GUANYAT UNA COCA COLA IMAGINÀRIA!");
+                }
+            }
         });
     </script>
 </body>

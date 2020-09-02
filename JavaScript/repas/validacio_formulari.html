@@ -33,6 +33,8 @@
             var pos_arroga = email.indexOf("@");
             if(pos_arroga == -1 || email.lastIndexOf(".") < pos_arroga){console.log("No és un correu electrónic!");correcte = false;}
             else console.log("Correu electrónic vàlid!");
+            var domini_web = email.substring(email.indexOf("@")+1,email.lastIndexOf("."));
+            console.log(domini_web);
 
             //Resultats
             if(correcte)window.alert("Perfecte!");
