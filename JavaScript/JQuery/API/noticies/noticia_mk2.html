@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--CSS JQuery && JQuery && JQuery themes-->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <title>Hello, world!</title>
+
+    <!--CSS PARTICULAR-->
+    <style type = "text/css">
+
+    </style>
+  </head>
+  <body>
+    <!--JQuery collapse content-->
+        <div id="accordion">
+            <h3 id ="titular1">Secció 1</h3>
+            <div id = "contingut1">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis fugiat quod maiores, nobis quibusdam, amet reiciendis vero dolorum ad laudantium cum unde in asperiores autem perspiciatis dolores reprehenderit dicta. Natus.</p>
+            </div>
+            <h3 id ="titular2">Secció 2</h3>
+            <div id = "contingut2">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis fugiat quod maiores, nobis quibusdam, amet reiciendis vero dolorum ad laudantium cum unde in asperiores autem perspiciatis dolores reprehenderit dicta. Natus.</p>
+            </div>
+            <h3 id ="titular3">Secció 3</h3>
+            <div id = "contingut3">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis fugiat quod maiores, nobis quibusdam, amet reiciendis vero dolorum ad laudantium cum unde in asperiores autem perspiciatis dolores reprehenderit dicta. Natus.</p>
+            </div>
+            <h3 id ="titular4">Secció 4</h3>
+            <div id = "contingut4">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis fugiat quod maiores, nobis quibusdam, amet reiciendis vero dolorum ad laudantium cum unde in asperiores autem perspiciatis dolores reprehenderit dicta. Natus.</p>
+            </div>
+            <h3 id ="titular5">Secció 5</h3>
+            <div id = "contingut5"> 
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis fugiat quod maiores, nobis quibusdam, amet reiciendis vero dolorum ad laudantium cum unde in asperiores autem perspiciatis dolores reprehenderit dicta. Natus.</p>
+            </div>
+        </div>
+
+    <!--Codi JQuery programma principal-->
+    <script language = "javascript">
+        $(document).ready(function(){
+
+            var comptador = 0;
+            for(comptador = 1; comptador <=5; comptador ++){
+                $.get("https://jsonplaceholder.typicode.com/posts/"+comptador,function(data,status){
+                    
+                    //Agafem les dades de la API
+                    var titol = data.title;
+                    var contingut = data.body;
+                    var id = data.id;
+
+                    //Tractem les dades
+                    $("#titular"+id).html("Titular "+id);
+                    $("#contingut"+id).html("<p>"+contingut+"</p>");
+                });   
+            }
+             // La capa principal és un accordion
+             $( "#accordion" ).accordion();
+        });
+    </script>
+  </body>
+</html>

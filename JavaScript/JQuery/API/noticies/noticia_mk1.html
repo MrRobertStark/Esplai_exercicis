@@ -47,25 +47,28 @@
   </head>
   <body>
     <div id = "container_opcions">
-        <input type="button" class = "boto" id = "boto1" value="Noticia 1">
-        <input type="button" class = "boto" id = "boto2" value="Noticia 2">
-        <input type="button" class = "boto" id = "boto3" value="Noticia 3">
+        <input type="button" class = "boto" id = "boto1" value="Següent Noticia">
     </div>
     
     <div id = "capsalera">
-        <!--<h1> Títol + num!</h1>-->
+        <!--<h1> Noticia + num!: Títol Principal</h1>-->
     </div>
 
     <div id = "contingut_noticia">
-
+        <!--<p>Contingut de la noticia</p>-->
     </div>
 
     <!--Codi JQuery programma principal-->
     <script language = "javascript">
         $(document).ready(function(){
             //Click botó 1
+            var comptador_noticia = 0;
+            var limit_noticies = 5;
+
             $("#boto1").click(function(){
-                $.get("https://jsonplaceholder.typicode.com/posts/1",function(data,status){
+                comptador_noticia++;
+                if(comptador_noticia>limit_noticies)comptador_noticia-= (comptador_noticia - 1);
+                $.get("https://jsonplaceholder.typicode.com/posts/"+comptador_noticia+"" ,function(data,status){
                     var titol = data.title;
                     var contingut = data.body;
                     var n_noticia = data.id;
@@ -73,29 +76,8 @@
                     escriure_noticia(titol,contingut,n_noticia);
                 });
             });
-            //Click Botó 2
-            $("#boto2").click(function(){
-                $.get("https://jsonplaceholder.typicode.com/posts/2",function(data,status){
-                    var titol = data.title;
-                    var contingut = data.body;
-                    var n_noticia = data.id;
 
-                    escriure_noticia(titol,contingut,n_noticia);
-                });
-            });
-            
-            //Click Botó 3
-            $("#boto3").click(function(){
-                $.get("https://jsonplaceholder.typicode.com/posts/3",function(data,status){
-                    var titol = data.title;
-                    var contingut = data.body;
-                    var n_noticia = data.id;
-
-                    escriure_noticia(titol,contingut,n_noticia);
-                })
-            });
-
-            //Esciure_funcio
+            //Esciure_noticia_funcio
             function escriure_noticia(titol,contingut,n_noticia){
                 $("#capsalera").html("<h3>Noticia Número "+n_noticia+": </h3><h1>"+titol+"</h1>");
                 $("#contingut_noticia").html("<p>"+contingut+"</p>");
