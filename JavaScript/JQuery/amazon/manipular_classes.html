@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pestanya Nova</title>
+
+    <!--Inclosió JQuery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    
+    <!--CSS PARTICULAR-->
+    <style type = "text/css">
+        .titol_color{
+            font-family:sans-serif;
+            color:green;
+            text-decoration:overline;
+            font-size:27pt;
+            letter-spacing: 2px;
+            text-align:center;
+        }
+    </style>
+</head>
+<!--HTML PRINCIPAL-->
+<body>
+    <!--Introducció de la plana-->
+    <div id = "introduccio">
+        <h1>Títol de la pàgina principal</h1>
+        <h2>Contingut de la pàgina</h2>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat exercitationem, neque ad beatae quasi, repellendus eum eligendi esse veritatis delectus iure! Aspernatur aut ipsa, eaque sed excepturi dolore quaerat autem!Quis expedita autem ex eius? Quibusdam iusto voluptate ratione, mollitia totam ipsa placeat non itaque provident accusamus, id ducimus! Autem labore officiis, suscipit expedita porro sit voluptatibus inventore harum cumque.</p>
+    </div>
+
+    <!--Botó-->
+    <input type = "button" value = "COLOR" id = "boto0"/>
+    <input type = "button" value = "NO COLOR" id = "boto1"/>
+    <input type = "button" value = "TOGGLE" id = "boto2"/>
+
+    <!--JavaScript JQuery-->
+    <script language = "javascript">
+        $(document).ready(function(){
+            $("#boto0").click(function(){
+                $("h1").addClass("titol_color");
+            });
+            $("#boto1").click(function(){
+                $("h1").removeClass("titol_color");
+            });
+            $("#boto2").click(function(){
+                $("h1").toggleClass("titol_color");
+            });
+        });
+    </script>
+</body>
+</html>

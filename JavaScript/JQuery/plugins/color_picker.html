@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <!--CSS && JQuery && Plugin-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+    <!--CSS-->
+    <style type = "text/css">
+        .barra{
+            width:30%;
+            margin:20px;
+        }
+        #color_container{
+            width:400px;
+            height:200px;
+            position:absolute;
+            right:400px;
+            top:140px;
+            border-radius:20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selecció de colors</h1>
+    <p>Mou les diferents barres de colors per tal de que es vegin un color en concret al quadre gran!</p>
+
+    <!--Vermell-->
+    <label for = "resultat_red">Valor Red:</label>
+    <input type = "text" class = "resultat" id = "resultat_red">
+    <div class  = "barra" id = "barra_vermella"></div>
+
+    <!--Verd-->
+    <label for = "resultat_verd">Valor verd:</label>
+    <input type = "text" class = "resultat" id = "resultat_verd">
+    <div class  = "barra" id = "barra_verd"></div>
+
+    <!--Blau-->
+    <label for = "resultat_blau">Valor blau:</label>
+    <input type = "text" class = "resultat" id = "resultat_blau">
+    <div class  = "barra" id = "barra_blau"></div>
+
+    <!--Resultat colors-->
+    <div id = "color_container"></div>
+
+    <!--JQuery code-->
+    <script language = "javascript">
+        $(document).ready(function(){
+            $("#barra_vermella").slider({
+                range: "min",
+                min: 0,
+                max: 255,
+                value: 60,
+                slide: function(event,ui){
+                    $("#resultat_red").val(ui.value);
+                    color_fons();
+                }
+            });
+            $("#barra_verd").slider({
+                range: "min",
+                min: 0,
+                max: 255,
+                value: 60,
+                slide: function(event,ui){
+                    $("#resultat_verd").val(ui.value);
+                    color_fons();
+                }                
+            });
+            $("#barra_blau").slider({
+                range: "min",
+                min: 0,
+                max: 255,
+                value: 60,
+                slide: function(event,ui){
+                    $("#resultat_blau").val(ui.value);
+                    color_fons();
+                }                
+            });
+
+            $("#boto").click(function(){
+                color_fons();
+            });
+
+            function color_fons(){
+                var red = $("#resultat_red").val();
+                var blau = $("#resultat_blau").val();
+                var verd = $("#resultat_verd").val();
+
+                $("#color_container").css("background-color","rgb("+red+","+verd+","+blau+")");
+            }
+
+            $(".resultat").val($(".barra").slider("value"));
+            color_fons();
+        });
+    </script>
+</body>
+</html>
