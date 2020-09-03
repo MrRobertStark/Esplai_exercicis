@@ -10,6 +10,9 @@
         body{
             font-family:sans-serif;
             background-color:bisque;
+            background-repeat:none;
+            background-size:cover;
+            transition:background-image 0.5s;
         }
         #option_container{
             width:100%;
@@ -27,6 +30,7 @@
             margin:50px auto;
             font-size:21pt;
             width:90%;
+            color:
         }
         #venda_container{
             margin:20px auto;
@@ -113,28 +117,28 @@
             function primavera(){
                 $("#seccio_foto").html("<img src = 'imatges/primavera.jpg' alt = 'primavera'/>");
                 $("body p").css("color","tomato");
-                $("body").css("background-color","rgb(125, 255, 86)");
+                $("body").css("background-image","url(imatges/primavera.jpg)");
                 $("#intro").html("<h1>La primavera és l'estació perfecte per sortir!</h1>");
                 $("#preu_final").html("<h2>Preu Final: 200€</h2>");
             }
             function estiu(){
                 $("#seccio_foto").html("<img src = 'imatges/estiu.jpg' alt = 'estiu'/>");
                 $("body p").css("color","goldenrod");
-                $("body").css("background-color","orange");
+                $("body").css("background-image","url(imatges/estiu.jpg)");
                 $("#intro").html("<h1>L'estiu és ideal per anar a la platja!</h1>");
                 $("#preu_final").html("<h2>Preu Final: 900€</h2>");
             }
             function tardor(){
                 $("#seccio_foto").html("<img src = 'imatges/tardor.jpg' alt = 'tardor'/>");
                 $("body p").css("color","brown");
-                $("body").css("background-color","rgb(255, 111, 86)");
+                $("body").css("background-image","url(imatges/tardor.jpg)");
                 $("#intro").html("<h1>La tardor és perfecte per quedar-te a casa i veure la pluja!!</h1>");
                 $("#preu_final").html("<h2>Preu Final: 520€</h2>");
             }
             function hivern(){
                 $("#seccio_foto").html("<img src = 'imatges/hivern.jpg' alt = 'hivern'/>");
                 $("body p").css("color","blue");
-                $("body").css("background-color","rgb(86, 125, 255)");
+                $("body").css("background-image","url(imatges/hivern.jpg)");
                 $("#intro").html("<h1>Hivern? Feliç Nadal! Gaudeix de regals i de la neu</h1>");
                 $("#preu_final").html("<h2>Preu Final: 700€</h2>");
                 $("#preu_final").css("margin-top","20%");

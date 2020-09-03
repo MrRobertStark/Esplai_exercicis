@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Amazon MK4</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!--CSS particular-->
+    <style type = "text/css">
+        body{
+            background-color:azure;
+        }
+        #main_container{
+            width:70%;
+            margin:20px auto;
+            background-color:aquamarine;
+            border-radius:20px;
+            padding:40px 30px;
+        }
+        #container_foto_gran{
+            width:90%;
+            margin:10px auto;
+        }
+        #imatges_alternatives{
+            width:90%;
+            margin:10px auto;
+            text-align:center;
+        }
+        #imatges_alternatives img{
+            text-align:center;
+            width:100%;
+            height:100px;
+            margin-right:7px;
+        }
+        #container_foto_gran img{
+            display:block;
+            margin:10px auto;
+            height:400px;
+        }
+
+        #intro{
+            text-align:center;
+            margin-top:100px;
+            margin-bottom:100px;
+        }
+        #intro p{
+            font-size:17pt;
+        }
+    </style>
+  </head>
+  <!--HTML Principal-->
+  <body>
+      <!--Introducció al programa-->
+    <div id = "intro">
+      <h1>Anem a fer un recorregut a llocs amb estacions diferents!</h1>
+      <p>Clica les quatre imatges que són sota la gran per veure-les.</p>
+  </div>
+  <!--Contenidor principal-->
+  <div id = "main_container">
+      <!--Capa de l'imatge principal-->
+      <div class = "row" id = "container_foto_gran">
+          <img class = "col" id = "fotoGran" src = "../imatges/viaje.jpg" alt = "gran_exemple"/>
+      </div>
+      <!--Capa de les imatges principals-->
+      <div class = "row" id = "imatges_alternatives">
+          <div class = "col"><img class = "foto" src="../imatges/primavera.jpg" alt="opcioA"></div>
+          <div class = "col"><img class = "foto" src="../imatges/estiu.jpg" alt="opcioB"></div>
+          <div class = "col"><img class = "foto" src="../imatges/tardor.jpg" alt="opcioC"></div>
+          <div class = "col"><img class = "foto" src="../imatges/hivern.jpg" alt="opcioD"></div>
+      </div>
+  </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <!--JavaScript JQuery particular-->
+    <!-------------------------------------------------------------------------------------------------------------------->
+
+
+    <script language = "javascript">
+      $(document).ready(function(){
+          //Quan una foto és clicada...
+          $(".foto").click(function(){
+              selected(this);
+          });
+
+          //Quan el cursor és per sobre fes...
+          $(".foto").mouseover(function(){
+              selected(this);
+          });   
+
+          //Quan el cursor deixi d'apuntar l'objecte fes...
+          $(".foto").mouseleave(function(){
+              $("#fotoGran").attr("src","../imatges/viaje.jpg");
+              $(".foto").css({ // Treu el CSS de les demés
+                  "border-style":"none",
+                  "border-width":"1px",
+                  "border-color":"black",
+              });
+          });
+
+
+          /*-------------------------------------------------------------------------------------------------------------*/
+          //Funció principal
+          function selected(imatge_actual){
+              $("#fotoGran").attr("src",$(imatge_actual).attr("src"));//Posa la foto clicada com a foto principal
+
+              $(".foto").css({ // Treu el CSS de les demés
+                  "border-style":"none",
+                  "border-width":"1px",
+                  "border-color":"black",
+              });
+
+              $(imatge_actual).css({ //Posa un CSS especial a la imatge seleccionada
+                  "border-style":"dashed",
+                  "border-width":"3px",
+                  "border-color":"green",
+              });
+          }
+      });
+  </script>
+  </body>
+</html>

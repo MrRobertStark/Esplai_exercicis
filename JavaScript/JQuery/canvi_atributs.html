@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <style type ="text/css">
+        #foto_container{
+            width:70%;
+            text-align:center;
+            margin:10px auto;
+        }
+        #foto_container img{
+            width:60%;
+            margin:20px;
+        }
+        #comandes{
+            text-align:center;
+        }
+        .boto{
+            padding:20px;
+            margin:20px;
+            font-size:15pt;
+            width:200px;
+            border-radius:10px;
+        }
+    </style>
+</head>
+    <h1>Títol principal de la pàgina</h1>
+    <h2>Contingut de la pagina</h2>
+    <div id = "foto_container">
+        <img src="imatges/viaje.jpg" alt="foto0" id = "imatge">
+    </div>
+    <div id ="comandes">
+        <input class = "boto" id = "boto1" type="button" value="Botó1">
+        <input class = "boto" id = "boto2" type="button" value="Botó2">
+    </div>
+<body>
+    <script language = "javascript">
+        $(document).ready(function(){
+            $("#boto1").click(function(){
+                $("#imatge").attr('src','imatges/tardor.jpg');
+            });
+            $("#boto2").click(function(){
+                $("#imatge").attr('src','imatges/primavera.jpg');
+            });
+        });
+    </script>
+</body>
+</html>
