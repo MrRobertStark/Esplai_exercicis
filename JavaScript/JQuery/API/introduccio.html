@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Introduccio API</title>
+
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    
+    <!--CSS-->
+    <style type = "text/css">
+    
+    </style>
+</head>
+<body>
+    <h1>Títol principal de la pàgina</h1>
+    <h2>Contingut de la pàgina</h2>
+    <input type = "button" value = "Rebre Dades!" id = "boto"/>
+
+    <!--Codi JQuery-->
+    <script language = "javascript">
+        $(document).ready(function(){
+            $("#boto").click(function(){
+                $.get("https://jsonplaceholder.typicode.com/posts/2",function(data,status){
+                    window.alert(data.title);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

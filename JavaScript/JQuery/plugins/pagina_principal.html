@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <style type = "text/css">
+        #container_web{
+            width:70%;
+            height:400px;
+            border-radius:20px;
+            border:1px solid black;
+            margin:40px auto;
+        }
+        body{
+            text-align:center;
+        }
+        #boto_mostrar{
+            padding:20px;
+            font-size:16pt;
+            border-radius:15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Títol principal de la pàgina web</h1>
+    <h2>Contingut de la pàgina</h2>
+    <input type = "button" value = "I am a button!" id = "boto_mostrar"/>
+    <div id = "container_web"></div>
+
+    <!--JQuery-->
+    <script language = "javascript">
+        $(document).ready(function(){
+            $("#boto_mostrar").click(function(){
+                $("#container_web").load('https://jsonplaceholder.typicode.com/todos/1');
+            });
+        });
+    </script>
+</body>
+</html>
