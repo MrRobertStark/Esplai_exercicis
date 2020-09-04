@@ -7,17 +7,22 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!--CSS del programa-->
     <style type = "text/css">
+        body{
+            font-family:sans-serif;
+        }
         #boto{
             padding:10px;
             font-size:14pt;
+            margin-bottom:20px;
         }
     </style>
 </head>
 <body>
     <!--COS HTML PRINCIPAL-->
-    <h1>Títol principal de la pàgina</h1>
+    <h1 id = "titular">Títol principal de la pàgina</h1>
     <h2>Contingut de la pàgina</h2>
     <input type = "button" id = "boto" value = "I am a button"/>
+    <div><img id ="foto" src = "" alt = "imatge"/></div>
 
     <!--Codi JQuery-->
     <script language = "javascript">
@@ -26,8 +31,9 @@
             //En fer click al botó...
             $("#boto").click(function(){
                 //Rep la informació de l'API i...
-                $.get("https://jsonplaceholder.typicode.com/photos/2",function(data,status){
-                    window.alert(data.thumbnailUrl); //mostra per pantalla la propietat indicada
+                $.get("https://jsonplaceholder.typicode.com/photos",function(data,status){
+                    //Tractem les dades
+                    s
                 });
             });
         });

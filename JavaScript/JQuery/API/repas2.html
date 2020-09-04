@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Repàs</title>
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!--CSS del programa-->
+    <style type = "text/css">
+        body{
+            font-family:sans-serif;
+        }
+        #boto{
+            padding:10px;
+            font-size:14pt;
+            margin-bottom:20px;
+        }
+        .pegatina{
+            background-color:beige;
+            border:1px solid black;
+            width:300px;
+            border-radius:20px;
+            padding:13px;
+            margin:20px;
+            text-align:center;
+
+            position:relative;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+    <!--COS HTML PRINCIPAL-->
+    <h1 id = "titular">Usuaris de la pàgina princpal</h1>
+    <p>Clica el següent botó per veure els usuaris inscrits a la pàgina web</p>
+    <input type = "button" id = "boto" value = "Show Names!"/>
+    <h3>Llistat de persones dins de l'aplicació:</h3>
+    <div id = "main_container"></div>
+
+    <!--Codi JQuery-->
+    <script language = "javascript">
+        $(document).ready(function(){
+
+            //En fer click al botó...
+            $("#boto").click(function(){
+                //Rep la informació de l'API i...
+
+                $.get("https://jsonplaceholder.typicode.com/users",function(data,status){
+                    var comptador = 0;
+                    for(comptador = 0; comptador < data.length; comptador++){
+                        var usuari = data[comptador];
+                        $("#main_container").append("<div class = 'pegatina'><p>"+usuari.name+"</p> <p>"+usuari.email+"</p> <p>"+usuari.phone+"</p> </div>");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
