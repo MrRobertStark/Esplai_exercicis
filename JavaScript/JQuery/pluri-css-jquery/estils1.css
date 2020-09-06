@@ -1,0 +1,142 @@
+:root{
+    --verd_plana: #4caf50;
+    --blau_plana: #32a4e7;
+    --gris_plana: #d4d4d4;
+}
+body{
+    padding:20px;
+    padding-top:0px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#cap,  #llistat_css li:first-child>a,#llistat_css li:first-child>a:hover{
+    color:white;
+    background-color: var(--verd_plana);
+}
+
+#cap{
+    padding:23px;
+    border-radius:10px;
+}
+#cap h1, #cap h4{
+    margin:0px;
+}
+#llistat_css{
+    margin-right:37px;
+    margin-top:-7px;
+    width: 210px;
+}
+#llistat_css ul{
+    padding-left:0px;
+    width:201px;
+}
+#llistat_css li{
+    list-style-type:none;
+}
+#llistat_css li>a:hover{
+    background-color: white;
+}
+#llistat_css li>a{
+    display:block;
+    text-decoration:none;
+    color:black;
+    background-color:var(--gris_plana);
+    margin-bottom:7px;
+    border-radius:4px;
+    border: 1px solid var(--gris_plana);
+    padding:7px;
+    width:100%;
+}
+#content{
+    width:50%;
+    line-height:27px;
+    margin-top:10px;
+    font-size:13pt;
+}
+#content a{
+    color:black;
+}
+#content a:hover{
+    text-decoration:none;
+}
+#side_bar{
+    width:250px;
+    height:390px;
+    color:white;
+    background-color:var(--blau_plana);
+    padding:14px;
+    padding-top:20px;
+    margin-top:10px;
+    border-radius:7px;
+    line-height:24px;
+    font-size:13pt;
+    right:-40px;
+
+    position:absolute;
+    right:30px;
+}
+#footer{
+    background-color:var(--gris_plana);
+    text-align:center;
+    font-size:10pt;
+    margin: -2% auto;
+    border:1px solid gray;
+    padding:7px;
+    border-radius:7px;
+    margin-bottom:10px;
+
+    width:95%;
+    position:absolute;
+    bottom:0px;
+    left:50%;
+    margin-left:-48%;
+}
+.main_content{
+    position:relative;
+    float:left;
+}
+@media screen and (max-width:1110px){
+    #content{
+        width:40%;
+    }
+    #footer{
+        bottom:-80px;
+    }
+    #side_bar{
+        height:70%;
+    }
+}
+@media screen and (max-width:1000px){
+    #footer,#side_bar{
+        position:relative;
+        float:left;
+    }
+    #side_bar{
+        margin-left:40px;
+        width:95%;
+        height:auto;
+        margin-bottom:20px;
+        margin-right:10px;
+    }
+    #footer{
+        bottom:0px;
+        margin-top:0px;
+        margin-bottom:50px;
+    }
+}
+@media screen and (max-width:750px){
+    #content{
+        width:90%;
+        margin-left:20px;
+    }
+    #content h1{
+        line-height:30px;
+    }
+    #llistat_css {
+        width:98%;
+    }
+    #llistat_css a,#llistat_css ul{
+        width:100%;
+    }
+}
+
+

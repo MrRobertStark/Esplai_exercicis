@@ -1,0 +1,50 @@
+:root{
+    --pistacho: #84c754;
+}
+body{
+    font-family: 'Courier New', Courier, monospace;
+    background-color:black;
+    color:var(--pistacho);
+    padding: 30px;
+}
+#cap h1{
+    margin-bottom:0px;
+}
+#cap h4{
+    margin-top:5px;
+    margin-bottom:50px;
+}
+#llistat_css li{
+    margin-bottom:10px;
+    font-size:13pt;
+}
+#llistat_css li>a{
+    text-decoration:none;
+    color:var(--pistacho);
+}
+#llistat_css li:nth-child(4)>a,#llistat_css li:nth-child(4)>a:hover,#llistat_css li>a:hover, a{
+    color:white;
+}
+a:hover{
+    color:var(--pistacho);
+}
+#content{
+    margin-top:70px;
+    line-height:25px;
+}
+#side_bar, #footer{
+    border-radius:7px;
+    border: 1px solid white;
+    padding: 10px;
+    color:white;
+}
+#side_bar{
+    width:400px;
+    position:absolute;
+    right:10px;
+    top:130px;
+}
+#footer{
+    font-size:9pt;
+    margin-bottom:0px;
+}

@@ -1,0 +1,69 @@
+:root{
+    --verd_plana: #4caf50;
+    --blau_plana: #32a4e7;
+    --gris_plana: #d4d4d4;
+    --vermell_plana: #d14836;
+    --tomato_plana: #f6dad7;
+    --negre_plana: #555;
+}
+body{
+    padding:10px;
+    padding-top:20px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h1,h3,a:hover{
+    color:var(--verd_plana);
+}
+#cap h4{
+    font-weight:normal;
+    margin-top:-5px;
+}
+#llistat_css ul{
+    padding-left:0px;
+    width:100%;
+}
+#llistat_css li{
+    list-style-type:none;
+    position:relative;
+    float:left;
+    margin-right:20px;
+    margin:5px;
+}
+#llistat_css li>a{
+    display:block;
+    background-color:var(--negre_plana);
+    width:150px;
+    height:20px;
+    text-align:center;
+    color:white;
+    font-size:14pt;
+    padding:5px 10px;
+    text-decoration:none;
+}
+#llistat_css li>a:hover,#llistat_css li:nth-child(3)>a:hover{
+    background-color:var(--gris_plana);
+}
+#llistat_css li:nth-child(3)>a{
+    background-color:var(--verd_plana);
+    color:white;
+}
+#content,#side_bar,#footer{
+    float:left;
+}
+#content{
+    line-height:30px;
+}
+a{
+    color:black;
+}
+#side_bar{
+    background-color:var(--gris_plana);
+    border-color:black;
+    padding:20px 10px;
+    font-size:13pt;
+    line-height:30px;
+}
+#footer{
+    text-align:center;
+    font-size:10pt;
+}

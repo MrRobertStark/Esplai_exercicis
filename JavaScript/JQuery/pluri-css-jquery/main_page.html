@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <meta charset="utf-8" />
+    <title>Multiple CSS Control</title>
+    <!--Link del CSS de la plana-->
+    <link rel = "stylesheet" type = "text/css" href = "estils1.css" id = "css_plana">
+    <!--JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <!--Títol i subtítol de la plana-->
+    <div id = "cap">
+        <h1>Welcome to My Homepage</h1>
+        <h4>Use the menu to select different Stylesheets</h4>
+    </div>
+
+    <!--Llistat d'opcions dels css disponibles-->
+    <div id = "main_content2">
+        <div class = "main_content" id = "llistat_css">
+            <ul>
+                <li><a href = "#" class = "estil1" >Stylesheet 1</a></li>
+                <li><a href = "#" class = "estil2" >Stylesheet 2</a></li>
+                <li><a href = "#" class = "estil3" >Stylesheet 3</a></li>
+                <li><a href = "#" class = "estil4" >Stylesheet 4</a></li>
+                <li><a href = "#" class = "no_estil" >No Stylesheet</a></li>
+            </ul>
+        </div>
+
+        <!--Contingut principal de la plana-->
+        <div class = "main_content" id = "content">
+            <h1>Same Page Different Stylesheets</h1>
+            <p>Thi is a demonstration of how different stylesheets canchange the layout of your HTML page. You can change the layour of this page by selecting different stylesheets in the menu, or by selecting one of the following links:<br>
+            <!--Llistat d'opcions dels css disponibles-->
+            <a href = "#" class = "estil1" >Stylesheet1</a>, 
+            <a href = "#" class = "estil2" >Stylesheet2</a>,
+            <a href = "#" class = "estil3" >Stylesheet3</a>,
+            <a href = "#" class = "estil4" >Stylesheet4</a>.</p>
+
+            <h1>No  Styles</h1>
+            <p>Thiss page uses DIV elements to group different sectionss of the HTML page. Click here to see how the page looks like with no stylesheets:<br>
+                <a href = "#" class = "no_estil">No Stylesheet</a>.</p>
+        </div>
+    </div>
+    <!--Side bar de la plana-->
+    <div id = "side_bar">
+        <h3><b>Side-Bar</b></h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus eaque, ducimus iure hic, illo provident, quasi corrupti unde reiciendis consectetur voluptatibus praesentium. Excepturi recusandae cum quae, tenetur quo explicabo numquam.</p>
+    </div>
+
+    <!--Footer-->
+    <div id = "footer">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid sequi numquam asperiores optio eaque voluptates, quam adipisci rem id magnam dolorum saepe exercitationem incidunt velit voluptatibus quasi, esse eveniet quod!Eaque officia quam rerum ea placeat labore nulla aperiam deserunt cupiditate consequuntur reiciendis itaque a, unde obcaecati recusandae exercitationem illum facilis dignissimos, cumque, odio maiores dolores consectetur aliquid? Illo, atque.</p>
+    </div>
+
+    <!--Codi JQuery-->
+    <script language = "javascript">
+        $(document).ready(function(){
+            $(".estil1").click(function(){
+                $("#css_plana").attr("href","estils1.css");
+                return false;
+            });
+            $(".estil2").click(function(){
+                $("#css_plana").attr("href","estils2.css");
+                return false;
+            });
+            $(".estil3").click(function(){
+                $("#css_plana").attr("href","estils3.css");
+                return false;
+            });
+            $(".estil4").click(function(){
+                $("#css_plana").attr("href","estils4.css");
+                return false;
+            });
+            $(".no_estil").click(function(){
+                $("#css_plana").attr("href","estils0.css");
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
