@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <!--CSS DEL PROGRAMA-->
+    <style type = "text/css">
+        #boto{
+            margin-bottom:20px;
+        }
+        body{
+            margin-left:10%;
+            padding:0px;
+        }
+        .row{
+            width:100%;
+        }
+        .col-lg-5{
+            background-color:#d4d4d4;
+            padding:50px;
+            font-size:13pt;
+            border-radius:15px;
+            margin:10px;
+        }
+        .col-sm-12{
+        }
+        b{
+            display:block;
+            margin:10px auto;
+        }
+    </style>
+    <title>Dades Obertes BCN Mk0!</title>
+  </head>
+  <body>
+    <h1>Llistat de Seleccions BCN!</h1>
+    <input type = "button" value = "Llistar Seleccions" id = "boto"/>
+    <div class = "row" id = "seleccions"></div>
+
+    <!--Link JQuery CODI JQUERY-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script language = "javascript">
+        //Preparació del codi per la seva implementació
+        $(document).ready(function(){
+            //Quan el botó sigui clicat...
+            $("#boto").click(function(){
+                //Agafa les dades de l'API
+                $.get("https://cors-anywhere.herokuapp.com/http://server.boka2.com/ws/seleccions.json",function(data,status){
+                    var llistat = data.Seleccions;
+                    var comptador = 0;
+                    var element = llistat[comptador];
+
+                        for(comptador = 0; comptador < llistat.length; comptador++){
+                            $("#seleccions").append("<div class = 'col-lg-5 col-md-11 col-sm-11'>"+
+                            "<b>Títol:</b>"+element.title+"<br>"
+                            +"<b>Nombre de places:</b>"+element.nombrePlaces+"<br>"
+                            +"<b>Ens:</b>"+element.ens
+                            +"</div>");
+                        }
+                });
+            });
+        });
+    </script>
+  </body>
+</html>

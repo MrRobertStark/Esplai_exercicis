@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <!--Link JQuery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!--Codi CSS particular-->
+    <style type = "text/css">
+        hr{
+            width:30%;
+            text-align:left;
+            margin:15px 0px;
+        }
+    </style>
+</head>
+<body>
+    <!--COS HTML-->
+    <input type = "button" value = "Click on me" id = "boto">
+    <div id = "capa_llistat"></div>
+
+    <!--CODI JQUERY-->
+    <script language = "javascript">
+        //Preparem el JQuery per implementar-ho
+        $(document).ready(function(){
+
+            //Codi principal
+            $("#boto").click(function(){
+
+                //Pre:botó clicat //Post:mostra tots els noms, correu electrónic i carrer de cada usuari desat a l'API
+                $.get("https://jsonplaceholder.typicode.com/users",function(data,status){
+                    
+                    //Cap de la llista
+                    $("#capa_llistat").append("<h2>Llistat de membres de l'empresa:</h2>");
+                    var comptador = 0;
+
+                    //Bucle
+                    for(comptador=0; comptador < data.length; comptador++){
+                        //Agafem els objectes i sub-objectes de la posició "comptador" de la data
+                        var user = data[comptador];
+                        var adresa = data[comptador].address;
+
+                        //Mostrem les dades per pantalla
+                        $("#capa_llistat").append(
+                            "Nom: "+user.name+"<br>"+
+                            "Correu electrònic: "+user.email+"<br>"+
+                            "Carrer:"+adresa.street+"<br><hr>");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
