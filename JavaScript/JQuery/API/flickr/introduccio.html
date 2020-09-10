@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <style type = "text/css">
+        #boto{
+            margin-bottom:30px;
+        }
+        img{
+            width:150px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Llistat de títols</h2>
+    <input type = "button" value = "Button" id = "boto"/>
+
+    <div id = "main_container"></div>
+
+    <script language = "javascript">
+        $(document).ready(function(){
+            $("#boto").click(function(){
+
+                $.get("https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=ab481822e3a3ffd44253a624ee0335db&page=2&format=json&nojsoncallback=1",function(data,status){
+                    var taula_fotos = data.photos.photo;
+                    
+                    $("#main_container").append("<h2>Llistat del resultat</h2>");
+                    for(var i = 0; i < taula_fotos.length; i++){
+                        var foto = taula_fotos[i];
+                        $("#main_container").append(foto.title+"<br>");
+                        $("#main_container").append("<img src = 'https://farm"+foto.farm+".staticflickr.com/"+foto.server+"/"+foto.id+"_"+foto.secret+".jpg' alt = 'imatge'<br><hr>");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

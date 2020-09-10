@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--JQuery carregat-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!--CSS particular-->
+    <style type = "text/css">
+        body{
+            padding:20px;
+        }
+        body>h1{
+            margin-bottom:30px;
+        }
+        body>p{
+            width:800px;
+        }
+        #main_container h2{
+            text-align:center;
+        }
+        #resultats{
+            padding:30px;
+            border-radius:20px;
+            margin:10px auto;
+            padding-left:100px;
+            width:95%;
+        }
+        .col-lg-5{
+            
+            border:1px solid black;
+            border-radius:7px;
+            padding:35px;
+            margin:10px;
+            font-size:14pt;
+            margin-right:20px;
+        }
+        .disponible{
+            background-color:#4caf50;
+        }
+        .alerta{
+            background-color:#32a4e7;
+        }
+        .perill{
+            background-color:#d14836;
+        }
+        .no_disponible{
+            text-decoration:line-through;
+            background-color:#555;
+            color:white;
+        }
+        .recompte{
+            margin:20px 5px;
+            background-color:#d4d4d4;
+            border-radius:7px;
+            padding:20px 10px;
+            column-rule: 1px solid black;
+            border:1px solid black;
+        }
+        .recompte p{
+            text-align:left;
+            padding-top:10px;
+            font-size:20pt;
+            margin-right:2%;
+        }
+        .encapsalament{
+            margin-bottom:20px;
+        }
+        .recompte img{
+            display:block;
+            margin-left:-50px;
+        }
+        img{
+            width:100%;
+        }
+        #boto,#main_container h2{
+            margin-bottom:30px;
+        }
+        .etiqueta{
+            box-shadow: 3px 2px 10px;
+        }
+        @media screen and (max-width:1000px){
+            #resultats{
+                margin-left:-20px;
+            }
+        }
+    </style>
+
+    <title>Barcelona Bike Control</title>
+  </head>
+  <body>
+    <!--Introducció-->
+        <h1>Barcelona Bike Control</h1>
+        <p>Hello! If you want all the information Barcelona has about all their public bikes then you are at the best website! First of all, click the following button so you can see all data from all public bikes:</p>
+    <!--Accionament de la plana-->
+    <input type = "button" value = "See All Bikes Info" id = "boto"/>
+
+    <!--Resultat de l'operació-->
+    
+    <div id = "capa_resultat"><div id = "main_container"></div><div class  = "row" id = "resultats"></div></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script language = "javascript">
+        //Preparació del javascript
+        $(document).ready(function(){
+
+            //Codi principal JQuery
+            $("#boto").click(function(){
+                $.get("https://cors-anywhere.herokuapp.com/http://server.boka2.com/ws/bicis.json",function(data,status){
+                    //Construim l'encapçalament del llistat
+                    $("#main_container").append("<h2>Informació de totes les bicis públiques de Barcelona</h2>");
+                    
+                    //Agafem les dades que ens interessa
+                    var taula_estacions = data.data.stations;
+                    var comptador = 0;
+                    for(comptador = 0; comptador < taula_estacions.length; comptador++){
+
+                        //Simplificació obtenció de dades
+                        var element = taula_estacions[comptador];
+                        var tipus_bicis = element.num_bikes_available_types;
+                        var total_bicis = element.num_bikes_available;
+                        
+                        //Mostrem les dades
+                        $("#resultats").append(
+                            //Etiqueta
+                            "<div class = 'col-lg-5 col-md-12 col-sm-12 etiqueta' id = 'etiqueta"+element.station_id+"' />"
+
+                                //Primera fila: quantitat total de bicicletes
+                               +"<div class = 'row'>"
+                                    +"<div class = 'col'><b>Total Bicicletes: "+total_bicis+"</b></div>"
+                               +"</div>"
+
+                               //Segona fila: recompte de bicicletes:
+                               +"<div class = 'row recompte'>"
+                                    //Primera columna: recompte bicicletes mecàniques
+                                    +"<div class = 'col'>"
+                                        //Encapçalament de les bicicletes mecàniques
+                                        +"<div class = 'row'>"
+                                            +"<div class = 'col encapsalament' ><b> Bicicletes mecàniques</b> </div>"
+                                        +"</div>"
+                                        //recompte bicis mecàniques amb la seva icona
+                                        +"<div class = 'row'>"
+                                            +"<div class = 'col'><p>"+tipus_bicis.mechanical+"x </p></div>"
+                                            +"<div class = 'col'><img src = 'icono_bicicleta.jpg' alt = 'icona_bici_mecanica'/></div>"
+                                        +"</div>"
+                                    +"</div>"
+
+                                    //Segona columna: recompte bicicletes elèctriques
+                                    +"<div class = 'col'>"
+                                        //Encapçalament de les bicicletes mecàniques
+                                        +"<div class = 'row'>"
+                                            +"<div class = 'col encapsalament'> <b>Bicicletes elèctriques</b> </div>"
+                                        +"</div>"
+                                        //recompte bicis mecàniques amb la seva icona
+                                        +"<div class = 'row'>"
+                                            +"<div class = 'col'><p>"+tipus_bicis.ebike+"x </p></div>"
+                                            +"<div class = 'col'><img src = 'icono_bicicleta_electrica.jpg' alt = 'icona_bici_electrica'/></div>"
+                                        +"</div>"
+                                    +"</div>"
+                               +"</div>"
+
+                               //Tercera fila: Quantitat acoplaments
+                               +"<div class = 'row'>"
+                                    +"<div class = 'col'><b>Quantitat acoplaments: "+element.num_docks_available+"</b></div>"
+                               +"</div>"
+                            +"</div>"
+                        );
+                        //Tractament etiquetes
+                        if(element.status!="IN_SERVICE" || total_bicis == 0) {
+                            $("#etiqueta"+element.station_id).addClass("no_disponible");
+                        }
+                        else if(total_bicis < 4) $("#etiqueta"+element.station_id).addClass("perill");
+                        else if (total_bicis < 8) $("#etiqueta"+element.station_id).addClass("alerta");
+                        else $("#etiqueta"+element.station_id).addClass("disponible");
+
+                        
+                    }
+                    
+                });
+            });
+        });
+    </script>
+  </body>
+</html>

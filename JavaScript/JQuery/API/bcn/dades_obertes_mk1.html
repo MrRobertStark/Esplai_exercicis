@@ -37,8 +37,17 @@
             display:block;
             margin:10px auto;
         }
+        a{
+            text-decoration:none;
+            color:blueviolet;
+        }
+        @media screen and (max-width:576px){
+            body{
+                margin-left:5px;
+            }
+        }
     </style>
-    <title>Dades Obertes BCN Mk0!</title>
+    <title>Dades Obertes BCN MK1!</title>
   </head>
   <body>
     <h1>Llistat de Seleccions BCN!</h1>
@@ -61,12 +70,23 @@
 
                         for(comptador = 0; comptador < llistat.length; comptador++){
                             var element = llistat[comptador];
+                            var convocatories = element.convocatories;
+                            var i = 0;
                             
-                            $("#seleccions").append("<div class = 'col-lg-5 col-md-11 col-sm-11'>"+
+                            $("#seleccions").append("<div class = 'col-lg-5 col-md-11 col-sm-11' id = 'capa"+comptador+"'>"+
                             "<b>Títol:</b>"+element.title+"<br>"
                             +"<b>Nombre de places:</b>"+element.nombrePlaces+"<br>"
                             +"<b>Ens:</b>"+element.ens
                             +"</div>");
+
+                            for(i = 0; i <convocatories.length; i++){
+                                var conv_info = convocatories[i];
+                                $("#capa"+comptador).append(
+                                     "<b>url:</b> "+conv_info.url+"<br>"
+                                    +"<b>doc:</b><a href = '"+conv_info.doc+"'>Documentació Oficial</a><br>"
+                                    +"<b>title</b>"+conv_info.title+"<br>"
+                                );
+                            }
                         }
                 });
             });

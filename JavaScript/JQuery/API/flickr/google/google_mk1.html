@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS && JQuery UI-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <title>Google V1</title>
+    <style type = "text/css">
+        body{
+            margin-left:10px;
+        }
+        #resultat{
+            padding-left:20px;
+            padding-right:0px;
+            margin-right:0px;
+        }
+        img{
+            width:90%;
+            margin:10px;
+            max-height:300px;
+        }
+        #barra_pagines{
+            text-align:center;
+            margin:20px auto;
+            width:300px;
+            font-size:18pt;
+        }
+        a{
+            margin-right:20px;
+        }
+        .seleccionat{
+            text-decoration:underline;
+            color:black;
+        }
+    </style>
+  </head>
+  <body>
+    <!--Introducció-->
+    <h1>HelloWorld Image Navigator</h1>
+    <p>Let's make a google-style search very simple using Flickr! Introduce what kind of photos you want to search, press the button and let the machine think!</p>
+
+    <!--Inputs-->
+    <label for = "text_input"> Search: </label>
+    <input type = "text" id = "text_input" placeholder = "Type your search" />
+    <input type = "button" id = "boto" value = "Go for it!"/>
+
+    <!--Resposta-->
+    <div id = "resultat"></div>
+    <div id = "barra_pagines">
+        <a class = "enllas" id ="primer" href="#">1</a>
+        <a class = "enllas" href="#">2</a>
+        <a class = "enllas" href="#">3</a>
+        <a class = "enllas" href="#">4</a>
+        <a class = "enllas" href="#">5</a>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script language = "javascript">
+        $(document).ready(function(){
+            var criteri;
+            var link;
+            var pagina;
+            $("#barra_pagines").hide();
+
+            //Accions
+            $("#boto").click(function(){
+                //Buida la capa dels resultats
+                $("#resultat").html("");
+                $("#barra_pagines").hide();
+
+                //Declarem els paràmetres necessaris per a la cerca
+                pagina = 1;
+                criteri = $("#text_input").val();
+
+                //Si no s'ha introduit res a la barra de cerca, llavors no facis res. En cas contrari, fes la cercai retoca el css del primer enllaç
+                if($("#text_input").val()!=""){ 
+                    mostrar_fotos(criteri,pagina);
+                }
+                else window.alert("Posa un criteri!");
+
+                $(".enllas").removeClass("seleccionat");
+                $("#primer").addClass("seleccionat");
+            });
+
+            $(".enllas").click(function(){
+                //Pre:Enllaç clicat//Post:Es retorna la pàgina de fotos demanada
+
+                //Posem el contingut demanat
+                pagina = $(this).text();
+                mostrar_fotos(criteri,pagina);
+
+                //Retoquem el css de l'enllaç clicat
+                $(".enllas").removeClass("seleccionat");
+                $(this).addClass("seleccionat");
+                return false;
+            });
+
+            function mostrar_fotos(criteri, pagina){
+            //Pre: link correcte provenent de l'API flickr.search i Pàgina n>=1//Post:es mostren les fotos segons les variables introduides
+
+            link = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=0558dda4ed8ce29a002c7f6cc7e3a51e&text="+criteri+"&accuracy=1&media=photos&per_page=20&page="+pagina+"&format=json&nojsoncallback=1";
+                //Crida l'api amb el criteri introduit
+                $.get(link,function(data,status){
+                    //Agafem la taula de les fotos
+                    var taula_fotos = data.photos.photo;
+                    var comptador = 0;
+                    
+                    //Mostrem el resultat de la cerca posant'ls dins una capa
+                    $("#resultat").append("<div class = 'row main_container'></div>");
+                    for(comptador = 0; comptador < taula_fotos.length; comptador++){
+                        var foto = taula_fotos[comptador];
+                        $(".main_container").append("<div class = 'col-lg-4 col-md-8 col-sm-12'><img src = 'https://farm"+foto.farm+".staticflickr.com/"+foto.server+"/"+foto.id+"_"+foto.secret+".jpg' alt = 'imatge'/></div>");
+                    }
+                    //Mostrem les barres d'opcions
+                    $("#barra_pagines").show();
+                });
+            }
+        });    
+    </script>
+  </body>
+</html>

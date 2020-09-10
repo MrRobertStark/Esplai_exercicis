@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Accordion - Collapse content</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+</head>
+<body>
+    <h1>Títol principal de la pàgina web</h1>
+    <input type = "button" value = "button" id = "boto"/>
+    <div id = "main_container">
+        <div id = "accordion">
+            <h3>Secció 1</h3>
+            <div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid provident sint pariatur voluptas, repudiandae totam nam. Magnam iste deserunt alias ut veniam nobis eveniet! Accusantium inventore id repellendus impedit ab?</p>
+            </div>
+        </div>
+    </div>
+
+    <script language = "javascript">
+        $(document).ready(function(){
+            $("#boto").click(function(){
+                $("#accordion").append(
+                    "<h3>Secció 2</h3>"
+                    +"<div>"
+                        +"<p>Aquí hi hauria el contingut de la secció   </p>"
+                    +"</div>"
+                    +"<h3>Secció 2</h3>"
+                    +"<div>"
+                        +"<p>Aquí hi hauria el contingut de la secció   </p>"
+                    +"</div>"
+                );
+
+                $("#accordion").accordion({
+                    collapsible:true
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS && JQuery CSS Plugin-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="parquing.css" type = "text/css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <title>BCN pàrquing</title>
+  </head>
+  <body>
+    <h1>Pàrquings de Barcelona</h1>
+    <input type = "button" value = "Mostrar Informació dels Pàrquings" id = "boto"/>
+    
+    <div id = "main_container" class = "row"></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script language = "javascript">
+        //Preparació del codi principal JQuery
+        $(document).ready(function(){
+
+
+            //Generació de les etiquetes amb la informació bàsica dels pàrquings
+            $("#boto").click(function(){
+                $.get("https://cors-anywhere.herokuapp.com/http://server.boka2.com/ws/parquings.json",function(data,status){
+
+                    //Variables generals
+                    var taula_icones = ["exterior.jpg","handicap.jpg","electric_charger.jpg","wc.jpg","elevator.jpg","consigna.jpg"];
+                    var serveis_bool = [];
+
+                    //Recepció de les dades
+                    var taula = data.ParkingList.Parking;
+                    var comptador = 0;
+
+                    for(comptador = 0; comptador < 20; comptador++){
+                        //Tractament de les dades
+                        var parquing_actual = taula[comptador];
+                        var geolocalitzacio = parquing_actual.ParkingAccess.Access;
+
+                        $("#main_container").append(
+                            //Encapçalament
+                            "<div class = 'col-lg-5 col-md-10 etiqueta'><h2>Codi del Pàrquing: "+parquing_actual.ParkingCode+"</h2>"
+                            +"<h3>"+parquing_actual.Name+"</h3>"
+
+                            //Primera fila: Informació bàsica 1
+                            +"<div class = 'row'>"
+                                //Primera columna: Informació de l'adreça
+                                +"<div class = 'col'>"
+                                    +"<b>Adreça: </b>"+parquing_actual.Address
+                                +"</div>"
+                            +"</div>"
+
+                            //Segona Fila: Informació Bàsica 2
+                            +"<div class = 'row'>"
+                                //Primera columna: Informació del nom
+                                +"<div class = 'col'>"
+                                    +"<b>Entrada: </b>"+parquing_actual.ParkingAccess.Access.AccessAddress
+                                +"</div>"
+                                //Segona columna: Informació de l'adreça
+                                +"<div class = 'col'>"
+                                    +"<b>Google Maps: </b><a href = 'https://www.google.es/maps/@"+geolocalitzacio.Latitude+","+geolocalitzacio.Longitude+",9z?hl=es' target = 'a_blank'> Localització </a>"
+                                +"</div>"
+                            +"</div>"
+
+                            //Tercera fila: Informació Accessos
+                            +"<div class = 'accordion' id = 'llistat_accessos"+parquing_actual.ParkingCode+"'></div>"
+                            
+                            //Quarta Fila: Encapçalament Preus
+                            +"<div id = 'llistat_preus"+parquing_actual.ParkingCode+"'></div></div>"
+                        );
+                        //Tractament de la capa
+                        //Variables
+                        var i = 0;
+                        var string_accessos = "<h3>Informació dels Accessos</h3><div>";
+
+                        //Control dels serveis i pujar-ho a la taula
+                        serveis_bool.push(parquing_actual.Exterior);
+                        serveis_bool.push(parquing_actual.HandicapAccess);
+                        serveis_bool.push(parquing_actual.ElectricCharger);
+                        serveis_bool.push(parquing_actual.WC);
+                        serveis_bool.push(parquing_actual.Elevator);
+                        serveis_bool.push(parquing_actual.Consigna);
+                        
+                        for (var i = 0; i< taula_icones.length; i++){
+                            if(serveis_bool[i]==1){
+                                string_accessos+= "<img src = '"+taula_icones[i]+"' alt = 'icona'/>" //Si el servei és disponible, posa l'icona
+                            }
+                        }
+                        //TANCAMENT ACORDEÓ i PROPIETATS
+                        string_accessos+= "</div>";
+                        $("#llistat_accessos"+parquing_actual.ParkingCode).append(string_accessos);
+                        $("#llistat_accessos"+parquing_actual.ParkingCode).accordion({
+                            collapsible:true,
+                            active:false
+                        });
+
+                        //CONTROL DEL LLISTAT DE PREUS
+                        var llistat_preu = "<h3>Llistat de preus</h3> <div class = 'row'>";
+                        var taula_preus = parquing_actual.ParkingPriceList.Price;
+
+                        //RECORREGUT DE LA TAULA DELS PREUS
+                        for(var i = 0; i < taula_preus.length; i++){
+                            var oferta_actual = taula_preus[i]; //Agafem l'oferta actual
+
+                            llistat_preu+= "<div class = 'col-12 etiqueta_preu'>"
+                                        + "<p>Tipus de vehicle: "+ oferta_actual.VehicleType+"</p>"
+                                        + "<p>Tipus de Fracció: "+ oferta_actual.FractionType+"</p>"
+                                        + "<p>Tipus de desFracció: "+ oferta_actual.DescFractionType+"</p>"
+                                        + "<p>Minuts: "+ oferta_actual.Minutes+"</p>"
+                                        + "<p><b>Quantitat: "+ oferta_actual.Amount+"</b></p>"
+                                        +"</div>"
+                        }
+                        //TANCAMENT ACORDEÓ i PROPIETATS
+                        llistat_preu+="</div>";
+                        $("#llistat_preus"+parquing_actual.ParkingCode).append(llistat_preu);
+                        $("#llistat_preus"+parquing_actual.ParkingCode).accordion({
+                            collapsible:true,
+                            active:false
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+  </body>
+</html>
