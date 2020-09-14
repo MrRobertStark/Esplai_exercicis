@@ -5,80 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS && JQuery UI-->
+    <!-- CSS PROPI && Bootstrap CSS && JQuery UI-->
+    <link rel = "stylesheet" type = "text/css" href = "estils.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
     <title>Google V2</title>
-    <style type = "text/css">
-        body{
-            margin-left:10px;
-        }
-        #resultat{
-            padding-left:20px;
-            padding-right:0px;
-            margin-right:0px;
-            margin-top:200px;
-        }
-        img{
-            display:block;
-            width:90%;
-            margin:10px;
-            max-height:300px;
-        }
-        #barra_pagines{
-            text-align:center;
-            margin:20px auto;
-            width:300px;
-            font-size:18pt;
-        }
-        a{
-            margin-right:20px;
-        }
-        .seleccionat{
-            text-decoration:underline;
-            color:black;
-        }
-        #sidebar{
-            max-width:500px;
-            padding:20px;
-            background-color:black;
-            color:white;
-            border-top-left-radius:10px;
-            border-bottom-left-radius:10px;
-            position:fixed;
-            top:100px;
-            height:100%;
-
-            transition: right 0.5s;
-        }
-        #side_foto{
-            display:block;
-            max-width:550px;
-            margin:0px auto;
-            width:auto;
-        }
-        #sidebar p{
-            width:90%;
-            margin-top:20px;
-            padding-left:10px;
-        }
-        #introduccio{
-            position:fixed;
-            top:0px;
-            width:100%;
-            background-color:black;
-            padding:10px;
-            color:white;
-            margin-left:-10px;
-        }
-        .amaga{
-            right:-550px;
-        }
-        .mostrar{
-            right:0px;
-        }
-    </style>
   </head>
   <body>
 
@@ -119,7 +51,6 @@
         //Preparació del document (JQuery)
         $(document).ready(function(){
             var criteri;
-            var link;
             var pagina;
             var foto_nova;
             var foto_anterior;
@@ -141,6 +72,7 @@
                     mostrar_fotos(criteri,pagina);
                 }
                 else window.alert("Posa un criteri!");
+
                 $(".enllas").removeClass("seleccionat");
                 $("#primer").addClass("seleccionat");
             });
@@ -149,19 +81,26 @@
             $(".enllas").click(function(){
                 //Pre:Enllaç clicat//Post:Es retorna la pàgina de fotos demanada
                 //Posem el contingut demanat
-                pagina = $(this).text();
+                $("#resultat").html("");
+                amagar_sidebar();
+
+                pagina = parseInt($(this).text());
                 mostrar_fotos(criteri,pagina);
 
                 //Retoquem el css de l'enllaç clicat
                 $(".enllas").removeClass("seleccionat");
                 $(this).addClass("seleccionat");
+                
+            });
+
+            $("#resultat").click(function(){
                 amagar_sidebar();
             });
 
             function mostrar_fotos(criteri, pagina){
             //Pre: link correcte provenent de l'API flickr.search i Pàgina n>=1//Post:es mostren les fotos segons les variables introduides
 
-                link = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=0558dda4ed8ce29a002c7f6cc7e3a51e&text="+criteri+"&accuracy=1&media=photos&per_page=20&page="+pagina+"&format=json&nojsoncallback=1";
+                var link = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=f401bc390d5fc1bb3788619f6c76fb70&text="+criteri+"&accuracy=1&media=photos&per_page=20&page="+pagina+"&format=json&nojsoncallback=1";
                 //Crida l'api amb el criteri introduit
                 $.get(link,function(data,status){
                     //Agafem la taula de les fotos
@@ -171,41 +110,55 @@
                     //Mostrem el resultat de la cerca posant'ls dins una capa
                     $("#resultat").append("<div class = 'row main_container'></div>");
                     for(comptador = 0; comptador < taula_fotos.length; comptador++){
-                        var foto = taula_fotos[comptador];
-                        $(".main_container").append(
-                            "<div class = 'col-lg-3 col-md-4 col-sm-12'>"
-                                +"<a href = '#'>"
-                                    +"<img class = 'photo' src = 'https://farm"+foto.farm+".staticflickr.com/"+foto.server+"/"+foto.id+"_"+foto.secret+".jpg' alt = 'imatge'/>"
-                                +"</a>"
-                            +"</div>");
+                        var foto = taula_fotos[comptador]; //Foto actual
+                        var capa = "<div class = 'col col-lg-3 col-md-6 col-sm-12'>" //Nova capa contenidora de l'imatge
+                                        +"<a href = '#'>"
+                                            +"<img class = 'photo' src = 'https://farm"+foto.farm+".staticflickr.com/"+foto.server+"/"+foto.id+"_"+foto.secret+".jpg' alt = 'imatge'/>"
+                                        +"</a>"
+                                    +"</div>";
+
+                        $(".main_container").append(capa);//Introducció de la capa
                     }
                     //Mostrem les barres d'opcions
                     $("#barra_pagines").show();
+
+                    //Click a una foto
                     $(".photo").click(function(){
+                        //Ajustem el CSS de la foto per destacar-la modificant classes
+                        $(".photo").removeClass("foto_seleccionada");
+                        $(this).addClass("foto_seleccionada");
+
+                        //Comparem si la imatge a la barra desplegable són les mateixes o diferents
                         foto_anterior = $("#side_foto").attr("src");
                         foto_nova = $(this).attr("src");
 
+                        //Si són diferents, actualitza i mostra la barra lateral
                         if(foto_anterior != foto_nova){
                             $("#side_foto").attr("src",foto_nova);
                             mostrar_sidebar();
-                        }                       
-                        else if(foto_anterior == foto_nova && $("#sidebar").hasClass("amaga")){
-                            mostrar_sidebar();
                         }
+                        //Si són iguals, únicament mostra-la quan la barra lateral estigués amagada                       
                         else {
-                            amagar_sidebar();
+                            if($("#sidebar").hasClass("amaga"))mostrar_sidebar();
+                            else amagar_sidebar();
                         }
                         return false;
                     });
                 });
             }
             function mostrar_sidebar(){
+                $("#resultat").css("width","60%");
                 $("#sidebar").removeClass("amaga");
                 $("#sidebar").addClass("mostrar");
+                $("#barra_pagines").addClass("reduit");
+                $(".col").removeClass("col-lg-3");
             }
             function amagar_sidebar(){
+                $("#resultat").css("width","100%");
                 $("#sidebar").removeClass("mostrar");
                 $("#sidebar").addClass("amaga");
+                $("#barra_pagines").removeClass("reduit");
+                $(".col").addClass("col-lg-3");
             }
         });    
     </script>

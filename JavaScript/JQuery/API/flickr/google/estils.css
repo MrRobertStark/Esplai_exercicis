@@ -1,0 +1,81 @@
+body{
+    margin-left:10px;
+}
+#resultat{
+    padding-left:20px;
+    padding-right:0px;
+    margin-right:0px;
+    margin-top:200px;
+
+}
+img{
+    display:block;
+    width:100%;
+    margin:10px;
+    max-height:300px;
+}
+#barra_pagines{
+    text-align:center;
+    margin-top:30px;
+    margin-bottom:40px;
+    width:100%;
+    font-size:18pt;
+}
+a{
+    margin-right:20px;
+}
+.seleccionat{
+    text-decoration:underline;
+    color:black;
+}
+#sidebar{
+    max-width:40%;
+    background-color:black;
+    color:white;
+    border-top-left-radius:10px;
+    border-bottom-left-radius:10px;
+    position:fixed;
+    top:150px;
+    height:100%;
+
+    transition: right 0.5s;
+}
+#side_foto{
+    display:block;
+    margin:40px auto;
+    margin-bottom:10px;
+    width:auto;
+}
+#sidebar p{
+    width:100%;
+    margin-top:5px;
+    padding:20px;
+    font-size:100%;
+}
+#introduccio{
+    font-size:14pt;
+    position:fixed;
+    top:0px;
+    width:120%;
+    background-color:black;
+    padding:20px;
+    padding-left:30px;
+    color:white;
+    margin-left:-10px;
+}
+.amaga{
+    right:-40%;
+}
+.mostrar{
+    right:-20px;
+}
+.reduit{
+    margin-left:-25%;
+}
+.foto_seleccionada{
+    box-shadow: 0px 0px 50px darkblue;
+    background-color:aquamarine;
+}
+@media screen and (max-width:680px){
+    
+}
