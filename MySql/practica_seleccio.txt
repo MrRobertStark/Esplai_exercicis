@@ -1,0 +1,28 @@
+LLISTAT COMANDES MK0
+
+SELECT `order_details`.`OrderID`, `order_details`.`UnitPrice` , `order_details`.`Quantity`, `orders`.`OrderDate`, `order_details`.`ProductID`, `products`.`ProductName`
+FROM `order_details`
+INNER JOIN `orders` ON `orders`.`OrderID` = `order_details`.`OrderID`
+INNER JOIN `products` ON `products`.`ProductID` = `order_details`.`ProductID`
+ORDER BY `order_details`.`OrderID` ASC
+
+LLISTAT COMANDES MK1
+
+SELECT `order_details`.`OrderID`, `order_details`.`Quantity`, `order_details`.`UnitPrice`,
+`orders`.`OrderDate`, 
+`products`.`ProductName`, 
+`categories`.`CategoryName`,
+`customers`.`ContactName` AS NameClient, 
+`employees`.`LastName` AS EmployeeLastName, `employees`.`FirstName` AS EmployeeFirstName, `employees`.`Title` AS EmployeeTitle,
+`shippers`.`CompanyName` AS ShippersCompanyName
+
+FROM `order_details`
+
+INNER JOIN `orders` ON `orders`.`OrderID` = `order_details`.`OrderID`
+INNER JOIN `products` ON `products`.`ProductID` = `order_details`.`ProductID`
+INNER JOIN `customers` ON `customers`.`CustomerID` = `orders`.`CustomerID`
+INNER JOIN `categories` ON `categories`.`CategoryID` = `products`.`CategoryID`
+INNER JOIN `employees` ON `employees`.`EmployeeID` = `orders`.`EmployeeID`
+INNER JOIN `shippers` ON `shippers`.`ShipperID` = `orders`.`ShipVia`
+
+ORDER BY `order_details`.`OrderID` ASC
