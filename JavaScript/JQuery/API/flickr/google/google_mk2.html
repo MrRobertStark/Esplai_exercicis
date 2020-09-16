@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-    <title>Google V2</title>
+    <title>HelloWorld Image Searcher</title>
   </head>
   <body>
 
@@ -27,8 +27,8 @@
 
     <!--Introducció-->
     <div id = "introduccio">
-        <h1>HelloWorld Image Navigator</h1>
-        <p>Let's make a google-style search very simple using Flickr! Introduce what kind of photos you want to search, press the button and let the machine think!</p>
+        <h1>HelloWorld Image Searcher</h1>
+        <p>Let's make a google-style search very simple using Flickr! Introduce what kind of photos you want to search, press the button and let the machine do it's magic!</p>
 
         <!--Inputs-->
         <label for = "text_input"> Search: </label>
@@ -100,7 +100,7 @@
             function mostrar_fotos(criteri, pagina){
             //Pre: link correcte provenent de l'API flickr.search i Pàgina n>=1//Post:es mostren les fotos segons les variables introduides
 
-                var link = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=f401bc390d5fc1bb3788619f6c76fb70&text="+criteri+"&accuracy=1&media=photos&per_page=20&page="+pagina+"&format=json&nojsoncallback=1";
+                var link = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=da8f3977e280b5976247b4c617622fe9&text="+criteri+"&accuracy=1&media=photos&per_page=20&page="+pagina+"&format=json&nojsoncallback=1";
                 //Crida l'api amb el criteri introduit
                 $.get(link,function(data,status){
                     //Agafem la taula de les fotos
