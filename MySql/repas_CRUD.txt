@@ -1,0 +1,4 @@
+INSERT INTO `customers` 
+(CompanyName,ContactName,ContactTitle,Country,CustomerID) 
+VALUES 
+("Empresas Pepito","Pinocho","Zeldero-MAN","Narnia","ZELM")
