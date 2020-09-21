@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS && Personal CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel = "stylesheet" href = "estils.css" type = "text/css"/>
+    <!-- JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <title>Employee's List</title>
+  </head>
+  <body>
+    <!--HTML PRINCIPAL-->
+    <img src = "employees.jpg" alt = "ilustracio" id = "logo"/>
+    <div id = "introduccio">
+        <h1>Empleats de l'empresa<br></h1>
+        <a href = "#main_container" id = "boto">List Employees</a></div >
+    </div>
+    <hr id = "divisio"/>
+    <div id = "main_container" class = "row"></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <script language = "javascript">
+        $(document).ready(function(){
+            $.get("http://localhost:4000/employees",function(data,status){
+                $("#divisio").hide();
+                //Botó clicat per mostrar 
+                $("#boto").click(function(){
+                    $("#divisio").show();
+                    var taula_elements = data;
+                    var n_elements = data.length;
+                    
+                    for(var i = 0; i < n_elements; i++){
+                        var empleat_actual = taula_elements[i];
+                        var contingut_etiqueta = 
+                            "<div class = 'etiqueta col-lg-3 col-md-4 col-sm-12' >"
+                                +"<h1>"+empleat_actual.CustomerID+"</h1>"
+                                +"<b>CompanyName:</b> "+empleat_actual.CompanyName+"<br>"
+                                +"<b>ContactName:</b> "+empleat_actual.ContactName+"<br>"
+                                +"<b>ContactTitle:</b> "+empleat_actual.ContactTitle
+                            +"</div>";
+                        $("#main_container").append(contingut_etiqueta);
+                    }
+                });
+            });
+        });
+    </script>
+  </body>
+</html>
