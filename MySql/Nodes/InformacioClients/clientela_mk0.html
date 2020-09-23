@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap && PARTICULAR CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="estils.css" type="text/css"/>
+    
+    <!--JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    
+    <title>ListClient</title>
+  </head>
+  <body>
+    <!--COS PRINCIPAL HTML-->
+    <!--Logo de l'empresa-->
+    <img id = "portada" src = 'clients.jpg' alt = "OurClients"/>
+    <!--Portada i botó per mostrar els clients-->
+    <div id = "introduccio">
+        <h1>Our enterprise's clients</h1>
+        <a id = "boto" href = "#main_container">List Them</a>
+    </div>
+    <!--Capa resultat de la consulta-->
+    <div id = "main_container" class = "row"></div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script language = "javascript">
+        //Inicialització del JQUERY
+        $(document).ready(function(){
+            //Amaguem el que nos ens interessa
+            $("#main_container").hide();
+
+            //Botó per llistar els clients clicat
+            $("#boto").click(function(){
+                //Crida de les dades del servidor
+                if($("#main_container").is(":hidden")){
+                    $.get("http://localhost:3000/customers",function(data,status){
+                        //Mostrem la capa resultat
+                        $("#main_container").show();
+                        //Si data és un array, la recorrem
+                        if($.isArray(data)){
+                            //Variables auxiliars: renombrar taula per una lectura més fàcil, numero de clients i client
+                            var taula_clients = data;
+                            var n_clients = data.length;
+                            //Generació de les diferentes etiquetes
+                            for(var i = 0; i < n_clients; i++){
+                                //Agafem el client
+                                var client = taula_clients[i];
+                                //Recopilem dins un string la informació d'una etiqueta i la pengem dins del row
+                                var contingut_etiqueta = 
+                                    "<div class = 'col-xl-3 col-md-5 col-sm-12 etiqueta'>"
+                                        +"<h4>"+client.CustomerID+"</h4>"
+                                        +"<b>Company</b><br>"+client.CompanyName+"<br>"
+                                        +"<b>Name</b><br>"+client.ContactName+"<br>"
+                                        +"<b>Employment</b><br>"+client.ContactTitle+"<br>"
+                                        +"<b>Address: </b><br>"+client.Address+"<br>"
+                                        +"<b>Phone: </b><a href = 'tel:"+client.Phone+"'>"+client.Phone+"</a><br>"
+                                    +"</div>"
+                                //Introducció de la info a la capa row    
+                                $("#main_container").append(contingut_etiqueta);
+                            }
+                        }
+                    });   
+                }
+            });
+        });
+    </script>
+  </body>
+</html>
