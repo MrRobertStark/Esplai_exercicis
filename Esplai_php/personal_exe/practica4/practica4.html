@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!--Informació meta-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Títol pestanya-->
+    <title>Practica4</title>
+    <!--Estils CSS de la pàgina-->
+    <style type = "text/css">
+
+        /* Estils de les capes */
+        body{
+            background-color:rgba(255,182,193,0.5);
+            padding:5px;
+            min-width:900px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .main_container{
+            background-color:white;
+            width:80%;
+            margin:0px auto;
+            padding:10px;
+            padding-bottom: 0px;
+            border-bottom:10px solid tomato;
+            height:810px;
+        }
+        .main_container img{
+            display:block;
+            margin:0px auto;
+        }
+        .about_section{
+            margin-bottom:0px;
+        }
+        .info_section{
+            width:69%;
+        }
+        .project_section{
+            width:200px;
+            height:330px;
+            padding:10px;
+            padding-top:0px;
+            margin-top:22px;
+            background-color:rgba(255,182,193,0.5);
+            border:1px solid tomato;
+            font-size:13pt;
+        }
+        .project_section h2{
+            margin-bottom:0px;
+        }
+        .project_section li{
+            margin-bottom:10px;
+        }
+        .social_section{
+            text-align:center;
+            border-top: 3px dashed rgba(255,182,193,0.5);
+            margin-bottom:0px;
+            padding-top:10px;
+            width:100%;
+        }
+        .about_section,.info_section, .project_section, .social_section{
+            position:relative;
+            float: left;
+        }
+        form label, form input{
+            margin-bottom:5px;
+        }
+        fieldset{
+            margin-bottom:12px;
+        }
+
+        /*Estil del contingut de les capes*/
+        h1,h2{
+            color:red;
+            font-family: 'Times New Roman', Times, serif;
+            font-size:22pt;
+        }
+        b,i{
+            text-decoration:underline;
+            font-size:18pt;
+        }
+        form{
+            font-weight: bold;
+        }
+        a{
+            color:blue;
+        }
+        .link_destacat{
+            color:blueviolet;
+        }
+        label + input{
+            background-color:rgba(255,182,193,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class = "main_container">
+        <!--Logo-->
+        <img src = "logo.jpg"/>
+
+        <div class = "about_section">
+            <!--Secció de About-->
+            <h1>About</h1>
+            <p>It can be intimidating for women to learn and ask questions when they are in an <b>extreme minority</b>. While open and welcoming, today's budding developer community is up to <b>91<i>%</i> male</b>. If we can empower more females with the confidence in their tecnological capabilities <i>we can begin to change this landscape</i>.</p> 
+        </div>
+        
+        <div class = "info_section">
+            <!--Upcoming Classes-->
+            <h2>Upcoming Classes</h2>
+            <table border = "1">
+                <!--Encapçalament-->
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Topic</th>
+                    </tr>
+                </thead>
+                <tbody align = "center">
+                    <tr>
+                        <td>New York</td>
+                        <td>JavaScript & JQuery</td>
+                    </tr>
+                    <tr>
+                        <td>New York</td>
+                        <td>HTML & CSS</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!--Registre-->
+            <h2>Sign Up!</h2>
+            <form method = "POST" action = "arxiu.php"> <!--arxiu.php no existeix-->
+                <!--Name-->
+                <label for = "text_nom">Name:</label>
+                <input type = "text" name = "text_nom" id = "text_nom"/><br>
+                <!--Email-->
+                <label for = "text_correu">Email:</label>
+                <input type = "text" name = "text_correu" id = "text_correu"/><br>
+                <!--Location-->
+                <label for = "select_location">Location:</label>
+                <select name = "location" id = "select_location">
+                    <option value = "0">Choose</option>
+                    <option value = "1" selected>San Francisco</option>
+                    <option value = "2">New York</option>
+                </select>
+                <!--Gender-->
+                <fieldset>
+                    <legend>Gender:</legend>
+                    <label for = "check_female">Female</label>
+                    <input type = "radio" name = "camp_gender" id = "check_female" value = "0"/>
+                    <label for = "check_male">Male</label>
+                    <input type = "radio" name = "camp_gender" id = "check_male" value = "1"/>
+                </fieldset>
+                <!--Experience-->
+                <label for = "camp_expe">Experience:</label><br>
+                <textarea id = "camp_expe"></textarea>
+                <!--Submit-->
+                <br><input type = "submit" value = "Sign up"/>
+            </form>
+        </div>
+
+        <div class = "project_section">
+            <!--Projects secció-->
+            <h2>Projects</h2>
+            <ul>
+                <li>USA</li>
+                <ul>
+                    <li><a href = "https://i.ytimg.com/vi/hiulXZJRKnU/maxresdefault.jpg" target = "_blank" >New York</a></li>
+                    <li><a href = "https://www.visittheusa.mx/sites/default/files/styles/hero_l_x2/public/images/hero_media_image/2020-05/968fcacf-0001-4ac7-b797-bd6815a4e88e.jpeg?itok=zPEvjrR5" target = "_blank" >Columbus</a></li>
+                    <li><a href = "https://static.fox7austin.com/www.fox7austin.com/content/uploads/2019/08/Austin20Skyline_1522419319944.jpg_5240096_ver1.0_640_360.jpg" target = "_blank" >Austin</a></li>
+                    <li><a href = "https://www.cbre.us/-/media/cbre/countryunitedstates/corporate-offices/philadelphia%20region/philadelphia%20market/08-philly-skyline-768x582.jpg" target = "_blank" >Philly</a></li>
+                </ul>
+                <li>World</li>
+                <ul>
+                    <li><a href = "https://media-cdn.tripadvisor.com/media/photo-s/10/e3/54/f1/ottawa-aerial-view-ottawa.jpg" target = "_blank" >Ottawa</a></li>
+                    <li><a href = "https://silversea-h.assetsadobe2.com/is/image/content/dam/silversea-com/ports/s/sydney/silversea-luxury-cruises-Sydney.jpg?hei=390&wid=930&fit=crop" target = "_blank" class = "link_destacat">Sydney</a></li>
+                </ul>
+            </ul>
+        </div>
+        
+        <!--Social media links-->
+        <p class = "social_section">
+            <a href="https://twitter.com/?lang=es" target = "_blank">Twitter</a> |
+            <a href="https://es-es.facebook.com/" target = "_blank">Facebook</a> |
+            <a href="https://www.flickr.com/explore" target = "_blank" class = "link_destacat">Flickr</a>
+        </p>
+    </div>
+</body>
+</html>
