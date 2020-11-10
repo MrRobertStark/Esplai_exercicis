@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>containers</title>
+    <style type = "text/css">
+        .container{
+            width:100%;
+            background-color:#ffb;
+            margin:0px auto;
+            padding-top:20px;
+        }
+        .article{
+            width:300px;
+            margin:10px;
+            margin-left:70px;
+            padding:20px;
+            background-color:white;
+
+            position:relative;
+            float:left;
+            box-shadow:0px 0px 10px;
+        }
+        .container::after{
+            content: "";
+            display:block;
+            clear:both;
+        }
+        h1{
+            background-color:rgb(50,100,200);
+            margin:30px auto;
+            padding:20px;
+            width:90%;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div class = "container">
+        <h1>Títol principal del diari</h1>
+        <div class="article">
+            1Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit consequuntur nihil illo aut, fugiat quod sed eos sequi facere illum accusantium quas, iusto at quos laboriosam odio doloribus? Ullam, molestiae.
+            Nemo veritatis quidem fuga sit velit in culpa cumque assumenda modi ex, perspiciatis quae et dolorem illum aut voluptatem recusandae doloremque ut, optio magni odio dolore. Facere sunt maiores nulla!
+            Consequatur, dignissimos. Deserunt omnis alias, obcaecati non veniam earum. Obcaecati animi pariatur officia, rerum, magnam commodi quaerat quo, alias earum non deserunt natus reiciendis. Et repudiandae eius deserunt obcaecati placeat.
+        </div>
+        <div class="article">
+            2Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum labore ea provident in accusantium earum nostrum eius est numquam sunt quia voluptas nobis, accusamus corporis cumque, et vitae iusto libero?
+            Nihil eaque ullam perferendis nemo impedit dolores porro reiciendis, debitis placeat similique, dolor dicta accusamus illo nesciunt vel maxime distinctio ex mollitia adipisci doloribus sed aperiam, quas laboriosam? Quis, itaque.
+            Repudiandae, accusantium! Placeat cupiditate, porro eum dolore consectetur consequatur perferendis dolores, in deleniti voluptate molestias nostrum totam sit nobis blanditiis velit consequuntur ea labore. Fuga esse cupiditate eveniet laboriosam ipsa.
+        </div>
+        <div class="article">
+            3Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit facere quaerat, optio a maiores perferendis, cupiditate harum at deserunt iusto quisquam consectetur fugiat et officia alias. Laborum numquam beatae consequatur!
+            Numquam, ea itaque minus dolor natus fuga nulla similique inventore iste ad impedit exercitationem quos eos repudiandae adipisci, neque debitis perferendis distinctio, aperiam consectetur ipsam. Aspernatur labore repellendus exercitationem quis?
+            Quis, laborum! Ducimus veritatis officia aspernatur excepturi nesciunt nostrum, ea in quaerat nam atque beatae. Ea facilis illo nostrum, hic aperiam exercitationem in mollitia dolorem fuga, delectus unde fugiat laboriosam.
+        </div>
+        <div class="article">
+            4Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit facere quaerat, optio a maiores perferendis, cupiditate harum at deserunt iusto quisquam consectetur fugiat et officia alias. Laborum numquam beatae consequatur!
+            Numquam, ea itaque minus dolor natus fuga nulla similique inventore iste ad impedit exercitationem quos eos repudiandae adipisci, neque debitis perferendis distinctio, aperiam consectetur ipsam. Aspernatur labore repellendus exercitationem quis?
+            Quis, laborum! Ducimus veritatis officia aspernatur excepturi nesciunt nostrum, ea in quaerat nam atque beatae. Ea facilis illo nostrum, hic aperiam exercitationem in mollitia dolorem fuga, delectus unde fugiat laboriosam.
+        </div>
+        <div class="article">
+            5Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit facere quaerat, optio a maiores perferendis, cupiditate harum at deserunt iusto quisquam consectetur fugiat et officia alias. Laborum numquam beatae consequatur!
+            Numquam, ea itaque minus dolor natus fuga nulla similique inventore iste ad impedit exercitationem quos eos repudiandae adipisci, neque debitis perferendis distinctio, aperiam consectetur ipsam. Aspernatur labore repellendus exercitationem quis?
+            Quis, laborum! Ducimus veritatis officia aspernatur excepturi nesciunt nostrum, ea in quaerat nam atque beatae. Ea facilis illo nostrum, hic aperiam exercitationem in mollitia dolorem fuga, delectus unde fugiat laboriosam.
+        </div>
+    </div>
+</body>
+</html>
