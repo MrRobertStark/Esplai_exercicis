@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobileFirstDesign | Fundación Esplai</title>
+    <style type = "text/css">
+        .section{
+            position:relative;
+            float:left;
+        }
+        .list, #content_sidebar{
+            background-color:rgb(50,150,200);
+        }
+        .header{
+            background-color:blueviolet;
+            width:100%;
+            height:60px;
+        }
+        .list_section{
+            width:100%;
+            margin-bottom:280px;
+        }
+        .list{
+            width:98%;
+            height:25px;
+            margin:5px auto;
+        }
+        .sidebar{
+            width:100%;
+            height:80px;
+            margin:10px auto;
+        }
+        #content_sidebar{
+            width:97%;
+            height:100%;
+            margin:10px auto;
+        }
+        .footer{
+            background-color:rgb(50,100,200);
+            width:100%;
+            height:40px;
+            margin:10px auto;
+        }
+        @media screen and (min-width:380px){
+            .list{
+                width:30%;
+                margin-left:8px;
+            }
+        }
+        @media screen and (min-width:800px){
+            .header{
+                height:80px;
+            }
+            .list_section{
+                width:65%;
+                height:130px;
+            }
+            .sidebar{
+                width:360px;
+                height:68%;
+                
+                position:absolute;
+                right:9px;
+                top:85px;
+            }
+            #content_sidebar{
+                margin:0px auto;
+            }
+            .list{
+                width:40%;
+                height:40px;
+            }
+            .footer{
+                height:75px;
+                width:98%;
+                position:absolute;
+                bottom:0px;
+                left:50%;
+                margin-left:-49%;
+            }
+        }   
+    </style>
+</head>
+<body>
+    <div class="section header"></div>
+    <div class="section list_section">
+        <div class="list"></div>
+        <div class="list"></div>
+        <div class="list"></div>
+        <div class="list"></div>
+    </div>
+    <div class="section sidebar">
+        <div id = "content_sidebar"></div>
+    </div>
+    <div class="section footer"></div>
+</body>
+</html>

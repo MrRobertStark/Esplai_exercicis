@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PcFirstDesign | Fundación Esplai</title>
+    <style type = "text/css">
+        *{
+            box-sizing: border-box;
+        }
+        .section, .list{
+            position:relative;
+            float:left;
+        }
+        .header{
+            width:100%;
+            height:80px;
+            background-color:blueviolet;
+            margin-bottom:5px;
+        }
+        .list_section{
+            width: 200px;
+            height:200px;
+            margin-right:46%;
+            margin-left:7px;
+        }
+        .list{
+            width:100%;
+            height:40px;
+            margin:3px auto;
+            background-color:rgb(50,150,200);
+        }
+        .sidebar{
+            width:30%;
+            height:70%;
+            margin-right:7px;
+
+            position:absolute;
+            right:8px;
+            top:96px;
+        }
+        #content_sidebar{
+            background-color:rgb(50,150,200);
+            width:100%;
+            height:100%;
+        }
+        .footer{
+            height:70px;
+            width:98%;
+            background-color:rgb(50,100,200);
+
+            position:absolute;
+            bottom:9px;
+            left:50%;
+            margin-left:-49%;
+        }
+        @media screen and (max-width:700px){
+            .section{
+                position:relative;
+                float:left;
+            }
+            .header{
+                height:60px;
+            }
+            .list_section{
+                width:100%;
+                margin-bottom:200px;
+            }
+            .list{
+                float:none;
+                margin-left:0px;
+                width:30%;
+                height:30px;
+            }
+            .sidebar{
+                width:100%;
+                height:90px;
+                right:auto;
+                top:auto;
+            }
+            #content_sidebar{
+                width:98%;
+                margin:0px auto;
+            }
+            .footer{
+                width:100%;
+                height:50px;
+                bottom:auto;
+                left:auto;
+                margin:10px auto;
+            }
+        }
+        @media screen and (max-width:380px){
+            .list_section{
+                margin-left:0px;
+            }
+            .list{
+                width:97%;
+                margin:5px auto;
+            }
+        }  
+    </style>
+</head>
+<body>
+    <div class="section header"></div>
+    <div class="section list_section">
+        <div class="list"></div>
+        <div class="list"></div>
+        <div class="list"></div>
+        <div class="list"></div>
+    </div>
+    <div class="section sidebar">
+        <div id = "content_sidebar"></div>
+    </div>
+    <div class="section footer"></div>
+</body>
+</html>
