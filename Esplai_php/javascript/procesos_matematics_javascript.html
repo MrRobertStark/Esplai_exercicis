@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--CSS-->
+    <style type = "text/css">
+        html,body{
+            width:100%;
+            height:100%;
+            margin:0px;
+            padding:0px;
+        }
+        body{
+            background-color:darkslateblue;
+            margin:0px;
+        }
+        body>h1, body>p{
+            text-align:center;
+            color:white;
+            font-size:17pt;
+        }
+        body>h1{
+            font-size:32pt;
+        }
+        .capa{
+            width:25%;
+            padding:30px;
+            margin:10px;
+            margin-left:1.8%;
+
+            border-radius:7px;
+            border:1px solid black;
+
+            position:relative;
+            float:left;
+            transition: background-color 2s;
+        }
+        .capa p{
+            min-height:80px;
+        }
+        .capa h2{
+            text-align:center;
+        }
+        @media screen and (max-width:800px){
+            .capa{
+                background-color:rgb(90, 216, 210);
+                margin:10px auto;
+                width:100%;
+            }
+            .capa>p{
+                font-size:16pt;
+                height:auto;
+            }
+            .capa>input{
+                margin-top:-100px;
+                font-size:15pt;
+            }
+        }
+        @media screen and (min-width:801px){
+            .capa{
+                margin-left:10px;
+                width:22%;
+                min-height:240px;
+                margin-left:2.3%;
+                background-color:rgb(252, 184, 172);
+            }
+        }
+        @media screen and (min-width:1000px){
+            .capa{
+                margin-left:3.8%;
+                background-color:whitesmoke;
+            }
+        }
+    </style>
+    <!--JavaScript-->
+    <script language = "javascript">
+        //La funció calcula un resultat i recopila informació d'un camp segons l'operació demanada per l'usuari
+        function multiplica(operacio){
+            var v_actual = document.getElementById("resultat"+operacio).innerHTML;
+            var capa_resultat = document.getElementById("resultat"+operacio);
+            var resultat = 0;
+            //Operacions i presa de decisions
+            if(operacio == 1) resultat = v_actual*2;
+            else if(operacio == 2) resultat = v_actual * document.getElementById("text_nombre").value;
+            else resultat = document.getElementById("text_nombre2").value ** document.getElementById("text_nombre2").value;
+            //Expressió dels resultats
+            capa_resultat.innerHTML = resultat;
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Calculadora online</h1>
+    <p>Aquesta pàgina web s'ha programat pensant en ser una calculadora que pogués fer les següents operacions: duplicar valors, multiplicador i potenciadors.</p>
+    <!--Capa 1: Duplicador-->
+    <div class="capa">
+        <!--Presentació-->
+        <h2>Duplicador</h2>
+        <p>Tenim un valor inicial 1. Clica el següent botó per duplicar el seu valor. El valora actual es: <span id = "resultat1">1</span></p>
+        <!--Acció-->
+        <input type = "button" value = "Duplica!" onclick = "multiplica(1)"/>
+    </div>
+    <!--Capa 2: Multiplicador-->
+    <div class="capa">
+        <!--Presentació-->
+        <h2>Multiplicador</h2>
+        <p>Tenim un valor inicial 1. Clica el següent botó per multiplicar el seu valor per un numero que s'ha d'entrar per teclat. El valor actual és: <span id = "resultat2">1</span></p>
+        <!--Acció-->
+        <input type = "text" id = "text_nombre"/>
+        <input type = "button" value = "Multiplica!" onclick = "multiplica(2)"/>
+    </div>
+    <!--Capa 3: Potenciador-->
+    <div class="capa">
+        <!--Presentació-->
+        <h2>Potenciador</h2>
+        <p>Tenim un valor inicial 1. Clica el següent botó i emplena la casella per tal de potenciar el seu valor per sí mateix. El resultat és: <span id = "resultat3">1</span></p>
+        <!--Acció-->
+        <input type = "text" id = "text_nombre2"/>
+        <input type = "button" value = "Potencia!" onclick = "multiplica(3)"/>
+    </div>
+</body>
+</html>
