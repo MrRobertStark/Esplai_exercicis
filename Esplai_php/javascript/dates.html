@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //Mesos
+        var mesos = ["Gener","Febrer","Març","Abril","Maig","Juny","Juliol","Agost","Septembre","Octubre","Novembre","Desembre"];
+        //mostrar_data() capta la informació data i hora de l'ordinador i el mostra
+        function mostrar_data(){
+            //Campturem la data i declarem les variables amb la informació de temps que ens interessa
+            var time = new Date();
+            var dia = time.getDate();
+            var mes = time.getMonth();
+            var any = time.getFullYear();
+            //Mostrem la informació
+            window.alert("Avui és dia "+dia+" de "+mesos[mes].toLowerCase()+" de l'any "+any);
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Data actual</h1>
+    <p>Aquesta pàgina web capta la data i hora de l'ordinador utilitzat i el mostra.</p>
+    <!--Botó-->
+    <input type = "button" value = "Mostrar data" onclick = "mostrar_data()"/>
+</body>
+</html>

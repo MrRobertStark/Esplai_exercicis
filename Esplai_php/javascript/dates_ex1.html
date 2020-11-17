@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //La funció mostra la data actual capturant-la
+        function mostrar_data(){
+            var time = new Date();
+            //Data
+            var dia = time.getDate();
+            var mes = time.getMonth() + 1;
+            var any = time.getFullYear();
+            //Hora
+            var hora = time.getHours();
+            var minuts = time.getMinutes();
+            var segons = time.getSeconds();
+            //Missatge
+            window.alert(dia+"/"+mes+"/"+any+" "+hora+":"+minuts+":"+segons);
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Vols saber la data?</h1>
+    <p>Aquesta pàgina web mostra la data i hora de l'ordinador utilitzat. Clica el botó per saber-la!</p>
+    <!--Button-->
+    <input type = "button" value = "Vull saber la data!" onclick = "mostrar_data()"/>
+</body>
+</html>

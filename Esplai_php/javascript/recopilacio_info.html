@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type = "text/css">
+        body{
+            background-color:darkblue;
+        }
+        label,input{
+            margin-bottom:10px;
+        }
+        h1{
+            text-align:center;
+        }
+        form{
+            width:60%;
+            margin:50px auto;
+            padding:40px 40px 80px 40px;
+            border:1px solid black;
+            border-radius:7px;
+            background-color:#ffa;
+        }
+    </style>
+    <script language = "javascript">
+        //LA funció saludar() recopila la informació introduïda per l'usuari i el saluda
+        function saludar(){
+            //Recopilació dades
+            var nom = document.getElementById("text_nom").value;
+            var cognom = document.getElementById("text_cognom").value;
+            var poblacio = document.getElementById("text_poblacio").value;
+            //Missatge
+            window.alert("Hola "+nom+" "+cognom+"! Què tal les coses per "+poblacio+"?");
+        }
+    </script>
+</head>
+<body>
+    <!--Formulari a emplenar-->
+    <form>
+        <h1>Formulari!</h1>
+        <!--Nom-->
+        <label for = "text_nom">Nom:</label>
+        <input type = "text" id = "text_nom" name = "nom"/><br>
+        <!--Cognom-->
+        <label for = "text_cognom">Cognom:</label>
+        <input type = "text" id = "text_cognom" name = "cognom"/><br>
+        <!--Població-->
+        <label for = "text_poblacio">Població:</label>
+        <input type = "text" id = "text_poblacio" name = "poblacio"/><br>
+        <!--Submit-->
+        <input type = "button" value = "Saludar!" onclick = "saludar()"/>
+    </form>
+    <!--Fi del formulari-->
+</body>
+</html>

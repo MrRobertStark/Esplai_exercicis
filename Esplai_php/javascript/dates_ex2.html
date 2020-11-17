@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //Variables globals
+        //Array de mesos
+        var mesos = ["Gener","Febrer","Març","Abril","Maig","Juny","Juliol","Agost","Septembre","Octubre","Novembre","Desembre"];
+        //Array dels dies
+        var dies_setmana = ["Diumenge","Dilluns","Dimarts","Dimecres","Dijous","Divendres","Dissabte"];
+
+        //La funció capta la data i hora instantàniament i les mostra
+        function mostrar_data(){
+            var time = new Date();
+            //Data
+            var dia_set = time.getDay();
+            var dia = time.getDate();
+            var mes = time.getMonth();
+            var any = time.getFullYear();
+            //Hora
+            var hora = time.getHours();
+            var minuts = time.getMinutes();
+            var segons = time.getSeconds();
+            //Mostrem la informació a l'usuari
+            window.alert("Avui som "+dies_setmana[dia_set].toLowerCase()+" "+dia+" de "+mesos[mes].toLowerCase()+" del "+any+". D'altra banda són les "+hora+" hores, "+minuts+" minuts i "+segons+" segons. Dubtes?");
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Títol principal</h1>
+    <p>Aquesta pàgina web mostra la data i hora actual al teu ordinador. Per això, cal clicar el següent botó:</p>
+    <!--Button-->
+    <input type = "button" value = "Vull saber la data!" onclick = "mostrar_data()"/>
+</body>
+</html>
