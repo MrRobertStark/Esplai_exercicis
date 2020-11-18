@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //Llindars
+        var llindar_major = 30;
+        var llindar_correcte = 18;
+        //Funció de comprovació de l'edat introduïda per l'usuari
+        function comprovar_edat(){
+            var edat = document.getElementById("text_edat");
+            var resultat = document.getElementById("resultat");
+            //Decisions
+            if((edat.value >= llindar_correcte) && (edat.value <= llindar_major)) resultat.innerHTML = "Acceptat";
+            else resultat.innerHTML = "Rebutjat";
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Exercici Condicionals:</h1>
+    <p>Tenint una casella on s'ha d'introduir l'edat de l'usuari, es comprovarà si la seva edat és la correcte per entrar per un filtre o no.</p>
+    <!--Input-->
+    <label for = "text_edat">Edat: </label>
+    <input type = "text" id = "text_edat"/>
+    <input type = "button" value = "Comprovar" onclick = "comprovar_edat()"/>
+    <!--Resultat-->
+    <p>L'estat del filtre és: <strong id = "resultat">-</strong></p>
+</body>
+</html>

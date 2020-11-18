@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //Index temperatura
+        var llindar_calor = 25;
+        var llindar_agradable = 15;
+        var llindar_fresqueta = 8;
+        //La funció comprova i expressa si fa fred/calor segons la temperatura introduida per l'usuari
+        function comprova(){
+            var temperatura = document.getElementById("text_temperatura");
+            var resultat = document.getElementById("capa_resultat");
+            //comprovació temperatura
+            if(temperatura.value >= llindar_calor) resultat.innerHTML = "<h3>Resultat: Fa calor!</h3>";
+            else if (temperatura.value >= llindar_agradable) resultat.innerHTML = "<h3>Resultat: Temperatura Agradable!</h3>";
+            else if (temperatura.value >= llindar_fresqueta) resultat.innerHTML = "<h3>Resultat: Temperatura Fresqueta</h3>";
+            else resultat.innerHTML = "<h3>Resultat: Fa Fred!</h3>";
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Activitat 2 condicionals javascript: comprovació temperatura</h1>
+    <p>L'usuari ha d'entrar una temperatura i després de clicar el botó la pàgina determinarà si farà fred o calor!</p>
+    <!--Contingut-->
+    <label for = "text_temperatura">Temperatura: </label>
+    <input type = "text" id = "text_temperatura"/>
+    <input type = "button" value = "Comprovar temperatura" onclick = "comprova()"/>
+    <!--Capa resultat-->
+    <div id = "capa_resultat"></div>
+</body>
+</html>

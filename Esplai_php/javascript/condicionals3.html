@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //Llindars de nota
+        var llindar_excelent = 85;
+        var llindar_notable = 70;
+        var llindar_be = 60;
+        var llindar_suficient = 50;
+        var llindar_insuficient = 25;
+        //Funció per comprovar el rang d'excel·lència de la nota introduïda
+        function comprova(){
+            var nota = document.getElementById("text_nota");
+            var resultat = document.getElementById("resultat");
+            //Presa de decisions
+            //Opció 1:
+            if(nota.value >= llindar_excelent) resultat.innerHTML = "Excel·lent";
+            else if (nota.value >= llindar_notable) resultat.innerHTML = "Notable";
+            else if (nota.value >= llindar_be) resultat.innerHTML = "Bé";
+            else if (nota.value >= llindar_suficient) resultat.innerHTML = "Suficient";
+            else if (nota.value >= llindar_insuficient) resultat.innerHTML = "Insuficient";
+            else resultat.innerHTML = "Molt Deficient";
+            // //Opció 2
+            // if(nota.value >= llindar_excelent) resultat.innerHTML = "Excel·lent";
+            // else{
+            //     if(nota.value >= llindar_notable) resultat.innerHTML = "Notable";
+            //     else{
+            //         if(nota.value >= llindar_be) resultat.innerHTML = "Bé";
+            //         else{
+            //             if(nota.value >= llindar_suficient) resultat.innerHTML = "Suficient";
+            //             else{
+            //                 if(nota.value >= llindar_insuficient) resultat.innerHTML = "Insuficient";
+            //                 else resultat.innerHTML = "Molt Deficient";
+            //             }
+            //         }
+            //     }
+            // }
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Exercici condicionals: Nota Exàmens</h1>
+    <p>L'usuari (mestre) introduirà una nota a la casella i clicarà per determinar el rang d'excel·lència.</p>
+    <!--Contingut-->
+    <label for = "text_nota">Nota: </label>
+    <input type = "text" id = "text_nota"/>
+    <input type = "button" value = "Comprovar Nota" onclick = "comprova()"/>
+    <!--Resultat-->
+    <p>La nota introduïda es tradueix en: <strong id = "resultat">-</strong></p>
+</body>
+</html>

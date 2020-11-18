@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //Password secret
+        var secret_key = "m@nolo78"
+        //La següent funció agafa un password introduït per l'usuari i pren decisions
+        function check_pass(){
+            var pass = document.getElementById("text_password"); 
+            if (pass.value == secret_key) window.alert("Correcte! Benvingut usuari");
+            else window.alert("Incorrecte! La piratería es delito XD");            
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Activitat Condicionals Javascript</h1>
+    <p>Introdueix un password per veure si coincideix amb el password desat! Esbrina'l!</p>
+    <!--Contingut-->
+    <form>
+        <label for = "text_password">Password: </label>
+        <input type = "password" id = "text_password"/>
+        <input type = "button" value = "Check password" onclick = "check_pass()"/>  
+    </form>
+    
+</body>
+</html>
