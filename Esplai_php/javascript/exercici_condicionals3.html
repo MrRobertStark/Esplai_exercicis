@@ -9,14 +9,32 @@
         //La seguent funció calcula l'estació de l'any actual segons el mes i el dia
         function calc_estacio(){
             //Capturem el temps i la capa del resultat
-            var resposta = "La màquina detecta que ets a: ";
+            var resposta = "La màquina detecta que és: ";
             var resultat = document.getElementById("resultat");
             var time = new Date();
             var mes = time.getMonth();
             var dia = time.getDate();
+            var hora = time.getHours();
             
             //Presa de decisions
-            
+            //Primavera
+            if((mes == 2 && dia == 21 && hora >= 15) || (mes == 2 && dia >= 21) || (mes > 2 && mes < 5) || (mes == 5 && dia < 21)){
+                resposta += "Primavera";
+            }
+            //Estiu
+            else if((mes == 5 && dia == 21 && hora >= 15) || (mes == 5 && dia >= 21) || (mes > 6 && mes < 8) || (mes == 8 && dia < 21)){
+                resposta += "Estiu"
+            }
+            //Tardor
+            else if((dia == 21 && mes == 8 && hora >= 15) || (mes == 8 && dia >= 21) || (mes > 8 && mes < 11) || (mes == 11 && dia < 21)){
+                resposta += "Tardor";
+            }
+            //Hivern
+            else {
+                resposta += "Hivern";
+            }
+            window.alert(resposta);
+            resultat.innerHTML = resposta;
         }
     </script>
 </head>
