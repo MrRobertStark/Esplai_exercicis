@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type = "text/css">
+        #resultat{
+            display:block;
+            width:400px;
+            height:300px;
+            margin:30px auto;
+        }
+        #comandes{
+            text-align:center;
+        }
+        input{
+            padding:10px;
+            width:170px;
+            font-size:14pt;
+        }
+    </style>
+    <script language = "javascript">
+        
+        //La següent funció canvia el color de lletra segons el paràmetre introduït
+        function canvi_color(colorlletra){
+            var title = document.getElementById("titol");
+            var contingut = document.getElementById("contingut");
+            var flor = document.getElementById("resultat");
+            //Ajustant CSS
+            title.style.color = colorlletra;
+            contingut.style.color = colorlletra;
+            flor.src = "img/flor_"+colorlletra+".jpg";
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1 id = "titol">Canvi Propietats CSS per Javascript</h1>
+    <p id = "contingut">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque nulla, perspiciatis magnam doloribus odio incidunt a deserunt, omnis harum temporibus eius debitis pariatur. Ipsum doloribus minima dolor nulla modi ducimus!Asperiores et mollitia optio quis laboriosam sit blanditiis, aliquid corporis numquam debitis dolorem facilis minima suscipit ipsa tempora harum laudantium temporibus! Sed, alias quaerat quos dolor voluptate tempore quae nemo!</p>
+    <!--Interactivitat-->
+    <div id = "comandes">
+        <input type="button" value="Vermell" onclick = "canvi_color('red')">
+        <input type="button" value="Blau" onclick = "canvi_color('blue')">
+        <input type="button" value="Restart" onclick = "canvi_color('black')">
+    </div>
+    
+    <!--Resultat-->
+    <img src = "img/flor_black.jpg" id = "resultat"/>
+</body>
+</html>

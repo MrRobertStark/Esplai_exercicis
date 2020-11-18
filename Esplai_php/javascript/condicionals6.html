@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //Hores del dia
+        var mati = 6;
+        var tarda = 13;
+        var nit = 20;
+        //La següent funció saluda segons l'hora del dia amb un missatge o un altre
+        function saludar(){
+            //Capturem el temps
+            var time = new Date();
+            var hora = time.getHours();
+            var resultat = document.getElementById("resultat");
+            //Presa de decisions
+            if(hora >= nit){
+                window.alert("Bona nit!");
+                resultat.innerHTML = "Bona nit";
+            }
+            else if (hora >= tarda){
+                window.alert("Bona tarda!");
+                resultat.innerHTML = "Bona tarda!";
+            }
+            else {
+                window.alert("Bon dia!");
+                resultat.innerHTML = "Bon dia";
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Exercici Condicionals: Hora del dia?</h1>
+    <p>La pàgina web agafarà l'hora de l'ordinador en l'instant que el botó es clica.</p>
+    <!--Contingut/Main-->
+    <input type = "button" value = "Sóc un botó!" onclick = "saludar()"/>
+    <p>La pàgina et diu: <strong id = "resultat">Clica el botó!</strong></p>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        var estacions = ["Hivern","Primavera","Estiu","Tardor"];
+        //La seguent funció calcula l'estació de l'any actual segons el mes
+        function calc_estacio(){
+            //Capturem el temps i la capa del resultat
+            var resposta = "La màquina detecta que ets a: ";
+            var resultat = document.getElementById("resultat");
+            var time = new Date();
+            var mes = time.getMonth();
+            //Presa de decisions
+            if(mes > 8){
+                window.alert (resposta+estacions[3]);
+                resultat.innerHTML = estacions[3];
+            }
+            else if (mes > 5){
+                window.alert(resposta+estacions[2]);
+                resultat.innerHTML = estacions[2];
+            }
+            else if (mes > 2){
+                window.alert(resposta+estacions[1]);
+                resultat.innerHTML = estacions[1];
+            }
+            else{
+                window.alert(resposta+estacions[0]);
+                resultat.innerHTML = estacions[0];
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Exercici condicionals: Detector d'estacions anuals</h1>
+    <p>La pàgina web capta <strong>el mes</strong> del moment actual de l'ordinador i et dirà si ets a la primavera, estiu, tardor o hivern.</p>
+    <!--Contingut/Main-->
+    <label for = "button">Estació de l'any: </label>
+    <input type = "button" value = "Calcular estació" onclick = "calc_estacio()"/>
+    <p>La màquina ha detectat que ets a: <strong id = "resultat">-</strong></p>
+    <script language = "javascript">
+        calc_estacio();
+    </script>
+</body>
+</html>

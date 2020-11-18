@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //La següent funció comprova el rol de l'usuari que vol entrar i farà una presa de decisions
+        function access(){
+            var rols = document.getElementById("select_rol");
+            switch (rols.value){
+                case "1":
+                    console.log("Accés total");
+                    break;
+                case "2":
+                    console.log("Accés de Gestor");
+                    break;
+                case "3":
+                    console.log("Accés Auxiliar");
+                    break;
+                default:
+                    console.log("Error: Escull un rol");
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Exercicis Condicionals: Switch</h1>
+    <p></p>
+    <!--Qüestionari/Contingut-->
+    <label for = "select_rol">Rol: </label>
+    <select id = "select_rol" name = "rol">
+        <option value="0">Choose</option>
+        <option value="1">Administrador</option>
+        <option value="2">Gestor</option>
+        <option value="3">Auxiliar</option>
+    </select>
+    <input type = "button" value = "Accedir" onclick = "access()"/>
+    <!--Resultats-->
+</body>
+</html>
