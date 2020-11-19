@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type = "text/css">
+        #text_nom{
+            margin-bottom:20px;
+        }
+    </style>
+    <script language = "javascript">
+        var jugadors = [];
+        //La funció agafa el nom introduit del jugador i el posa dins la taula de l'equip
+        function insert_player(){
+            var nou_jugador = document.getElementById("text_nom");
+            jugadors.push(nou_jugador.value);
+            mostrar_taula();
+        }
+        //La funció elimina el primer jugador de la taula
+        function eliminate_player(){
+            jugadors.shift();
+            mostrar_taula();
+        }
+        //La funció mostra el contingut de la taula
+        function mostrar_taula(){
+            var comptador = 0;
+            for(comptador = 0; comptador < jugadors.length; comptador++){
+                console.log(jugadors[comptador]);
+            }
+            console.log("-");
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Equipo Random!</h1>
+    <p>La pàgina web agafa el nom de l'usuari entrat per teclat i l'afegeix a la llista de jugadors d'un equip al clicar el botó.</p>
+    <!--Cos de la pàgina web-->
+    <label for = "text_nom">Jugador: </label>
+    <input type = "text" id = "text_nom"/><br>
+    <input type = "button" value = "Afegir jugador" onclick = "insert_player()"/>
+    <input type = "button" value = "Eliminar jugador" onclick = "eliminate_player()"/>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type = "text/css">
+        table{
+            margin:40px auto;
+        }
+        h1,p{
+            text-align:center;
+        }
+        td{
+            text-align:center;
+            width:150px;
+            font-size:15pt;
+        }
+    </style>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Taula del 5</h1>
+    <p>La pàgina web genera la taula del 5 automàticament per JavaScript</p>
+    <table border = "1">
+        <script language = "javascript">
+            var comptador = 0;
+            //El següent bucle genera les files i columnes de la taula emplenant la informació necessària
+            for(comptador = 1; comptador <= 10; comptador++){
+                document.write("<tr><td>"+(comptador)+"</td>");
+                document.write("<td>5</td>");
+                document.write("<td>"+(comptador*5)+"</td></tr>");
+            }
+        </script>
+    </table>
+</body>
+</html>

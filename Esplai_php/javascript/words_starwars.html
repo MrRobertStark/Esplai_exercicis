@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type = "text/css">
+        .container{
+            padding:20px;
+            margin-top:10px;
+        }
+        h1{
+            text-align:center;
+        }
+        p{
+            text-align:center;
+            margin:0px auto;
+        }
+    </style>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Generació de les lletres de Star Wars</h1>
+    <p>Aquesta pàgina web generarà paràgrafs que imitaran l'efecte Star wars de paraules que s'allunyen.</p>
+    <!--Cos del document-->
+    <div class = "container">
+        <script language = "javascript">
+            var comptador = 0;
+            for(comptador = 2; comptador < 10; comptador++){
+                document.write("<p style = 'width:"+(comptador*10)+"%'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum ducimus expedita ea provident fugit velit porro eos temporibus, nobis consequuntur autem quae impedit vitae laboriosam nostrum ipsa quidem praesentium labore.</p>");
+                document.write("<hr width = '"+(comptador*10)+"%'>");
+            }
+        </script>
+    </div>
+</body>
+</html>
