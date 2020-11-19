@@ -23,11 +23,11 @@
         <div class="col-4">
             <!--Sidebar-->
             <div class="content section" id = "sidebar">
-                <div id="jquery-accordion-menu" class="jquery-accordion-menu">
-                    <div class="jquery-accordion-menu-header">Plats Famosos</div>
+                <div id="menu" class="menu">
+                    <div class="llistat_productes">Plats Famosos</div>
                     <ul>
-                        <li onclick = "show_dish('0')"><a href="#!"><i class="fa fa-home"></i>Pizza de la iaia</a></li>
-                        <li onclick = "show_dish('1')"><a href="#!"><i class="fa fa-glass"></i>Spaguetti a la Carbonara </a></li>
+                        <li onclick = "show_dish('0')"><a href="#!"><i class="fa fa-home"></i>Spaguetti Pepe's</a></li>
+                        <li onclick = "show_dish('1')"><a href="#!"><i class="fa fa-glass"></i>Pizza Gertrúdiz </a></li>
                         <li onclick = "show_dish('2')"><a href="#!"><i class="fa fa-file-image-o"></i>Raviolis </a></li>
                         <li onclick = "show_dish('3')"><a href="#!"><i class="fa fa-cog"></i>Calzoné </a></li>
                         <li onclick = "show_dish('4')"><a href="#!"><i class="fa fa-newspaper-o"></i>Rissotto </a></li>
@@ -36,7 +36,6 @@
                         <li onclick = "show_dish('7')"><a href="#!"><i class="fa fa-user"></i>Sopa d'en PEPE </a></li>
                         <li onclick = "show_dish('8')"><a href="#!"><i class="fa fa-envelope"></i>Tiramisú</a></li>
                     </ul>
-                    <div class="jquery-accordion-menu-footer">Footer </div>
                 </div>
             </div>
             <!--Fi Sidebar-->
@@ -47,18 +46,18 @@
                 <div class="card">
                     <div class="inner-card"> 
                         <div class = "row">
-                            <div class="col-6">
-                                <img src="https://i.imgur.com/4qXhMAM.jpg" class="img-fluid rounded">
+                            <div class="col-7">
+                                <img src="img/pasta.jpg" class="img-fluid rounded" id = "foto_producte">
                             </div>
-                            <div class="col-6">
+                            <div class="col-5">
                                 <div class="d-flex justify-content-between align-items-center mt-3 px-2">
-                                    <h4>Worksheet chair </h4> <span class="heart"><i class="fa fa-heart"></i></span>
+                                    <h4 id = "titol_producte">Spaguetti Pepe's </h4> <span class="heart"><i class="fa fa-heart"></i></span>
                                 </div>
-                                <div class="mt-2 px-2"> <small>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</small> </div>
+                                <div class="mt-2 px-2"> <small>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam accusantium obcaecati laudantium dolor sunt exercitationem nostrum unde ipsa neque. Distinctio voluptate illo pariatur quasi recusandae? Nulla, veniam provident? Neque, maiores.</small> </div>
                                 <div class="px-2">
-                                    <h3>$500</h3>
+                                    <h3 id = "preu_producte">$10</h3>
                                 </div>
-                                <div class="px-2 mt-3"> <button class="btn btn-primary px-3">Buy Now</button> <button class="btn btn-outline-primary px-3">Add to cart</button> </div>
+                                <div class="px-2 mt-3"> <button class="btn btn-primary px-3" onclick = "order_product()">Ordenar</button> <button class="btn btn-outline-primary px-3" onclick = "send_product()">Entrega domicili</button> </div>
                             </div>
                         </div>
                     </div>
