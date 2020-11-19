@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici Senzill</title>
+    <script language = "javascript">
+        //La següent funció pinta els paràgrafs de la pàgina web
+        function pintar(color){
+            var paragrafs = document.getElementsByTagName("p");
+            var comptador = 0;
+            for(comptador = 0; comptador < paragrafs.length; comptador++){
+                paragrafs[comptador].style.color = color;
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Títol principal de la página web</h1>
+    <!--Contingut de la pàgina web-->
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, laudantium eius esse quos ducimus unde minus. Quaerat voluptatem quas a maiores alias magni! Blanditiis quasi a voluptatem ratione architecto vero.
+    Illum minus, aperiam, quis doloremque, illo cumque facere iusto corporis ea voluptatem nostrum voluptatibus provident nisi! Rerum ullam dolores cum maiores illo aspernatur, accusantium voluptates repellendus laudantium praesentium, veritatis optio.
+    Eaque debitis, esse vel porro odit, officia quasi praesentium illo sunt blanditiis ratione rerum iure officiis ullam exercitationem voluptatibus, natus magni illum molestiae tempore. Molestiae, laudantium. Nemo odio ea animi.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat id totam deleniti! Fugiat dolores, dolorem quaerat veritatis ipsa asperiores expedita, dolore neque quis cupiditate nesciunt quibusdam beatae libero laboriosam autem.
+    Velit, aspernatur id! Sequi, at nisi. Soluta libero voluptate eum, perferendis tempore modi consectetur maxime cum magnam, vel sunt alias ut voluptatibus, animi quidem. Et voluptatum quis blanditiis adipisci quia.
+    Quia earum soluta natus repellendus maiores animi laboriosam, nam ipsa inventore asperiores maxime aperiam eius vero voluptates enim minima, sunt culpa, cupiditate quos quidem a aspernatur non? Id, odit est.</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse in vero soluta aliquam debitis! Neque dicta rem earum dolores error mollitia adipisci, atque explicabo est provident. Recusandae dolor totam velit!
+    Accusamus ex ad quasi nesciunt vitae, non, eligendi commodi animi at error distinctio libero culpa ducimus optio officia cumque. Libero expedita omnis explicabo sit esse quaerat ducimus veniam harum fugiat?
+    Excepturi voluptatem nisi sint officia eligendi magni, iure unde sit fugiat porro tempora natus officiis praesentium maiores adipisci. Dolores repellendus modi blanditiis facilis excepturi fugit adipisci vitae cum, consectetur quisquam?</p>
+    <!--Botó-->
+    <input type = "button" value = "Pintar Texts" onclick = "pintar('red')"/>
+</body>
+</html>
