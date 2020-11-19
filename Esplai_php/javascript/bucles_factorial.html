@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //La següent funció calcula el factorial d'un numero positiu entrat per teclat
+        function calculate_factorial(){
+            var camp_num = document.getElementById("input_number");
+            camp_num.style.border = "1px solid black";
+            var num = parseInt(camp_num.value);
+            var resposta = 1;
+            //En cas de introduir un número negatiu el camp es marca en vermell i es notifica a l'usuari com procedir
+            if(num < 0){
+                window.alert("Introdueix un número superior o igual a 1!");
+                camp_num.style.border = "1px solid red";
+            }
+            //En cas de ser un nombre superior a 0, es calcula el factorial amb un bucle
+            else if(num > 1){
+                var i = 0;
+                for(i = num; i > 1; i--){
+                    resposta = resposta * i;
+                }
+            }
+            document.getElementById("resultat").innerHTML = "El factorial de "+num+" és: <strong>"+resposta+"</strong>";
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Exercici de Bucles</h1>
+    <!--Factorial-->
+    <h2>El factorial</h2>
+    <p>Aquesta pàgina web calcula el factorial d'un número entrat per teclat per l'usuari. Retorna la resposta en un missatge.</p>
+    <!--Cos de la pàgina web-->
+    <label for = "input_number">Entra un número: </label>
+    <input type = "number" id = "input_number"/>
+    <input type = "button" value = "Calcular Factorial" onclick = "calculate_factorial()"/>
+    <p id = "resultat"></p>
+</body>
+</html>

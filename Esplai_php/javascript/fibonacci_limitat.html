@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //La següent funció calcula el factorial d'un numero positiu entrat per teclat
+        function calculate_fibonacci_limit(){
+            //Variable del camp
+            var camp_num = document.getElementById("input_number");
+            camp_num.style.border = "1px solid black";
+
+            //Variables de nombres
+            var limit = parseInt(camp_num.value);
+            var resposta = 0;
+            var v_anterior = 0;
+            var v_actual = 1;
+            var aux = 1;
+
+            //En cas de introduir un número negatiu o inferior a 2 el camp es marca en vermell i es notifica a l'usuari com procedir
+            if(limit < 1){
+                window.alert("Introdueix un número superior a 1");
+                camp_num.style.border = "1px solid red";
+            }
+            //En cas de ser un nombre superior a 1, es calcula l'enèssim valor de la sèrie Fibonacci amb un bucle que no passi del limitero entrat
+            else if(limit >= 1){
+                var i = 0;
+                while(aux <= limit){
+                    v_anterior = v_actual;
+                    v_actual = aux;
+                    aux = v_anterior + v_actual;
+                }
+                resposta = v_actual;
+                document.getElementById("resultat").innerHTML = "L'enèssim que no sobrepassa el número "+limit+" de la sèrie Fibonnaci és: <strong>"+resposta+"</strong>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Exercici de Bucles: Fibonacci</h1>
+    <!--Factorial-->
+    <p>Aquesta pàgina web calcula l'enèssim número de la sèrie Fibonacci que no sobrepassa el número entrat per teclat per l'usuari. Retorna la resposta en un missatge.</p>
+    <!--Cos de la pàgina web-->
+    <label for = "input_number">Entra un número: </label>
+    <input type = "number" id = "input_number"/>
+    <input type = "button" value = "Calcular Factorial" onclick = "calculate_fibonacci_limit()"/>
+    <p id = "resultat"></p>
+</body>
+</html>

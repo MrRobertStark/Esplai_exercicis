@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language = "javascript">
+        //La següent funció calcula el factorial d'un numero positiu entrat per teclat
+        function calculate_fibonacci(){
+            //Variable del camp
+            var camp_num = document.getElementById("input_number");
+            camp_num.style.border = "1px solid black";
+
+            //Variables de nombres
+            var num = parseInt(camp_num.value);
+            var resposta = 1;
+            var v_anterior = 0;
+            var v_actual = 1;
+
+            //En cas de introduir un número negatiu o inferior a 2 el camp es marca en vermell i es notifica a l'usuari com procedir
+            if(num < 2){
+                window.alert("Introdueix un número superior a 1");
+                camp_num.style.border = "1px solid red";
+            }
+            //En cas de ser un nombre superior a 1, es calcula l'enèssim valor de la sèrie Fibonacci amb un bucle
+            else if(num > 1){
+                var i = 0;
+                for(i = 1; i < num; i++){
+                    console.log("Anterior: "+v_anterior+", Actual: "+v_actual);
+                    var aux = v_anterior + v_actual;
+                    v_anterior = v_actual;
+                    v_actual = aux;
+                }
+                resposta = v_actual;
+                document.getElementById("resultat").innerHTML = "L'enèssim "+num+" de la sèrie Fibonnaci és: <strong>"+resposta+"</strong>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Exercici de Bucles: Fibonacci</h1>
+    <!--Factorial-->
+    <p>Aquesta pàgina web calcula l'enèssim número entrat per teclat per l'usuari de la sèrie Fibonacci. Retorna la resposta en un missatge.</p>
+    <!--Cos de la pàgina web-->
+    <label for = "input_number">Entra un número: </label>
+    <input type = "number" id = "input_number"/>
+    <input type = "button" value = "Calcular Factorial" onclick = "calculate_fibonacci()"/>
+    <p id = "resultat"></p>
+</body>
+</html>

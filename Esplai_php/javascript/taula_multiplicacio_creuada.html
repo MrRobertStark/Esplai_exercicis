@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication table</title>
+    <style type = "text/css">
+        table{
+            margin:20px auto;
+            background-color:whitesmoke;
+        }
+        h1,p,td{
+            text-align:center;
+        }
+        td{
+            width:80px;
+            height:70px;
+            font-size:20pt;
+        }
+        tr>td:first-child, tr:first-child{
+            font-weight: bold;
+            background-color:lightgray;
+        }
+    </style>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Taula de multiplicació creuada</h1>
+    <p>La pàgina web calcula automàticament amb JavaScript una taula de multiplicació creuada per a usuaris amb dificultats.</p>
+    <!--Contingut de la pàgina web-->
+    <table border = "1">
+
+        <!--Inici JavaScript-->
+        <script language = "javascript">
+            //Declaració de mida de la taula. "i" fa referència a les files i "j" a les columnes. Num1 i Num2 són variables auxiliars
+            var files = 6;
+            var columnes = 7;
+            var i = 0;
+            var j = 0;
+            var num1 = 0;
+            var num2 = 0;
+
+            //Doble bucle
+            for(i = 0; i < files; i++){
+                num1 = i+1; //Num1 = fila + 1
+                document.write("<tr>");//Obertura de la fila
+                for(j = 0; j < columnes; j++){
+                    num2 = j+1; //num2 = columna + 1
+                    document.write("<td>"+(num1*num2)+"</td>"); //Generació de la columna amb la resposta correcte
+                }
+                document.write("</tr>");//Tancament de la fila
+            }
+        </script>
+        <!--Final JavaScript-->
+    </table>
+</body>
+</html>

@@ -4,12 +4,13 @@ header img{
     width:100%;
     filter:brightness(50%);
     margin-top:-180px;
+    margin-bottom:-10px;
 }
 header h1{
     text-align:center;
     padding:0px;
     margin:0px;
-    margin-top:-370px;
+    margin-top:-430px;
     margin-left:-350px;
     width:700px;
     left:50%;
@@ -27,6 +28,7 @@ header h1{
 }
 body{
     background: #f0f0f0;
+    width:100%;
 }
 .content{
     width: 260px;
@@ -87,7 +89,7 @@ body{
     transition:color .2s linear,background .2s linear;
 }
 .jquery-accordion-menu>ul>li.active>a,.jquery-accordion-menu>ul>li:hover>a{
-    color:#fff;background:#3b424d;
+    color:#fff;background:#2e333b;
 }
 .jquery-accordion-menu>ul>li>a{
     border-bottom:solid 1px #3b424d;
@@ -100,61 +102,8 @@ body{
     text-align:left;
 
 }
-.jquery-accordion-menu .submenu-indicator{
-    float:right;
-    right:22px;
-    position:absolute;
-    line-height:19px;
-    font-size:20px;
-    -o-transition:transform .3s linear;
-    -moz-transition:transform .3s linear;
-    -webkit-transition:transform .3s linear;
-    -ms-transition:transform .3s linear
-}
-.jquery-accordion-menu ul ul.submenu .submenu-indicator{
-    line-height:16px
-}
-.jquery-accordion-menu .submenu-indicator-minus>.submenu-indicator{
-    -ms-transform:rotate(45deg);
-    -moz-transform:rotate(45deg);
-    -webkit-transform:rotate(45deg);
-    transform:rotate(45deg)
-}
-.jquery-accordion-menu ul ul.submenu,.jquery-accordion-menu ul ul.submenu li ul.submenu{
-    width:100%;
-    display:none;
-    position:static
-}
-.jquery-accordion-menu ul ul.submenu li{
-    clear:both;
-    width:100%
-}
-.jquery-accordion-menu ul ul.submenu li a{
-    width:100%;
-    float:left;
-    font-size:11px;
-    background:#383838;
-    border-top:none;
-    position:relative;
-    border-left:solid 6px transparent;
-    -o-transition:border .2s linear;
-    -moz-transition:border .2s linear;
-    -webkit-transition:border .2s linear;
-    transition:border .2s linear;
-}
-.jquery-accordion-menu ul ul.submenu li:hover>a{
-    border-left-color:#414956;
-}
-.jquery-accordion-menu ul ul.submenu>li>a{
-    padding-left:30px;
-}
-.jquery-accordion-menu ul ul.submenu>li>ul.submenu>li>a{
-    padding-left:45px;
-}
-.jquery-accordion-menu ul ul.submenu>li>ul.submenu>li>ul.submenu>li>a{
-    padding-left:60px
-}
-.jquery-accordion-menu ul li .jquery-accordion-menu-label,.jquery-accordion-menu ul ul.submenu li .jquery-accordion-menu-label{
+
+.jquery-accordion-menu ul li .jquery-accordion-menu-label{
     min-width:20px;
     padding:1px 2px 1px 1px;
     position:absolute;
@@ -167,9 +116,6 @@ body{
     line-height:18px;
     background:#f0f0f0;
     border-radius:100%;
-}
-.jquery-accordion-menu ul ul.submenu li .jquery-accordion-menu-label{
-    top:12px;
 }
 .ink{
     display:block;
@@ -213,10 +159,7 @@ body{
 
     border-bottom-color:#3e82da
 }
-.blue.jquery-accordion-menu ul ul.submenu li:hover>a{
 
-    border-left-color:#3e82da
-}
 .green.jquery-accordion-menu .jquery-accordion-menu-footer,.green.jquery-accordion-menu .jquery-accordion-menu-header,.green.jquery-accordion-menu ul li a{
 
     background:#03A678
@@ -228,10 +171,6 @@ body{
 .green.jquery-accordion-menu>ul>li>a{
 
     border-bottom-color:#049372
-}
-.green.jquery-accordion-menu ul ul.submenu li:hover>a{
-
-    border-left-color:#049372
 }
 .red.jquery-accordion-menu .jquery-accordion-menu-footer,.red.jquery-accordion-menu .jquery-accordion-menu-header,.red.jquery-accordion-menu ul li a{
 
@@ -245,10 +184,7 @@ body{
 
     border-bottom-color:#DA4453
 }
-.red.jquery-accordion-menu ul ul.submenu li:hover>a{
 
-    border-left-color:#DA4453
-}
 .white.jquery-accordion-menu .jquery-accordion-menu-footer,.white.jquery-accordion-menu .jquery-accordion-menu-header,.white.jquery-accordion-menu ul li a{
 
     background:#fff;color:#555
@@ -260,14 +196,6 @@ body{
 .white.jquery-accordion-menu>ul>li>a{
 
     border-bottom-color:#f0f0f0
-}
-.white.jquery-accordion-menu ul ul.submenu li:hover>a{
-
-    border-left-color:#f0f0f0
-}
-.white.jquery-accordion-menu ul ul.submenu li a{
-
-    color:#f0f0f0
 }
 .white.jquery-accordion-menu>ul>li>a>.ink{
 
@@ -282,19 +210,12 @@ body{
 .black.jquery-accordion-menu>ul>li>a{
     border-bottom-color:#222
 }
-.black.jquery-accordion-menu ul ul.submenu li:hover>a{
-    border-left-color:#222
-}
 
 /*Targeta del producte*/
 
-.container {
-    height: 100vh
-}
-
 .card {
     background-color: #c1e8ed;
-    width: 450px;
+    width: 100%;
     padding: 10px;
     border: 1px solid #eee
 }
@@ -327,7 +248,9 @@ body{
 .card {
     background: #fff;
     padding: 10px;
-    border-radius: 5px
+    padding-top:50px;
+    border-radius: 5px;
+    height:490px;
 }
 
 .heart {
@@ -351,9 +274,9 @@ body{
 }
 
 /*Configuració general*/
-#product_detail{
-    width:auto;
+.row>.col-8{
+    padding:0px;
 }
-.mt-5, .my-5{
-    margin-top:4.5rem!important;
+.row>.col-4{
+    margin-top:-18px;
 }
