@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Informació Meta-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qüestionari senzill | Moodle</title>
+    <!--CSS-->
+    <style type = "text/css">
+        label+input{
+            width:200px;
+            border:1px solid black;
+        }
+        label{
+            display:block;
+            margin-top:10px;
+        }
+        
+        form>input:last-child{
+            background-color:#025ce2;
+            width:190px;
+            border:1px solid #025ce2;
+            padding:7px;
+            color:white;
+            margin-top:15px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        form>input:last-child:hover,form>input:last-child:active{
+            background-color:white;
+            color:#025ce2;
+        }
+    </style>
+    <!--Javascript-->
+    <script language = "javascript">
+        //La Següent funció comprova les dades introduides per l'usuari i marca els resultats
+        function comprovacio(){
+            var capes = document.getElementsByTagName("span");
+            var comptador = 0; //Un comptador per accedir a cada span de manera invidiual
+            var capa_resultat = 0; //Variable auxiliar per desar el camp a analitzar
+            
+            //Comprovació nom
+            var capa_resultat = capes[comptador];
+            var nom = document.getElementById("text_nom").value;
+            if(nom.length < 3){
+                capa_resultat.innerHTML = "El nom ha de tenir almenys tres caràcters!";
+                marcar_incorrecte(capa_resultat);
+            }
+            else marcar_correcte(capa_resultat);
+
+            //Comprovació Edat
+            comptador++; //Incrementem el comptador per analitzar el següent camp
+            capa_resultat = capes[comptador];
+            var edat = document.getElementById("text_edat").value; //Capturem l'edat i el pasem a tipus int
+            edat = parseInt(edat);
+            if(!Number.isInteger(edat)){
+                capa_resultat.innerHTML = "L'edat ha de ser un número!";
+                marcar_incorrecte(capa_resultat);
+            }
+            else if (edat < 18){
+                capa_resultat.innerHTML = "Has de ser major de 18!";
+                marcar_incorrecte(capa_resultat);
+            }
+            else marcar_correcte(capa_resultat);
+
+            //Comprovació correu electrònic
+            comptador++; //Incrementen el comptador per analitzar el següent camp
+            capa_resultat = capes[comptador];
+            var correu = document.getElementById("text_correu").value;
+            var pos_arroba = correu.indexOf("@"); //Capturem la posició de "@" i de l'últim "."
+            var pos_ultim_punt = correu.lastIndexOf("."); 
+            if((pos_arroba==-1) || (pos_ultim_punt==-1) || (pos_arroba < 3) || ((pos_ultim_punt-pos_arroba)<4) || ((correu.length-pos_ultim_punt) < 3)){
+                //Si no hi existeix un "@" o un "."
+                //Si el nom del correu no té mínim 3 caràcters i entre "@" i "." tampoc
+                //Si al final del correu no hi ha un ".net", ".cat", ."com" o ".es" (mínim 2 caràcters) llavors... Malament!
+                capa_resultat.innerHTML = "El format del email no és correcte!";
+                marcar_incorrecte(capa_resultat);
+            }
+            else marcar_correcte(capa_resultat);
+        }
+
+        //La següent funció posa un CSS propi d'un missatge d'error a la capa passada per paràmetre
+        function marcar_incorrecte(capa){
+            capa.style.color = "red";
+        }
+        //La següent funció posa un CSS propi d'un missatge correcte al camp del paràmetre a més a més de posar el missatge adient
+        function marcar_correcte(capa){
+            capa.innerHTML = "Correcte!";
+            capa.style.color = "lightseagreen";
+        }
+    </script>
+</head>
+<body>
+    <!--Introducció-->
+    <h1>Exercici JavaScript:Nivell Senzill</h1>
+    <p>Usuari, emplena el següent qüestionari i envia la informació.</p>
+    <!--Qüestionari-->
+    <form>
+        <!--Input nom-->
+        <label for = "text_nom">Nom:</label>
+        <input type = "text" id = "text_nom"/>
+        <span></span><br>
+        
+        <!--Input edat-->
+        <label for = "text_edat">Edat:</label>
+        <input type = "text" id = "text_edat"/>
+        <span></span><br>
+        
+        <!--Input e-mail-->
+        <label for = "text_correu">E-mail:</label>
+        <input type = "text" id = "text_correu">
+        <span></span><br>
+        
+
+        <!--Submit i comprovació-->
+        <input type = "button" value = "Send" onclick = "comprovacio()"/>
+    </form>
+    <!--Fi Qüestionari-->
+</body>
+</html>

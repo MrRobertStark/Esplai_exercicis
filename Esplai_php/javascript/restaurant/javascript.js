@@ -1,6 +1,14 @@
 
 //Variables globals
-var plats = [["img/pasta.jpg",10],["img/pasta.jpg",20],["img/pasta.jpg",30],["img/pasta.jpg",40],["img/pasta.jpg",50],["img/pasta.jpg",60],["img/pasta.jpg",70],["img/pasta.jpg",80],["img/pasta.jpg",90]];
+var plats = [[10,"img/pasta.jpg"],
+            [20,"img/pizza.jpg"],
+            [30,"img/raviolis.jpg"],
+            [40,"img/calzone.jpg"],
+            [50,"img/rissoto.jpg"],
+            [60,"img/fetuccini.jpg"],
+            [70,"img/antipasto.jpg"],
+            [80,"img/sopa.jpg"],
+            [90,"img/tiramisu.jpg"]];
 
 //La següent funció mostra una foto del plat seleccionat de la barra lateral
 function show_dish(dish){
@@ -13,8 +21,8 @@ function show_dish(dish){
     llistat_plats[dish].style.backgroundColor = "#2e333b";
 
     //Posem la foto
-    document.getElementById("foto_producte").src = plats[dish][0];
-    document.getElementById("preu_producte").innerHTML = "$"+plats[dish][1];
+    document.getElementById("foto_producte").src = plats[dish][1];
+    document.getElementById("preu_producte").innerHTML = "$"+plats[dish][0];
     document.getElementById("titol_producte").innerHTML = llistat_plats[dish].text;
 }
 
