@@ -7,6 +7,7 @@
 
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!--CSS-->
     <style type = "text/css">
         *{
             box-sizing:border-box;
@@ -15,13 +16,13 @@
             z-index:0;
         }
         body{
-            padding:30px;
+            padding: 10px 30px;
         }
         .form-group{
-            margin-bottom:1.5px;
+            margin-bottom:0px;
         }
         form{
-            width:60%;
+            width:80%;
         }
         .form-control{
             border:1px solid black;
@@ -33,35 +34,146 @@
             margin-left:-40px;
             z-index:1;
         }
-        .valid-feedback{
+        
+        .valid-feedback,path{
             display:block;
+            visibility: hidden;
+            margin:0px;
         }
-        textarea{
+        .valid-feedback{
+            min-height:19.2px;
+        }
+        #text_descripcio{
             width:100%;
-            height:150px;
+            height:120px;
         }
-        .resum_errors{
+        #text_descripcio:focus{
+            border-color:goldenrod!important;
+        }
+        #resum_errors{
             background-color:rgba(240,128,128,0.5);
             width:100%;
-            height:40px;
             padding:30px;
+            padding-left:60px;
             margin-top:30px;
+            border-radius:4px;
+            display:none;
         }
         form>input:last-child{
             width:120px;
-            margin-top:20px;
+            margin-top:8px;
             padding:6px;
             background-color:rgb(11, 172, 5);
             color:white;
             border-radius:4px;
         }
     </style>
+    <!--JavaScript-->
     <script language = "javascript">
         //Array d'icones
         var path_icones = [
             "M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z",//Correct Icon Bootstrap
             "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" //Incorrect Icon Bootstrap
         ];
+        var queixes = [
+            "El nom ha de tenir mínim 3 caràcters!",
+            "L'edat ha de ser un número natural!",
+            "No pots accedir perquè has de ser major de 18 anys!",
+            "L'email no té el format correcte!",
+            "Els comentaris no poden contenir la cadena 'foo bar baz'"
+        ];
+
+        //La següent funció agafa les dades introduides per l'usuari del formulari i comprova la validesa d'aquesta informació
+        function comprovar(){
+            var capes_icona = document.getElementsByTagName("path"); //etiquetes dels icones de les corrections (tick o creu)
+            var capes_comentari = document.getElementsByClassName("valid-feedback"); //Capes on aniran els comentaris
+            var comptador = 0; //Índex per accedir a les capes correctes
+            var capa_errors = document.getElementById("resum_errors");
+            capa_errors.innerHTML = "";
+            capa_errors.style = "display:none;";
+
+            //Comprovació del UserName
+            var capa_name = document.getElementById("text_nom");
+            var capa_icona = capes_icona[comptador];
+            var capa_comentari = capes_comentari[comptador];
+            var queixa = queixes[0];
+
+            if(capa_name.value.length < 3) marcar_incorrecte(capa_name,capa_icona,capa_comentari,queixa);
+            else marcar_correcte(capa_name,capa_icona,capa_comentari);
+
+            comptador++;
+            //Comprovació edat de l'usuari
+            var capa_edat = document.getElementById("text_edat");
+            var edat = capa_edat.value;
+            edat = parseInt(edat);
+            capa_icona = capes_icona[comptador];
+            capa_comentari = capes_comentari[comptador];
+
+            if(!Number.isInteger(edat)){
+                queixa = queixes[1];
+                marcar_incorrecte(capa_edat,capa_icona,capa_comentari,queixa);
+            }
+            else if(edat < 18) {
+                queixa = queixes[2];
+                marcar_incorrecte(capa_edat,capa_icona,capa_comentari,queixa);
+            }
+            else marcar_correcte(capa_edat,capa_icona,capa_comentari);
+
+            comptador++;
+            //Comprovació correu electrònic
+            var capa_correu = document.getElementById("text_correu");
+            var email = capa_correu.value;
+            var pos_arroba = email.indexOf("@");
+            var pos_ultim_punt = email.lastIndexOf(".");
+            capa_icona = capes_icona[comptador];
+            capa_comentari = capes_comentari[comptador];
+            queixa = queixes[3];
+
+            if((pos_arroba == -1) || (pos_ultim_punt == -1) || (pos_arroba < 3) || ((pos_ultim_punt - pos_arroba) < 4) || (email.length - pos_ultim_punt) < 3){
+                //Si "@" i un últim "." no existeixen...
+                //Si entre "@" i "." no hi ha mínim 3 caràcters...
+                //Si el nom de l'usuari abans de "@" no supera o iguala 3 caràcters...
+                //Si després de l'últim "." no hi ha un mínim de dos caràctes (".es") llavors marca incorrecte
+                marcar_incorrecte(capa_correu,capa_icona,capa_comentari,queixa);
+            }
+            else marcar_correcte(capa_correu,capa_icona,capa_comentari);
+
+            comptador++;
+            //Comprovació descripció: foo bar baz
+            var capa_descripcio = document.getElementById("text_descripcio");
+            var descripcio = capa_descripcio.value;
+            descripcio = descripcio.toLowerCase();
+            capa_icona = capes_icona[comptador];
+            capa_comentari = capes_comentari[comptador];
+
+            if(descripcio.search("foo bar baz") != -1){
+                queixa = queixes[4];
+                marcar_incorrecte(capa_descripcio,capa_icona,capa_comentari,queixa);
+            }
+            else marcar_correcte(capa_descripcio,capa_icona,capa_comentari);
+        }
+        
+        
+        //La següent funció complementa el css i text d'una informació vàlida
+        function marcar_correcte(capa_resposta,icona,capa_comentari){
+            capa_resposta.style = "border-color:green";
+            icona.setAttribute("d",path_icones[0]);
+            icona.style = "visibility: visible; color:green";
+            capa_comentari.innerHTML = "Correcte!";
+            capa_comentari.style = "color:green; visibility: visible;";
+        }
+        //La següent funció complementa el css i text d'una informació invàlida
+        function marcar_incorrecte(capa_resposta,icona,capa_comentari,queixa){
+            capa_resposta.style = "border-color:red";
+            icona.setAttribute("d",path_icones[1]);
+            icona.style = "visibility: visible; color:red";
+            capa_comentari.innerHTML = queixa;
+            capa_comentari.style = "color:red; visibility: visible;";
+            
+            var capa_errors = document.getElementById("resum_errors");
+            capa_errors.style = "display:block;";
+            capa_errors.innerHTML = capa_errors.innerHTML + "<li>"+queixa+"</li>";
+        }
     </script>
     <title>Document</title>
 </head>
@@ -83,57 +195,61 @@
                     </svg>
                 </div>
                 <div class="valid-feedback">
-                    Looks good!
+                    
                 </div>
             </div>
         </div>
         <!--Input Edat-->
         <div class = "form-group">
-            <label class = "control-label" for = "text_nom">Nom: </label>
+            <label class = "control-label" for = "text_edat">Edat: </label>
             <div class = "input-group">
-                <input type = "text" id = "text_nom" class = "form-control"/>
+                <input type = "text" id = "text_edat" class = "form-control"/>
                 <div class = "input-group-addon">
                     <svg viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </div>
                 <div class="valid-feedback">
-                    Looks good!
+                    
                 </div>
             </div>
         </div>
         <!--Input Correu-->
         <div class = "form-group">
-            <label class = "control-label" for = "text_nom">Nom: </label>
+            <label class = "control-label" for = "text_correu">Correu electrònic: </label>
             <div class = "input-group">
-                <input type = "text" id = "text_nom" class = "form-control"/>
+                <input type = "text" id = "text_correu" class = "form-control"/>
                 <div class = "input-group-addon">
                     <svg viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </div>
                 <div class="valid-feedback">
-                    Looks good!
+                    
                 </div>
             </div>
         </div>
         <!--Input textare-->
         <div class = "form-group">
-            <label class = "control-label" for = "text_nom">Descripció personal </label>
+            <label class = "control-label" for = "text_descripcio">Comentaris: </label>
             <div class = "input-group">
-                <textarea></textarea>
+                <textarea id = "text_descripcio"></textarea>
                 <div class = "input-group-addon">
                     <svg viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </div>
                 <div class="valid-feedback">
-                    Looks good!
+                    
                 </div>
             </div>
         </div>
+        <div>
+            <ul id = "resum_errors"></ul>
+        </div>
         <input type = "button" value = "Send" onclick = "comprovar()"/>
     </form>
+    
   
     <!--JQuery and Bootstrap Bundle (includes Popper)-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
