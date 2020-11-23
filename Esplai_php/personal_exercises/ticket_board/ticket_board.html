@@ -219,7 +219,7 @@
                 //Calculem el preu final
                 var preu_unitat = $(this).parents(".col").siblings(".unit_price");
                 var preu_final = preu_unitat.siblings(".final_price");
-                preu_final = preu_final.text(parseInt(preu_unitat.children("span").text() * (quantitat_actual.text())));
+                preu_final.children("span") = preu_final.text(parseInt(preu_unitat.children("span").text() * (quantitat_actual.text())));
             });
         });
     </script>

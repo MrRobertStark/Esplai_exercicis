@@ -143,9 +143,21 @@
             //Comprovació descripció: foo bar baz
             var capa_descripcio = document.getElementById("text_descripcio");
             var descripcio = capa_descripcio.value;
-            descripcio = descripcio.toLowerCase();
             capa_icona = capes_icona[comptador];
             capa_comentari = capes_comentari[comptador];
+            //Arreglem la informació per detectar el foo bar baz
+            descripcio = descripcio.toLowerCase(); //Treiem majúscules
+            var nova_descripcio = "";
+
+            separacio_per_comes = descripcio.split(","); //Dividim el string en "," per tal de el·liminar els ","
+            var separacio_per_punts = [];
+            for(var i = 0; i < separacio_per_comes.length; i++){ 
+                separacio_per_punts = separacio_per_comes[i].split("."); //Dins la divisió per "," dividim els strings per "." per el·liminar els "."
+                for(var j = 0; j < separacio_per_punts.length; j++){
+                    nova_descripcio+=separacio_per_punts[j]; //Concatenem els strings
+                }
+            }
+            descripcio = " "+nova_descripcio+" "; //Com a resultat, tenim els "foo bar baz" envoltat d'espais i en minúscules facilment detectables per un .search()
             //variables de control
             var existeix_foo = (descripcio.search(" foo ") != -1);
             var existeix_bar = (descripcio.search(" bar ") != -1);
