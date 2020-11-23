@@ -66,6 +66,7 @@
             background-color:rgb(11, 172, 5);
             color:white;
             border-radius:4px;
+            border:1px solid black;
         }
     </style>
     <!--JavaScript-->
@@ -76,11 +77,11 @@
             "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" //Incorrect Icon Bootstrap
         ];
         var queixes = [
-            "El nom ha de tenir mínim 3 caràcters!",
-            "L'edat ha de ser un número natural!",
-            "No pots accedir perquè has de ser major de 18 anys!",
-            "L'email no té el format correcte!",
-            "Els comentaris no poden contenir la cadena 'foo bar baz'"
+            "El nombre debe contener un mínimo de tres caracteres.",
+            "La edad debe ser un número natural superior a 0.",
+            "No puedes acceder porque debes ser mayor de 18.",
+            "El campo correo debe ser un correo electrónico válido.",
+            "El campo biografía no puede contener las siguientes palabras: foo bar baz"
         ];
 
         //La següent funció agafa les dades introduides per l'usuari del formulari i comprova la validesa d'aquesta informació
@@ -145,8 +146,11 @@
             descripcio = descripcio.toLowerCase();
             capa_icona = capes_icona[comptador];
             capa_comentari = capes_comentari[comptador];
-
-            if(descripcio.search("foo bar baz") != -1){
+            //variables de control
+            var existeix_foo = (descripcio.search("foo ") != -1) || (descripcio.search(" foo ") != -1) || (descripcio.search(" foo") != -1) || (descripcio.search(" foo."));
+            var existeix_bar = (descripcio.search("foo ") != -1) || (descripcio.search(" foo ") != -1) || (descripcio.search(" foo") != -1) || (descripcio.search(" foo."));
+            var existeix_baz = (descripcio.search("foo ") != -1) || (descripcio.search(" foo ") != -1) || (descripcio.search(" foo") != -1) || (descripcio.search(" foo."));
+            if((descripcio.search("foo") != -1) || (descripcio.search("bar") != -1) || (descripcio.search("baz") != 1)){
                 queixa = queixes[4];
                 marcar_incorrecte(capa_descripcio,capa_icona,capa_comentari,queixa);
             }
@@ -180,15 +184,15 @@
 <body>
     <!--Introducció-->
     <header>
-        <h1>Exercici avançat Javascript</h1>
-        <p>Usuari, emplena el següent formulari per comprovar la validesa de la informació!</p>
+        <h1>Ejercicio Avanzado: JavaScript</h1>
+        <p>Usuario, rellene las casillas del siguiente formulario para validar sus datos!</p>
     </header>
     <form>
         <!--Input nom-->
         <div class = "form-group">
-            <label class = "control-label" for = "text_nom">Nom: </label>
+            <label class = "control-label" for = "text_nom">Nombre: </label>
             <div class = "input-group">
-                <input type = "text" id = "text_nom" class = "form-control"/>
+                <input type = "text" id = "text_nom" class = "form-control" placeholder = "Introduzca su nombre de usuario"/>
                 <div class = "input-group-addon">
                     <svg viewBox="0 0 16 16" class="bi" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
@@ -201,9 +205,9 @@
         </div>
         <!--Input Edat-->
         <div class = "form-group">
-            <label class = "control-label" for = "text_edat">Edat: </label>
+            <label class = "control-label" for = "text_edat">Edad: </label>
             <div class = "input-group">
-                <input type = "text" id = "text_edat" class = "form-control"/>
+                <input type = "text" id = "text_edat" class = "form-control" placeholder="Introduzca un número natural"/>
                 <div class = "input-group-addon">
                     <svg viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -216,9 +220,9 @@
         </div>
         <!--Input Correu-->
         <div class = "form-group">
-            <label class = "control-label" for = "text_correu">Correu electrònic: </label>
+            <label class = "control-label" for = "text_correu">Correo electrónico: </label>
             <div class = "input-group">
-                <input type = "text" id = "text_correu" class = "form-control"/>
+                <input type = "text" id = "text_correu" class = "form-control" placeholder="Correo electrónico"/>
                 <div class = "input-group-addon">
                     <svg viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -231,9 +235,9 @@
         </div>
         <!--Input textare-->
         <div class = "form-group">
-            <label class = "control-label" for = "text_descripcio">Comentaris: </label>
+            <label class = "control-label" for = "text_descripcio">Comentarios: </label>
             <div class = "input-group">
-                <textarea id = "text_descripcio"></textarea>
+                <textarea id = "text_descripcio" placeholder="Deje sus comentarios"></textarea>
                 <div class = "input-group-addon">
                     <svg viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
