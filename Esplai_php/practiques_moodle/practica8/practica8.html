@@ -154,7 +154,7 @@
             for(var i = 0; i < separacio_per_comes.length; i++){ 
                 separacio_per_punts = separacio_per_comes[i].split("."); //Dins la divisió per "," dividim els strings per "." per el·liminar els "."
                 for(var j = 0; j < separacio_per_punts.length; j++){
-                    nova_descripcio+=separacio_per_punts[j]; //Concatenem els strings
+                    nova_descripcio+=(" "+separacio_per_punts[j]); //Concatenem els strings
                 }
             }
             descripcio = " "+nova_descripcio+" "; //Com a resultat, tenim els "foo bar baz" envoltat d'espais i en minúscules facilment detectables per un .search()

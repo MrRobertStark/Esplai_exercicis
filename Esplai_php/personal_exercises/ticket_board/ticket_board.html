@@ -33,15 +33,14 @@
         .n_producte label{
             margin-left:20px;
         }
-        .plus{
-            margin-bottom:-5px;
-        }
-        .minus{
-            margin-top:-5px;
+        .quantity{
+            box-sizing: content-box;
+            margin-top:-10px;
         }
         .container>.row{
             height:70px;
         }
+
         .row.header>.col{
             padding-top:10px;
         }
@@ -53,7 +52,7 @@
             border:1px solid rgb(41, 39, 39);
             background-color: rgb(87, 87, 87);
             padding-bottom:30px;
-            width:70%;
+            width:100%;
         }
         #main_container>.row.header,.footer{
             font-size:16pt;
@@ -64,130 +63,115 @@
         .footer{
             margin-top:30px;
             margin-bottom:-30px;
+            background-color:whitesmoke;
+            color:black;
         }
         .etiqueta{
-            width:97%;
+            width:100%;
             margin:10px auto;
+        }
+        .seleccionat{
+            background-color:blue;
+            color:white;
+            border-color:goldenrod;
+        }
+        .btn{
+            transition: none;
+        }
+        .seleccionat .btn{
+            color:white;
         }
     </style>
     <title>Document</title>
 
 </head>
-<body class = "p-4">
+<body>
     <!--Header-->
     <div class = "header">
         <h1 class = "mb-4"></h1>
         <br>
     </div>
+    <div class = "container mb-3">
+        <label for = "llistat_productes">Productes: </label>
+        <select id = "llistat_productes" name = "productes" class = "py-2 px-3">
+            <option value="0">Selecciona un producte</option>
+            <option value="1">Producte 1</option>
+            <option value="2">Producte 2</option>
+            <option value="3">Producte 3</option>
+            <option value="4">Producte 4</option>
+            <option value="5">Producte 5</option>
+            <option value="6">Producte 6</option>
+        </select>
+        <input type = "button" value = "Afegir" id = "afegir" class = "btn btn-primary px-4 mx-4 py-2">
+    </div>
     <!--Ticket de la compra-->
-    <div class = "container" id = "main_container">
+    <div class = "container mb-5" id = "main_container">
         <!--Header-->
         <div class = "row header">
             <div class="col col-4 text-center">
                 Nom del Producte
             </div>
             <div class="col col-2 text-center">
-                Quantitat
+                Quantitat (u)
             </div>
             <div class="col col text-center">
-                Preu/Unitat
+                Preu/Unitat (€/u)
             </div>
             <div class="col col text-center">
-                Preu total
+                Preu total (€)
             </div>
         </div>
         <!--Producte 1-->
         <div class = "row etiqueta rounded">
             <!--ProductName i checkbox-->
             <div class="col col-4 n_producte">
-                <input type = "checkbox" id = "check_producte">
+                <input type = "checkbox" id = "check_producte" class = "check_prod">
                 <label for = "check_producte">Nom del producte</label>
             </div>
             <!--Quantitat del producte-->
-            <div class="col col-2">
+            <div class="col col-2 container_quantity">
                 <div class = "row quantity w-50 float-left">
                     <!--Fletxes-->
-                    <div class = "plus col-12"><i class = "fa fa-sort-asc"></i></div>
-                    <div class = "minus col-12"><i class = "fa fa-sort-desc"></i></div>
+                    <div class = "plus col-12"><i class = " btn p-0 fa fa-sort-asc"></i></div>
+                    <div class = "minus col-12"><i class = " btn p-0 fa fa-sort-desc"></i></div>
                 </div>
                 <!--Resultat comptador-->
                 <span class = "float-left h-100 d-block ml-3">1</span>
             </div>
-            <div class="col col-3 text-center unit_price"><span>20</span></div>
-            <div class="col col-3 text-center final_price"><span>20</span></div>
+            <div class="col col-3 text-center unit_price"><span>10</span></div>
+            <div class="col col-3 text-center final_price"><span></span></div>
         </div>
         
         <!--Producte 2-->
         <div class = "row etiqueta rounded">
             <!--ProductName i checkbox-->
             <div class="col col-4 n_producte">
-                <input type = "checkbox" id = "check_producte">
+                <input type = "checkbox" id = "check_producte" class = "check_prod">
                 <label for = "check_producte">Nom del producte</label>
             </div>
             <!--Quantitat del producte-->
-            <div class="col col-2">
+            <div class="col col-2 container_quantity">
                 <div class = "row quantity w-50 float-left">
                     <!--Fletxes-->
-                    <div class = "plus col-12"><i class = "fa fa-sort-asc"></i></div>
-                    <div class = "minus col-12"><i class = "fa fa-sort-desc"></i></div>
+                    <div class = "plus col-12"><i class = " btn p-0 fa fa-sort-asc"></i></div>
+                    <div class = "minus col-12"><i class = " btn p-0 fa fa-sort-desc"></i></div>
                 </div>
                 <!--Resultat comptador-->
                 <span class = "float-left h-100 d-block ml-3">1</span>
             </div>
             <div class="col col-3 text-center unit_price"><span>20</span></div>
-            <div class="col col-3 text-center final_price"><span>20</span></div>
+            <div class="col col-3 text-center final_price"><span></span></div>
         </div>
 
-        <!--Producte 3-->
-        <div class = "row etiqueta rounded">
-            <!--ProductName i checkbox-->
-            <div class="col col-4 n_producte">
-                <input type = "checkbox" id = "check_producte">
-                <label for = "check_producte">Nom del producte</label>
-            </div>
-            <!--Quantitat del producte-->
-            <div class="col col-2">
-                <div class = "row quantity w-50 float-left">
-                    <!--Fletxes-->
-                    <div class = "plus col-12"><i class = "fa fa-sort-asc"></i></div>
-                    <div class = "minus col-12"><i class = "fa fa-sort-desc"></i></div>
-                </div>
-                <!--Resultat comptador-->
-                <span class = "float-left h-100 d-block ml-3">1</span>
-            </div>
-            <div class="col col-3 text-center unit_price"><span>20</span></div>
-            <div class="col col-3 text-center final_price"><span>20</span></div>
-        </div>
-
-        <!--Producte 4-->
-        <div class = "row etiqueta rounded">
-            <!--ProductName i checkbox-->
-            <div class="col col-4 n_producte">
-                <input type = "checkbox" id = "check_producte">
-                <label for = "check_producte">Nom del producte</label>
-            </div>
-            <!--Quantitat del producte-->
-            <div class="col col-2">
-                <div class = "row quantity w-50 float-left">
-                    <!--Fletxes-->
-                    <div class = "plus col-12"><i class = "fa fa-sort-asc"></i></div>
-                    <div class = "minus col-12"><i class = "fa fa-sort-desc"></i></div>
-                </div>
-                <!--Resultat comptador-->
-                <span class = "float-left h-100 d-block ml-3">1</span>
-            </div>
-            <div class="col col-3 text-center unit_price"><span>20</span></div>
-            <div class="col col-3 text-center final_price"><span>20</span></div>
-        </div>
         <!--Footer-->
         <!--Header-->
         <div class = "row footer">
             <div class="col col-6 text-center">
                 <input type = "checkbox" id = "check_all"/>
-                <label for = "check_all" class = "ml-3 mt-1">Seleccionar tots els productes</label>
+                <label for = "check_all" class = "ml-3 mt-1">Marcar/Desmarcar Tots</label>
             </div>
-            <div class="col col offset-2 text-center pl-5 mt-1">
-                80
+            <div class="col-6 text-center pl-5 mt-1" id = "resultat_final">
+                Preu final: -
             </div>
         </div>
     </div>
@@ -198,29 +182,137 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script language= "javascript">
         $(document).ready(function(){
-            $("#check_all").click(function(){
-                if($(this).is(":checked")){
-                    $("input[type=checkbox]").attr("checked",true);
+            var productes = [
+                //Nom del producte | Preu del producte
+                ["Producte 1","10"],
+                ["Producte 2","15"],
+                ["Producte 3","25"],
+                ["Producte 4","30"],
+                ["Producte 5","50"],
+                ["Producte 6","35"]
+            ];
+            var productes_llistats = [];
+
+            calcular_preu_total();
+            calcular_preus_inicials();
+
+            $("#afegir").click(function(){
+                var producte_seleccionat = parseInt($("#llistat_productes").val()) - 1;
+                if(productes_llistats.indexOf(producte_seleccionat) == -1){ //Si el producte no existia...
+
+                    productes_llistats.push(producte_seleccionat);
+                    var producte = productes[producte_seleccionat];
+                    var etiqueta = generacio_etiqueta(producte);
+                    $(".footer").before(etiqueta);
                 }
-                else $("input[type=checkbox]").attr("checked",false);
+                else{
+                    var etiquetes = document.getElementsByClassName("etiqueta"); //Agafa tots els productes
+                    var nom_producte = productes[producte_seleccionat][0]; //Nom producte origen
+                    var i = 0; //Anem a veure tots el productes
+                    var p_actual = $(etiquetes[i]).children(".n_producte").children("label").text();
+                    while(p_actual != nom_producte){
+                        i++;
+                        p_actual = $(etiquetes[i]).children(".n_producte").children("label").text();
+                    }
+                    var producte_repetit = p_actual;
+                    producte_repetit.children(".container_quantity").children("span").text(); //Falta arreglar quantitat
+                }
+                calcular_preu_total();
             });
-            $(".minus").click(function(){
+
+            $("#check_all").click(function(){
+                var seleccionat = $(this).is(":checked");
+                $(".check_prod").prop("checked",seleccionat);
+
+                if(seleccionat) $(".check_prod").parents(".row").addClass("seleccionat");
+                else  $(".check_prod").parents(".row").removeClass("seleccionat");
+
+                calcular_preu_total();                
+            });
+
+            $(document).on("click",".check_prod",function(){
+                var producte_actual = $(this).parents(".row");
+                if($(this).is(":checked")){
+                    producte_actual.addClass("seleccionat");
+                }
+                else producte_actual.removeClass("seleccionat");
+
+                calcular_preu_total();
+            });
+
+            $(document).on("click",".minus",function(){
+
                 //Arreglem la quantitat del producte
                 var quantitat_actual = $(this).parent().siblings("span");
                 if(quantitat_actual.text() > 1) quantitat_actual.text(parseInt(quantitat_actual.text()) - 1);
                 //Calculem el preu final
                 var preu_unitat = $(this).parents(".col").siblings(".unit_price");
                 var preu_final = preu_unitat.siblings(".final_price");
-                preu_final = preu_final.text(parseInt(preu_unitat.children("span").text() * (quantitat_actual.text())));
+                preu_final.children("span").text(parseInt(preu_unitat.children("span").text() * (quantitat_actual.text())));
+                calcular_preu_total();
             });
-            $(".plus").click(function(){
+
+            $(document).on("click",".plus",function(){
+                //Arreglem la quantitat del producte
                 var quantitat_actual = $(this).parent().siblings("span");
                 quantitat_actual.text(parseInt(quantitat_actual.text()) + 1);
                 //Calculem el preu final
                 var preu_unitat = $(this).parents(".col").siblings(".unit_price");
                 var preu_final = preu_unitat.siblings(".final_price");
-                preu_final.children("span") = preu_final.text(parseInt(preu_unitat.children("span").text() * (quantitat_actual.text())));
+                preu_final.children("span").text(parseInt(preu_unitat.children("span").text() * (quantitat_actual.text())));
+                calcular_preu_total();
             });
+
+            function calcular_preu_total(){
+                var checkboxes = document.getElementsByClassName("check_prod");
+                var preu_total = 0;
+                var i = 0;
+                for(i = 0; i < checkboxes.length; i++){
+                    var checkbox_actual = checkboxes[i];
+                    if($(checkbox_actual).is(":checked")){
+                        var preu_producte_actual = $(checkbox_actual).parent().siblings(".final_price").children("span").text();
+                        preu_total += parseInt(preu_producte_actual);
+                    }
+                }
+                $("#resultat_final").html("Preu final: "+preu_total+" €");
+            }
+
+            function calcular_preus_inicials(){
+                var productes = document.getElementsByClassName("etiqueta");
+                var i = 0;
+                for(i = 0; i < productes.length; i++){
+                    var producte_actual = productes[i];
+                    var preu_inicial = $(producte_actual).children(".unit_price").children("span").text();
+                    $(producte_actual).children(".final_price").children("span").text(preu_inicial);
+                }
+            }
+
+            function generacio_etiqueta(producte){
+                var nom_producte = producte[0];
+                var preu_producte = producte[1];
+                var etiqueta = 
+                "<div class = 'row etiqueta rounded'>"
+                    +"<!--ProductName i checkbox-->"
+                    +"<div class='col col-4 n_producte'>"
+                        +"<input type = 'checkbox' id = 'check_producte' class = 'check_prod'>"
+                        +"<label for = 'check_producte'>"+nom_producte+"</label>"
+                    +"</div>"
+                    +"<!--Quantitat del producte-->"
+                    +"<div class='col col-2'>"
+                        +"<div class='col col-2 container_quantity'>"
+                            +"<!--Fletxes-->"
+                            +"<div class = 'plus col-12'><i class = 'fa fa-sort-asc btn p-0'></i></div>"
+                            +"<div class = 'minus col-12'><i class = 'fa fa-sort-desc btn p-0'></i></div>"
+                        +"</div>"
+                        +"<!--Resultat comptador-->"
+                        +"<span class = 'float-left h-100 d-block ml-3'>1</span>"
+                    +"</div>"
+                    +"<div class='col col-3 text-center unit_price'><span>"+preu_producte+"</span></div>"
+                    +"<div class='col col-3 text-center final_price'><span>"+preu_producte+"</span></div>"
+                +"</div>";
+
+                return etiqueta;
+            }
         });
     </script>
 </body>
