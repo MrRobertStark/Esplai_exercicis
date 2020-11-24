@@ -40,7 +40,9 @@
         .container>.row{
             height:70px;
         }
-
+        .header .col{
+            font-size:90%;
+        }
         .row.header>.col{
             padding-top:10px;
         }
@@ -56,14 +58,14 @@
         }
         #main_container>.row.header,.footer{
             font-size:16pt;
-            background-color:blueviolet;
+            background-color:#5cb85c;
             color:white;
             margin-bottom:30px;
         }
         .footer{
             margin-top:30px;
             margin-bottom:-30px;
-            background-color:whitesmoke;
+            background-color:#f7f7f7;
             color:black;
         }
         .etiqueta{
@@ -71,15 +73,29 @@
             margin:10px auto;
         }
         .seleccionat{
-            background-color:blue;
+            background-color:#0275d8;
             color:white;
-            border-color:goldenrod;
+            border-color:goldenrod!important;
         }
         .btn{
             transition: none;
         }
         .seleccionat .btn{
             color:white;
+        }
+        .eliminate{
+            position:absolute;
+            height:25px;
+            width:25px;
+            right:0px;
+            top:10px;
+            cursor:pointer;
+        }
+        svg{
+            width:100%;
+        }
+        .etiqueta_buida{
+            font-size:17pt;
         }
     </style>
     <title>Document</title>
@@ -112,7 +128,7 @@
                 Nom del Producte
             </div>
             <div class="col col-2 text-center">
-                Quantitat (u)
+                Unitats (u)
             </div>
             <div class="col col text-center">
                 Preu/Unitat (€/u)
@@ -120,47 +136,6 @@
             <div class="col col text-center">
                 Preu total (€)
             </div>
-        </div>
-        <!--Producte 1-->
-        <div class = "row etiqueta rounded">
-            <!--ProductName i checkbox-->
-            <div class="col col-4 n_producte">
-                <input type = "checkbox" id = "check_producte" class = "check_prod">
-                <label for = "check_producte">Nom del producte</label>
-            </div>
-            <!--Quantitat del producte-->
-            <div class="col col-2 container_quantity">
-                <div class = "row quantity w-50 float-left">
-                    <!--Fletxes-->
-                    <div class = "plus col-12"><i class = " btn p-0 fa fa-sort-asc"></i></div>
-                    <div class = "minus col-12"><i class = " btn p-0 fa fa-sort-desc"></i></div>
-                </div>
-                <!--Resultat comptador-->
-                <span class = "float-left h-100 d-block ml-3">1</span>
-            </div>
-            <div class="col col-3 text-center unit_price"><span>10</span></div>
-            <div class="col col-3 text-center final_price"><span></span></div>
-        </div>
-        
-        <!--Producte 2-->
-        <div class = "row etiqueta rounded">
-            <!--ProductName i checkbox-->
-            <div class="col col-4 n_producte">
-                <input type = "checkbox" id = "check_producte" class = "check_prod">
-                <label for = "check_producte">Nom del producte</label>
-            </div>
-            <!--Quantitat del producte-->
-            <div class="col col-2 container_quantity">
-                <div class = "row quantity w-50 float-left">
-                    <!--Fletxes-->
-                    <div class = "plus col-12"><i class = " btn p-0 fa fa-sort-asc"></i></div>
-                    <div class = "minus col-12"><i class = " btn p-0 fa fa-sort-desc"></i></div>
-                </div>
-                <!--Resultat comptador-->
-                <span class = "float-left h-100 d-block ml-3">1</span>
-            </div>
-            <div class="col col-3 text-center unit_price"><span>20</span></div>
-            <div class="col col-3 text-center final_price"><span></span></div>
         </div>
 
         <!--Footer-->
@@ -193,41 +168,43 @@
             ];
             var productes_llistats = [];
 
-            calcular_preu_total();
-            calcular_preus_inicials();
+            control_buida();
 
             $("#afegir").click(function(){
                 var producte_seleccionat = parseInt($("#llistat_productes").val()) - 1;
+                
                 if(productes_llistats.indexOf(producte_seleccionat) == -1){ //Si el producte no existia...
-
+                    
                     productes_llistats.push(producte_seleccionat);
                     var producte = productes[producte_seleccionat];
                     var etiqueta = generacio_etiqueta(producte);
                     $(".footer").before(etiqueta);
+
+                    var checkbox_active = $("#check_all").is(":checked");
+                    if(checkbox_active) seleccio_total(checkbox_active);
                 }
-                else{
+                else{ //Si ja existia...
                     var etiquetes = document.getElementsByClassName("etiqueta"); //Agafa tots els productes
                     var nom_producte = productes[producte_seleccionat][0]; //Nom producte origen
-                    var i = 0; //Anem a veure tots el productes
-                    var p_actual = $(etiquetes[i]).children(".n_producte").children("label").text();
-                    while(p_actual != nom_producte){
+
+                     var i = 0; //Anem a veure tots el productes
+                     var p_actual = $(etiquetes[i]).children(".n_producte").children("label");
+                     while($(p_actual).text() != nom_producte){
                         i++;
-                        p_actual = $(etiquetes[i]).children(".n_producte").children("label").text();
+                        p_actual = $(etiquetes[i]).children(".n_producte").children("label");
                     }
-                    var producte_repetit = p_actual;
-                    producte_repetit.children(".container_quantity").children("span").text(); //Falta arreglar quantitat
+                    var capa_unitats = $(p_actual).parents(".n_producte").siblings(".container_quantity").children("span");
+                    var unitats = parseInt($(capa_unitats).text()) + 1;
+                    capa_unitats.text(unitats);
+                    calcular_preus_inicials();
+                    calcular_preu_total();
                 }
-                calcular_preu_total();
+                control_buida();
             });
 
             $("#check_all").click(function(){
                 var seleccionat = $(this).is(":checked");
-                $(".check_prod").prop("checked",seleccionat);
-
-                if(seleccionat) $(".check_prod").parents(".row").addClass("seleccionat");
-                else  $(".check_prod").parents(".row").removeClass("seleccionat");
-
-                calcular_preu_total();                
+                seleccio_total(seleccionat);               
             });
 
             $(document).on("click",".check_prod",function(){
@@ -263,6 +240,22 @@
                 calcular_preu_total();
             });
 
+            $(document).on("click",".eliminate",function(){
+                var capa_producte = $(this).parents(".etiqueta");
+                capa_producte.remove();
+                control_buida();
+                calcular_preu_total();
+            });
+
+            function seleccio_total(bool){
+                $(".check_prod").prop("checked",bool);
+
+                if(bool) $(".check_prod").parents(".row").addClass("seleccionat");
+                else  $(".check_prod").parents(".row").removeClass("seleccionat");
+
+                calcular_preu_total(); 
+            }
+
             function calcular_preu_total(){
                 var checkboxes = document.getElementsByClassName("check_prod");
                 var preu_total = 0;
@@ -282,34 +275,79 @@
                 var i = 0;
                 for(i = 0; i < productes.length; i++){
                     var producte_actual = productes[i];
-                    var preu_inicial = $(producte_actual).children(".unit_price").children("span").text();
-                    $(producte_actual).children(".final_price").children("span").text(preu_inicial);
+                    var capa_preu_inicial = $(producte_actual).children(".unit_price").children("span");
+                    var quantitat = parseInt($(capa_preu_inicial).parent().siblings(".container_quantity").children("span").text());
+                    var preu_final = quantitat*parseInt(capa_preu_inicial.text());
+                    $(producte_actual).children(".final_price").children("span").text(preu_final);
                 }
             }
 
-            function generacio_etiqueta(producte){
+            function control_buida(){
+                var quantitat_productes = document.getElementsByClassName("etiqueta").length;
+                if(quantitat_productes == 0){
+                    var etiqueta = generacio_etiqueta_buida();
+                    $(".footer").before(etiqueta);
+                }
+                else{
+                    $(".etiqueta_buida").remove();
+                }
+            }
+
+            function generacio_etiqueta_buida(){
+                var etiqueta = 
+                    "<!--Producte buit-->"
+                    +"<div class = 'row etiqueta rounded etiqueta_buida bg-danger text-white'>"
+                        +"<!--ProductName i checkbox-->"
+                        +"<div class='col col-6 n_producte text-right'>"
+                            +"No queden més productes!"
+                        +"</div>"
+                        +"<div class='col col-6'>"
+                            +"<svg width='50px' height='50px' viewBox='0 0 16 16' class='bi bi-emoji-neutral' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>"
+                                +"<path fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/>"
+                                +"<path fill-rule='evenodd' d='M4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z'/>"
+                                +"<path d='M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z'/>"
+                            +"</svg>"
+                        +"</div>"
+                    +"</div>";
+                return etiqueta;
+            }
+
+            function generacio_etiqueta(producte, checkbox_active = false){
+                var classe_destacat = " destacat ";
+                if(!checkbox_active) classe_destacat = "";
                 var nom_producte = producte[0];
                 var preu_producte = producte[1];
                 var etiqueta = 
-                "<div class = 'row etiqueta rounded'>"
-                    +"<!--ProductName i checkbox-->"
-                    +"<div class='col col-4 n_producte'>"
-                        +"<input type = 'checkbox' id = 'check_producte' class = 'check_prod'>"
-                        +"<label for = 'check_producte'>"+nom_producte+"</label>"
-                    +"</div>"
-                    +"<!--Quantitat del producte-->"
-                    +"<div class='col col-2'>"
-                        +"<div class='col col-2 container_quantity'>"
-                            +"<!--Fletxes-->"
-                            +"<div class = 'plus col-12'><i class = 'fa fa-sort-asc btn p-0'></i></div>"
-                            +"<div class = 'minus col-12'><i class = 'fa fa-sort-desc btn p-0'></i></div>"
+
+                    "<div class = 'row etiqueta rounded "+classe_destacat+"'>"
+                        +"<!--ProductName i checkbox-->"
+                        +"<div class='col col-4 n_producte'>"
+                            +"<input type = 'checkbox' id = '"+nom_producte+"' class = 'check_prod'>"
+                            +"<label for = '"+nom_producte+"'>"+nom_producte+"</label>"
                         +"</div>"
-                        +"<!--Resultat comptador-->"
-                        +"<span class = 'float-left h-100 d-block ml-3'>1</span>"
-                    +"</div>"
-                    +"<div class='col col-3 text-center unit_price'><span>"+preu_producte+"</span></div>"
-                    +"<div class='col col-3 text-center final_price'><span>"+preu_producte+"</span></div>"
-                +"</div>";
+                        +"<!--Quantitat del producte-->"
+                        +"<div class='col col-2 container_quantity'>"
+                            +"<div class = 'row quantity w-50 float-left'>"
+                                +"<!--Fletxes-->"
+                                +"<div class = 'plus col-12'><i class = ' btn p-0 fa fa-sort-asc'></i></div>"
+                                +"<div class = 'minus col-12'><i class = ' btn p-0 fa fa-sort-desc'></i></div>"
+                            +"</div>"
+                            +"<!--Resultat comptador-->"
+                            +"<span class = 'float-left h-100 d-block ml-3'>1</span>"
+                        +"</div>"
+                        +"<div class='col col-3 text-center unit_price'><span>"+preu_producte+"</span></div>"
+                        +"<div class='col col-3 text-center final_price'>"
+                            +"<span>"+preu_producte+"</span>"
+                            +"<div class = 'eliminate'>"
+                                +"<i>"
+                                    +"<svg viewBox='0 0 16 16' class='bi bi-x-circle' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>"
+                                        +"<path fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/>"
+                                        +"<path fill-rule='evenodd' d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/>"
+                                    +"</svg>"
+                                +"</i>"
+                            +"</div>"
+                        +"</div>"
+                    +"</div>";
 
                 return etiqueta;
             }
