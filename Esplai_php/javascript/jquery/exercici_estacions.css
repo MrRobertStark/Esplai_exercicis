@@ -1,0 +1,22 @@
+h2{
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-top:-25%;
+}
+.card{
+    padding:2px;
+}
+.progress{
+    margin-top:5px;
+}
+.card-body>.row:first-child{
+    padding:20px 0px;
+}
+
+.card-body>.row{
+    padding:10px 0px;
+}
+
+
+
