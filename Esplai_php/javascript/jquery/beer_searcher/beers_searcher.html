@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="estils.css" type="text/css"/>
+    <style type = "text/css"></style>
+    <title>Document</title>
+
+</head>
+<body class = "p-4">
+    <!--Portada-->
+    <div id = "header" class = "bg-dark text-white">
+        <h1 class = "mt-4 text-center">Api Punk: web-beersite</h1>
+    </div>
+    <!--Limits-->
+    <div id = "capa_limits" class = "container row mx-auto">
+        <div class = "col col-12" id = "capa_limits">
+        <!--Capa dels limits-->
+            <!--Fila dels ABV-->
+            <div class="row">
+                <div class ="col col-2">
+                    <span class = "h4">ABV</span>
+                </div>
+                <div class="col col-5">
+                    <label for = "min_abv">Min:</label>
+                    <input type = "text" class = "ml-3" id = "min_abv">
+                </div>
+                <div class="col col-5">
+                    <label for = "max_abv">Max:</label>
+                    <input type = "text" class = "ml-3" id = "max_abv"/>
+                </div>
+            </div>
+            <!--FILA DELS IBU-->
+            <div class="row">
+                <div class="col col-2">
+                    <span class = "h4">IBU</span>
+                </div>
+                <div class="col col-5">
+                    <label for = "min_ibu">Min:</label>
+                    <input type = "text" class = "ml-3" id = "min_ibu">
+                </div>
+                <div class="col col-5">
+                    <label for = "max_ibu">Max:</label>
+                    <input type = "text" class = "ml-3" id = "max_ibu"/>
+                </div>
+            </div>
+            <!--FILA DELS EBC-->
+            <div class="row">
+                <div class="col col-2">
+                    <span class = "h4">EBC</span>
+                </div>
+                <div class="col col-5">
+                    <label for = "min_ebc">Min:</label>
+                    <input type = "text" class = "ml-3" id = "min_ebc">
+                </div>
+                <div class="col col-5">
+                    <label for = "max_ebc">Max:</label>
+                    <input type = "text" class = "ml-3" id = "max_ebc"/>
+                </div>
+            </div>
+        </div>
+        <!--Select num_resultats per pàgina-->
+        <div class = "col col-12 mt-4 text-center">
+            <label for = "select_quantity" class = "h5">Quantitat de resultats per pàgina: </label>
+            <select id = "select_quantity" class = "ml-3 p-2">
+                <option value="0">Selecciona:</option>
+                <option value="5">5 per pàgina</option>
+                <option value="10">10 per pàgina</option>
+                <option value="20">20 per pàgina</option>
+                <option value="50">50 per pàgina</option>
+                <option value="100">100 per pàgina</option>
+            </select>
+        </div>
+        <!--Botó per carregar info-->
+        <div class = "col col-12 px-0 px-lg-0">
+            <input type = "button" class = "btn btn-primary p-3 container mt-4" value = "Carregar" id = "carregar"/>
+        </div>
+    </div>
+    <!--FI de la capa de les preguntes-->
+
+    <!--Capa dels resultats-->
+    <div class = "container mt-5">
+        <div class = "row" id = "capa_resultat"></div>
+    </div>
+    <!--FI capa resultats-->
+
+    <!--Sidebar-->
+    <div class = "container bg-dark text-white pl-5" id = "capa_sidebar">
+        <!--Primera fila: Foto principal i dades bàsiques-->
+        <div class = "row p-4 mt-0 mb-n4">
+            <div class="col-5 bg-light round p-4">
+                <img src = "beer.png" class = "foto">
+            </div>
+            <div class="col-7 pr-0">
+                <h3 class = "card-title">Punk IPA 2007 - 2010</h1>
+                <h4 class = "card-subtitle mb-2 text-muted">Post Modern Classic. Spiky. Tropical. Hoppy.</h2>
+                <div class = "card-body mt-n3 ml-n3">
+                    <div>First Brewed <span>04/2007</span></div>
+                    <div>ABV: <span>6.0</span></div>
+                    <div>IBU: <span>60.0</span></div>
+                    <div>EBC: <span>17.0</span></div>
+                </div>
+            </div>
+        </div>
+        <!--Fi Primera Fila-->
+
+        <!--Descripció-->
+        <div class = "row">
+            <div class = "col col-12">
+                <h4>Description</h4>
+                <p>Our flagship beer that kick started the craft beer revolution. This is James and Martin's original take on an American IPA, subverted with punchy New Zealand hops. Layered with new world hops to create an all-out riot of grapefruit, pineapple and lychee before a spiky, mouth-puckering bitter finish.</p>
+            </div>
+        </div>
+        <!--Fi Descripció-->
+
+        <!--Descripció-->
+        <div class = "row">
+            <div class = "col col-12">
+                <h4>Brewer Tips</h4>
+                <p>While it may surprise you, this version of Punk IPA isn't dry hopped but still packs a punch! To make the best of the aroma hops make sure they are fully submerged and add them just before knock out for an intense hop hit.</p>
+            </div>
+        </div>
+        <!--Fi Descripció-->
+
+        <!--Llistat plats recomanats-->
+        <div class = "row">
+            <div class = "col col-12">
+                <h4>Food Pairing</h4>
+                <ul>
+                    <li>Spicy carne asada with a pico de gallo sauce</li>
+                    <li>Shredded chicken tacos with a mango chilli lime salsa</li>
+                    <li>Cheesecake with a passion fruit swirl sauce</li>
+                </ul>
+            </div>
+        </div>
+        <!--Fi Llistat plats recomanats-->
+    </div>
+    <!--Fi Sidebar-->
+
+    <!--JQuery and Bootstrap Bundle (includes Popper)-->
+    <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script language= "javascript">
+        $(document).ready(function(){
+
+            $(document).on("click",".card",function(){
+                var sidebar = $("#capa_sidebar");
+                if($(sidebar).css("right") < "0px") mostrar_sidebar();
+                else amagar_sidebar();
+            });
+
+            $("#capa_limits").click(function(){
+                amagar_sidebar();
+            });
+
+            $("#carregar").click(function(){
+                var i = 0;
+                var card = "";
+                var capa_resultat = $("#capa_resultat");
+                var limit = $("#select_quantity").val();
+                capa_resultat.html("");
+
+                for(var i = 0; i < limit; i++){
+                    card = generacio_cards();
+                    $(capa_resultat).append(card);
+                }
+                //Captació de les dades
+                //Limits ABV
+                // var min_abv = $("#min_abv").val();
+                // var max_abv = $("#max_abv").val();
+                // if(min_abv == "") min_abv = 0;
+                // if(max_abv == "") max_abv = 10;
+                
+                // //Limits IBU
+                // var min_ibu = $("#min_ibu").val();
+                // var max_ibu = $("#max_ibu").val();
+                // if(min_ibu == "") min_ibu = 0;
+                // if(max_ibu == "") max_ibu = 60;
+
+                // //Limits EBC
+                // var min_ebc = $("#min_ebc").val();
+                // var max_ebc = $("#max_ebc").val();
+                // if(min_ebc == "") min_ebc = 0;
+                // if(max_ebc == "") max_ebc = 17;
+                
+                // $.get("https://api.punkapi.com/v2/beers/",function(data,status){
+                //     var beers = data;
+                //     var beer = 0;
+                //     var i = 0;
+                //     for(i = 0; i < beers.length; i++){
+                //         beer = beers[i];
+                //         $("#capa_resultats").append("<img src = '"+beer.image_url+"' class = 'foto col-3'/>");
+                //     }
+                // });
+            });
+
+            function mostrar_sidebar(){
+                //Mostrem el sidebar
+                var sidebar = $("#capa_sidebar");
+                $(sidebar).css("right","0px");
+
+                //Ajustem la mida dels contenidors dels beers
+                var container = $("#capa_resultat").parent();
+                $(container).addClass("w-50 ml-0 ml-lg-5");
+
+                //Ajustem la responsivitat de les cards
+                var cards = $(".card").parent();
+                $(cards).removeClass("col-md-6");
+                $(cards).removeClass("col-xl-4");
+
+                //Ajustem la responsivitat dels headers de la capa dels inputs
+                //Limits
+                var capa_limits = $("#capa_limits");
+                capa_limits.removeClass("mx-auto");
+                capa_limits.addClass("ml-0 ml-lg-5 w-50 pr-5 text-center mt-5");
+
+                var capa_inputs = $("#capa_limits>.row .col");
+                capa_inputs.addClass("col-12 mb-2");
+
+            }
+
+            function amagar_sidebar(){
+                //Amaguem el sidebar
+                var sidebar = $("#capa_sidebar");
+                $(sidebar).css("right","-100%");
+
+                //Ajustem la mida dels contenidors dels beers
+                var container = $("#capa_resultat").parent();
+                $(container).removeClass("w-50");
+                $(container).removeClass("ml-0");
+                $(container).removeClass("ml-lg-5");
+
+                //Ajustem la responsivitat de les cards al format original
+                var cards = $(".card").parent();
+                $(cards).addClass("col-md-6");
+                $(cards).addClass("col-xl-4");
+
+                //Ajustem la responsivitat dels headers de la capa dels inputs al format original
+                //Limits
+                var capa_limits = $("#capa_limits");
+                capa_limits.addClass("mx-auto");
+                capa_limits.removeClass("ml-0");
+                capa_limits.removeClass("ml-lg-5");
+                capa_limits.removeClass("w-50");
+                capa_limits.removeClass("pr-5");
+                capa_limits.removeClass("text-center");
+                capa_limits.removeClass("mt-5");
+
+                var capa_inputs = $("#capa_limits>.row .col");
+                capa_inputs.removeClass("col-12");
+                capa_inputs.removeClass("mb-2");
+            }
+
+            function generacio_cards(){
+                var etiqueta = 
+                    "<!--Targeta-->"
+                    +"<div class = 'col col-12 col-md-6 col-xl-4'>"
+                        +"<div class = 'row card p-4 bg-light'>"
+                            +"<div class  = 'col-4'>"
+                                +"<img src = '../beer_searcher/beer.png' alt = 'Beer Photo' class = 'foto'>"
+                            +"</div>"
+                            +"<div class = 'col-8 card-body pt-0'>"
+                                +"<h5 class = 'card-title text-center h2'>Punk IPA 2007 - 2010r</h5>"
+                                +"<h6 class = 'card-subtitle mb-3 text-muted h5 text-center'>Post Modern Classic. Spiky. Tropical. Hoppy.</h6>"
+                                +"<p class = 'card-text text-center mt-n2 mt-lg-3'>Contributed by Sam Mason (samjbmason)</p>"
+                                +"<input type = 'button' value = 'More info' class = 'btn btn-success container'/>"
+                            +"</div>"
+                        +"</div>"
+                    +"</div>"
+                +"<!--FI Targeta-->";
+
+                return etiqueta;
+            }
+        });
+    </script>
+</body>
+</html>
