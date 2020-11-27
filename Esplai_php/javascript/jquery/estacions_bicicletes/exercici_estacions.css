@@ -29,6 +29,10 @@ h1{
     font-size:20pt;
 }
 
+svg{
+    border-width:3px!important;
+}
+
 .card{
     padding:2px;
     box-shadow: 0px 0px 4px;

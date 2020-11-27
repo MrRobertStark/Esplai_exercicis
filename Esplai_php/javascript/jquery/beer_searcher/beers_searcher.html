@@ -90,7 +90,7 @@
     <!--FI capa resultats-->
 
     <!--Sidebar-->
-    <div class = "container bg-dark text-white pl-5" id = "capa_sidebar">
+    <div class = "container bg-dark text-white pl-5" id = "capa_sidebar" value="0">
         <!--Primera fila: Foto principal i dades bàsiques-->
         <div class = "row p-4 mt-0 mb-n4">
             <div class="col-5 bg-light round p-1" id = "capa_imatge">
@@ -143,7 +143,7 @@
     <!--Fi Sidebar-->
 
     <!--Indexació-->
-    <div class = "container p-0 d-none" id = "capa_index">
+    <div class = "container p-0 d-none pb-5" id = "capa_index">
         <ol class = "text-center px-0 mt-5">
             <li class = "btn btn-link active">1</li>
             <li class = "btn btn-link">2</li>
@@ -167,10 +167,19 @@
                 //Cridem la beer
                 $.get("https://api.punkapi.com/v2/beers/"+beer_id,function(data,status){
                     var beer = data[0];
-                    actualitzar_sidebar(beer);
+                    var beer_previ = parseInt($(sidebar).attr("value"));
+                    console.log(beer_previ == beer.id);
+                    
+                    if(beer.id != beer_previ){
+                        actualitzar_sidebar(beer);
+                        mostrar_sidebar();
+                        $(sidebar).attr("value",beer.id);
+                    }
 
-                    if($(sidebar).css("right") < "0px") mostrar_sidebar();
-                    else amagar_sidebar();
+                    else{
+                        if($(sidebar).css("right") <= "0px") amagar_sidebar();
+                        else mostrar_sidebar();
+                    }
                 });
                 window.location.href = "#"+beer_id;
             });
