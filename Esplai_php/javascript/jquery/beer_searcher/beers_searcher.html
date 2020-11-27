@@ -29,11 +29,11 @@
                 </div>
                 <div class="col col-5">
                     <label for = "min_abv">Min:</label>
-                    <input type = "text" class = "ml-3" id = "min_abv">
+                    <input type = "text" class = "ml-3" id = "min_abv" placeholder="0">
                 </div>
                 <div class="col col-5">
                     <label for = "max_abv">Max:</label>
-                    <input type = "text" class = "ml-3" id = "max_abv"/>
+                    <input type = "text" class = "ml-3" id = "max_abv" placeholder="100"/>
                 </div>
             </div>
             <!--FILA DELS IBU-->
@@ -43,11 +43,11 @@
                 </div>
                 <div class="col col-5">
                     <label for = "min_ibu">Min:</label>
-                    <input type = "text" class = "ml-3" id = "min_ibu">
+                    <input type = "text" class = "ml-3" id = "min_ibu" placeholder="0">
                 </div>
                 <div class="col col-5">
                     <label for = "max_ibu">Max:</label>
-                    <input type = "text" class = "ml-3" id = "max_ibu"/>
+                    <input type = "text" class = "ml-3" id = "max_ibu" placeholder="200"/>
                 </div>
             </div>
             <!--FILA DELS EBC-->
@@ -57,11 +57,11 @@
                 </div>
                 <div class="col col-5">
                     <label for = "min_ebc">Min:</label>
-                    <input type = "text" class = "ml-3" id = "min_ebc">
+                    <input type = "text" class = "ml-3" id = "min_ebc" placeholder="0">
                 </div>
                 <div class="col col-5">
                     <label for = "max_ebc">Max:</label>
-                    <input type = "text" class = "ml-3" id = "max_ebc"/>
+                    <input type = "text" class = "ml-3" id = "max_ebc" placeholder="120"/>
                 </div>
             </div>
         </div>
@@ -69,7 +69,6 @@
         <div class = "col col-12 mt-4 text-center">
             <label for = "select_quantity" class = "h5">Quantitat de resultats per pàgina: </label>
             <select id = "select_quantity" class = "ml-3 p-2">
-                <option value="0">Selecciona:</option>
                 <option value="5">5 per pàgina</option>
                 <option value="10">10 per pàgina</option>
                 <option value="20">20 per pàgina</option>
@@ -94,17 +93,17 @@
     <div class = "container bg-dark text-white pl-5" id = "capa_sidebar">
         <!--Primera fila: Foto principal i dades bàsiques-->
         <div class = "row p-4 mt-0 mb-n4">
-            <div class="col-5 bg-light round p-4">
-                <img src = "beer.png" class = "foto">
+            <div class="col-5 bg-light round p-1" id = "capa_imatge">
+                <img src = "beer.png" class = "foto mx-auto">
             </div>
-            <div class="col-7 pr-0">
+            <div class="col-7 pr-0" id = "info_basica">
                 <h3 class = "card-title">Punk IPA 2007 - 2010</h1>
                 <h4 class = "card-subtitle mb-2 text-muted">Post Modern Classic. Spiky. Tropical. Hoppy.</h2>
                 <div class = "card-body mt-n3 ml-n3">
-                    <div>First Brewed <span>04/2007</span></div>
-                    <div>ABV: <span>6.0</span></div>
-                    <div>IBU: <span>60.0</span></div>
-                    <div>EBC: <span>17.0</span></div>
+                    <div id = "brewed">First Brewed <span>04/2007</span></div>
+                    <div id = "abv">ABV: <span>6.0</span></div>
+                    <div id = "ibu">IBU: <span>60.0</span></div>
+                    <div id = "ebc">EBC: <span>17.0</span></div>
                 </div>
             </div>
         </div>
@@ -114,7 +113,7 @@
         <div class = "row">
             <div class = "col col-12">
                 <h4>Description</h4>
-                <p>Our flagship beer that kick started the craft beer revolution. This is James and Martin's original take on an American IPA, subverted with punchy New Zealand hops. Layered with new world hops to create an all-out riot of grapefruit, pineapple and lychee before a spiky, mouth-puckering bitter finish.</p>
+                <p id = "descripcio">Our flagship beer that kick started the craft beer revolution. This is James and Martin's original take on an American IPA, subverted with punchy New Zealand hops. Layered with new world hops to create an all-out riot of grapefruit, pineapple and lychee before a spiky, mouth-puckering bitter finish.</p>
             </div>
         </div>
         <!--Fi Descripció-->
@@ -123,7 +122,7 @@
         <div class = "row">
             <div class = "col col-12">
                 <h4>Brewer Tips</h4>
-                <p>While it may surprise you, this version of Punk IPA isn't dry hopped but still packs a punch! To make the best of the aroma hops make sure they are fully submerged and add them just before knock out for an intense hop hit.</p>
+                <p id = "brewer_tips">While it may surprise you, this version of Punk IPA isn't dry hopped but still packs a punch! To make the best of the aroma hops make sure they are fully submerged and add them just before knock out for an intense hop hit.</p>
             </div>
         </div>
         <!--Fi Descripció-->
@@ -132,7 +131,7 @@
         <div class = "row">
             <div class = "col col-12">
                 <h4>Food Pairing</h4>
-                <ul>
+                <ul id = "llistat_plats">
                     <li>Spicy carne asada with a pico de gallo sauce</li>
                     <li>Shredded chicken tacos with a mango chilli lime salsa</li>
                     <li>Cheesecake with a passion fruit swirl sauce</li>
@@ -143,6 +142,19 @@
     </div>
     <!--Fi Sidebar-->
 
+    <!--Indexació-->
+    <div class = "container p-0 d-none" id = "capa_index">
+        <ol class = "text-center px-0 mt-5">
+            <li class = "btn btn-link active">1</li>
+            <li class = "btn btn-link">2</li>
+            <li class = "btn btn-link">3</li>
+            <li class = "btn btn-link">4</li>
+            <li class = "btn btn-link">5</li>
+            <li class = "btn btn-link">6</li>
+        </ol>
+    </div>
+    <footer id = "footer"></footer>
+
     <!--JQuery and Bootstrap Bundle (includes Popper)-->
     <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
@@ -150,9 +162,17 @@
         $(document).ready(function(){
 
             $(document).on("click",".card",function(){
-                var sidebar = $("#capa_sidebar");
-                if($(sidebar).css("right") < "0px") mostrar_sidebar();
-                else amagar_sidebar();
+                var beer_id = $(this).attr("id");
+                var sidebar = $("#capa_sidebar");;
+                //Cridem la beer
+                $.get("https://api.punkapi.com/v2/beers/"+beer_id,function(data,status){
+                    var beer = data[0];
+                    actualitzar_sidebar(beer);
+
+                    if($(sidebar).css("right") < "0px") mostrar_sidebar();
+                    else amagar_sidebar();
+                });
+                window.location.href = "#"+beer_id;
             });
 
             $("#capa_limits").click(function(){
@@ -160,45 +180,90 @@
             });
 
             $("#carregar").click(function(){
+                carregar_info(1);
+            });
+
+            $("li.btn-link").click(function(){
+                $("li.btn-link").removeClass("active");
+                $(this).addClass("active");
+                var pagina = parseInt($(this).text());
+                carregar_info(pagina);
+            });
+
+            function carregar_info(pagina){
                 var i = 0;
                 var card = "";
                 var capa_resultat = $("#capa_resultat");
-                var limit = $("#select_quantity").val();
+                var limit = parseInt($("#select_quantity").val());
                 capa_resultat.html("");
 
-                for(var i = 0; i < limit; i++){
-                    card = generacio_cards();
-                    $(capa_resultat).append(card);
-                }
                 //Captació de les dades
                 //Limits ABV
-                // var min_abv = $("#min_abv").val();
-                // var max_abv = $("#max_abv").val();
-                // if(min_abv == "") min_abv = 0;
-                // if(max_abv == "") max_abv = 10;
+                var min_abv = $("#min_abv").val();
+                var max_abv = $("#max_abv").val();
+                if(min_abv == "") min_abv = 0;
+                if(max_abv == "") max_abv = 100;
                 
-                // //Limits IBU
-                // var min_ibu = $("#min_ibu").val();
-                // var max_ibu = $("#max_ibu").val();
-                // if(min_ibu == "") min_ibu = 0;
-                // if(max_ibu == "") max_ibu = 60;
+                //Limits IBU
+                var min_ibu = $("#min_ibu").val();
+                var max_ibu = $("#max_ibu").val();
+                if(min_ibu == "") min_ibu = 0;
+                if(max_ibu == "") max_ibu = 200;
 
-                // //Limits EBC
-                // var min_ebc = $("#min_ebc").val();
-                // var max_ebc = $("#max_ebc").val();
-                // if(min_ebc == "") min_ebc = 0;
-                // if(max_ebc == "") max_ebc = 17;
+                //Limits EBC
+                var min_ebc = $("#min_ebc").val();
+                var max_ebc = $("#max_ebc").val();
+                if(min_ebc == "") min_ebc = 0;
+                if(max_ebc == "") max_ebc = 120;
                 
-                // $.get("https://api.punkapi.com/v2/beers/",function(data,status){
-                //     var beers = data;
-                //     var beer = 0;
-                //     var i = 0;
-                //     for(i = 0; i < beers.length; i++){
-                //         beer = beers[i];
-                //         $("#capa_resultats").append("<img src = '"+beer.image_url+"' class = 'foto col-3'/>");
-                //     }
-                // });
-            });
+                $("#capa_index").addClass("d-none");
+                //Crida de l'API
+                $.get("https://api.punkapi.com/v2/beers?abv_gt="+min_abv+"&abv_lt="+max_abv+"&ibu_gt="+min_ibu+"&ibu_lt="+max_ibu+"&ebc_gt="+min_ebc+"&ebc_lt="+max_ebc+"&per_page="+limit+"&page="+pagina,function(data,status){
+                    var beers = data;
+                    var beer = "";
+                    var i = 0;
+                    var etiqueta = "";
+                    //Control dels limits
+                    if(beers.length > 0){
+                        $("#capa_index").removeClass("d-none");
+                        //Bucle per emplenar la capa dels resultats
+                        for(i = 0; i < beers.length; i++){
+                            beer = beers[i];
+                            etiqueta = generacio_cards(beer);
+                            $("#capa_resultat").append(etiqueta);
+                        }
+                    }
+                    else {
+                        $("#capa_resultat").html("<p>No hi ha resultats</p>");
+                    }
+                });
+                window.location.href="#footer";
+            }
+
+            function actualitzar_sidebar(beer){
+                var sidebar = $("#capa_sidebar");
+                $(sidebar).children().children("#capa_imatge").children().attr("src",beer.image_url); //Actualitzem la imatge
+                var info_basica = $(sidebar).children().children("#info_basica");
+                $(info_basica).children("h3").text(beer.name);
+                $(info_basica).children("h4").text(beer.tagline);
+                $(info_basica).children(".card-body").children("#brewed").children("span").text(beer.first_brewed);
+                $("#abv").children("span").text(beer.abv);
+                $("#ibu").children("span").text(beer.ibu);
+                $("#ebc").children("span").text(beer.ebc);
+
+                $("#descripcio").text(beer.description);
+                $("#brewer_tips").text(beer.brewers_tips);
+
+                var dishes = beer.food_pairing;
+                var capa_llistat_plats = $("#llistat_plats");
+                capa_llistat_plats.html("");
+                var dish = "";
+                var i = 0;
+                for(i = 0; i < dishes.length; i++){
+                    dish = dishes[i];
+                    capa_llistat_plats.append("<li>"+dish+"</li>");
+                }
+            }
 
             function mostrar_sidebar(){
                 //Mostrem el sidebar
@@ -257,18 +322,28 @@
                 capa_inputs.removeClass("mb-2");
             }
 
-            function generacio_cards(){
+            function generacio_cards(beer){
+                var id_beer = beer.id;
+                var foto_beer = beer.image_url;
+                var title_beer = beer.name;
+                var tagline = beer.tagline;
+                var contribution = beer.contributed_by;
+                
+                //Tractem les dades
+                contribution.replace("<","(");
+                contribution.replace(">",")");
+
                 var etiqueta = 
                     "<!--Targeta-->"
                     +"<div class = 'col col-12 col-md-6 col-xl-4'>"
-                        +"<div class = 'row card p-4 bg-light'>"
+                        +"<div class = 'row card p-4 bg-light' id = '"+id_beer+"'>"
                             +"<div class  = 'col-4'>"
-                                +"<img src = '../beer_searcher/beer.png' alt = 'Beer Photo' class = 'foto'>"
+                                +"<img src = '"+foto_beer+"' alt = 'Beer Photo' class = 'foto'>"
                             +"</div>"
                             +"<div class = 'col-8 card-body pt-0'>"
-                                +"<h5 class = 'card-title text-center h2'>Punk IPA 2007 - 2010r</h5>"
-                                +"<h6 class = 'card-subtitle mb-3 text-muted h5 text-center'>Post Modern Classic. Spiky. Tropical. Hoppy.</h6>"
-                                +"<p class = 'card-text text-center mt-n2 mt-lg-3'>Contributed by Sam Mason (samjbmason)</p>"
+                                +"<h5 class = 'card-title text-center h2'>"+title_beer+"</h5>"
+                                +"<h6 class = 'card-subtitle mb-3 text-muted h5 text-center'>"+tagline+"</h6>"
+                                +"<p class = 'card-text text-center mt-n2 mt-lg-3'>Contributed by "+contribution+"</p>"
                                 +"<input type = 'button' value = 'More info' class = 'btn btn-success container'/>"
                             +"</div>"
                         +"</div>"

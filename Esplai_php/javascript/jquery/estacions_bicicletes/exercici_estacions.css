@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 html,body{
     width:100%;
     min-width: 600px;
@@ -24,13 +27,6 @@ h1{
     width:70%;
     margin:30px auto;
     font-size:20pt;
-}
-h2{
-    position:absolute;
-    top:50%;
-    left:50%;
-    margin-top:-20%;
-    font-size:25pt;
 }
 
 .card{
@@ -69,6 +65,9 @@ svg{
 .progress-bar{
     color:white;
     overflow: visible;
+}
+.row{
+    width:100%;
 }
 
 @media screen and (max-width:1054px){
