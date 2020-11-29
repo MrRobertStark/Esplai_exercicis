@@ -1,0 +1,14 @@
+API per al preu del peix del tipus: "Ossi Blau". 5 coses
+1) URL de l'API: "https://analisi.transparenciacatalunya.cat/resource/ge3m-4jgm.json"
+2) Mètode de connexió (Post/Get): GET
+3) Accés per minut: Indiferent
+4) Paràmetres: CAP
+5) Resposta de la crida: ANY / GRUP / QUILOS / EUROS / Tn / MILERS PREU €/Kg
+
+PLUGIN GRÀFICA
+-> Ho he trobat! Però les dades... S'han d'actualizar
+-> Los Monday/Tuesday/Wed... serían los años ordenados decrecientemente. Quizás la API ya los devuelva así porque los datos se renuevan anualmente.
+-> Los valores numéricos de "series: [...]" son los precios. Estos datos ya son recopilados por la API
+-> Tipus de peix: OSSIS-BLAU
+
+-> A programar!
