@@ -29,8 +29,22 @@ h1{
     font-size:20pt;
 }
 
-svg{
-    border-width:3px!important;
+img.foto{
+    display:block;
+    width:30px;
+    height:30px;
+    padding:3px;
+}
+
+.mecb{
+    outline:2px solid #007bff;
+}
+.eb{
+    outline:2px solid #28a745;
+}
+
+.quantitat{
+    font-size:15pt;
 }
 
 .card{
@@ -61,11 +75,7 @@ svg{
     padding:0px;
     width:100%;
 }
-svg{
-    width:30px;
-    height:30px;
-    padding:5px;
-}
+
 .progress-bar{
     color:white;
     overflow: visible;

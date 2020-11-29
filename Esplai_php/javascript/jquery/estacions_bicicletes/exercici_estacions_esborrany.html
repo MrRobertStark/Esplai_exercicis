@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="exercici_estacions.css" type="text/css"/>
+    <style type = "text/css">
+    </style>
+    <title>Document</title>
+
+</head>
+<body class = "px-0">
+    <div class = "container-fluid p-0 text-center text-white" id = "header">
+        <img  src = "../imagenes/bikes_bcn.jpg" class = "img-fluid" id = "portada"/>
+        <h1 class = "mb-4">Estacions de bicicletes: BCN</h1>
+    </div>
+    
+    <div class = "interaccio">
+        <input type = "button" value = "Carregar Dades" class = "btn btn-primary" id = "carregar">
+    </div>
+    <div class = "container mt-5" id = "main_container">
+        <div class = "row" id = "capa_resultat">
+            <!--Primera card-->
+            <div class = 'col col-12 col-md-6 col-xl-4'>
+               <!--Contingut Targeta-->
+               <div class = 'card bg-light my-3'>
+                   <div class = 'row'>
+                       <div class = 'col col-3'><h2 class = 'text-center ml-n2'>1</h2></div>
+                       <div class = 'col col-9 card-body'>
+                           <div class='row'>
+                               <div class='col col-md-7 col-xl-6 offset-xl-1 disp'><span class = "quantitat ml-lg-n3 text-center">Bicicletes: 10/45</span></div>
+                               <div class='col col-md-5 col-xl-5 circle_bar'>
+                                   <!--Gràfica Rodona-->
+                                   <div class='progress mx-auto' data-value='22' id = 'circle1'>
+                                       <span class='progress-left'>
+                                           <span class='progress-bar border-primary'></span>
+                                       </span>
+                                       <span class='progress-right'>"
+                                           <span class='progress-bar border-primary'></span>
+                                       </span>
+                                       <div class='progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center'>
+                                       <p class='mt-3 font-weight-bold'>22<sup class='small'>%</sup></p>
+                                       </div>
+                                   </div>
+                                   <!--Fi Gràfica Rodona-->
+                               </div>
+                           </div>
+                           <div class='row'>
+                               <div class='col offset-0 col-2 icon'>
+                                    <img src = '../../../../esplai_inici/JavaScript/JQuery/API/bcn/practica_bicis/icono_bicicleta.jpg' class = "foto mecb round" alt = 'icona_bici_mecanica'/>
+                               </div>
+                               <div class='col offset-1 col-7 capa_progres'>
+                                   <!--Barra progrés-->
+                                   <div class='progress bg-danger'>
+                                       <div id = 'mecbar1' class='progress-bar' role='progressbar' aria-valuenow='50' aria-valuemin='0' aria-valuemax='100' style='width:50%'>50</div>
+                                       <div id = 'ebar1' class='progress-bar bg-success' role='progressbar' aria-valuenow='50' aria-valuemin='0' aria-valuemax='100' style='width:50%'>50</div>
+                                       <div id = 'nbar1' class='progress-bar bg-secondary d-none nbar pt-2' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width:100%'>0</div>
+                                   </div>
+                                   <!--Fi barra progrés-->
+                               </div>
+                               <div class='col col-2'>
+                                    <img src = '../../../../esplai_inici/JavaScript/JQuery/API/bcn/practica_bicis/icono_bicicleta_electrica.jpg' class = "foto eb" alt = 'icona_bici_mecanica'/>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <!--Fi de la primera card-->
+        </div>
+    </div>    
+
+    <!--JQuery and Bootstrap Bundle (includes Popper)-->
+    <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script language= "javascript">
+        $(document).ready(function(){
+            $("#fletxa").hide();
+
+            $("#carregar").click(function(){
+                $.get("https://api.bsmsa.eu/ext/api/bsm/gbfs/v2/en/station_status",function(data,status){
+                    var estacions = data.data.stations;
+                    var estacio = "";
+                    var etiqueta_estacio = "";
+                    var i = 0;
+                    for(i = 0; i < 30; i++){
+                        estacio = estacions[i];
+                        etiqueta_estacio = generacio_etiqueta(estacio);
+                        $("#capa_resultat").append(etiqueta_estacio);
+                        complete_graphic_info(estacio.station_id);
+                    }
+                });
+            });
+
+
+            /*--------------------------Generació d'una etiqueta---------------------------*/
+            function generacio_etiqueta(info_estacio){
+                //Captació dades
+                var disponibilitat = 0;
+                var stacio_id = info_estacio.station_id;
+                var bicicletes_disponibles = info_estacio.num_bikes_available;
+                var ebikes = info_estacio.num_bikes_available_types.ebike;
+                var mbikes = info_estacio.num_bikes_available_types.mechanical;
+                var percentatge_ebike = 0;
+                var percentatge_mecbike = 0;
+                var visibilitat = "d-none";
+
+                //Tractament de dades i Estadística
+                var total_bicicletes = info_estacio.num_docks_available + bicicletes_disponibles;
+                if(total_bicicletes == 0) disponibilitat = 0;
+                else disponibilitat = Math.floor((bicicletes_disponibles/total_bicicletes)*100);
+
+                if(bicicletes_disponibles == 0) {
+                    percentatge_ebike = 0;
+                    percentatge_mecbike = 0;
+                    visibilitat = "d-block";
+                }
+                else {
+                    percentatge_ebike = Math.floor((ebikes/bicicletes_disponibles)*100);
+                    percentatge_mecbike = Math.floor((mbikes/bicicletes_disponibles)*100);
+                }
+
+                var etiqueta = 
+                "<!--Primera card-->"
+                +"<div class = 'col col-12 col-md-6 col-xl-4'>"
+                    +"<!--Contingut Targeta-->"
+                    +"<div class = 'card bg-light my-3'>"
+                        +"<div class = 'row'>"
+                            +"<div class = 'col col-3'><h2 class = 'text-center ml-n2'>"+stacio_id+"</h2></div>"
+                            +"<div class = 'col col-9 card-body'>"
+                                +"<div class='row'>"
+                                    +"<div class='col col-md-7 col-xl-6 offset-xl-1 disp'><span>Bicicletes: "+bicicletes_disponibles+"/"+total_bicicletes+"</span></div>"
+                                    +"<div class='col col-md-5 col-xl-5 circle_bar'>"
+                                        +"<!--Gràfica Rodona-->"
+                                        +"<div class='progress mx-auto' data-value='"+disponibilitat+"' id = 'circle"+stacio_id+"'>"
+                                            +"<span class='progress-left'>"
+                                                +"<span class='progress-bar border-primary'></span>"
+                                            +"</span>"
+                                            +"<span class='progress-right'>"
+                                                +"<span class='progress-bar border-primary'></span>"
+                                            +"</span>"
+                                            +"<div class='progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center'>"
+                                            +"<p class='mt-3 font-weight-bold'>"+disponibilitat+"<sup class='small'>%</sup></p>"
+                                            +"</div>"
+                                        +"</div>"
+                                        +"<!--Fi Gràfica Rodona-->"
+                                    +"</div>"
+                                +"</div>"
+                                +"<div class='row'>"
+                                    +"<div class='col offset-0 col-2 icon'>"
+                                        +"<svg viewBox='0 0 16 16' class='bi bi-gear-fill bg-primary rounded' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>"
+                                            +"<path fill-rule='evenodd' d='M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z'/>"
+                                        +"</svg>"
+                                    +"</div>"
+                                    +"<div class='col offset-1 col-7 capa_progres'>"
+                                        //Barra del progrés
+                                        +"<!--Barra progrés-->"
+                                        +"<div class='progress bg-danger'>"
+                                            +"<div id = 'mecbar"+stacio_id+"' class='progress-bar' role='progressbar' aria-valuenow='"+percentatge_mecbike+"' aria-valuemin='0' aria-valuemax='100' style='width:"+percentatge_mecbike+"%'>"+mbikes+"</div>"/* /"+bicicletes_disponibles+" */
+                                            +"<div id = 'ebar"+stacio_id+"' class='progress-bar bg-danger' role='progressbar' aria-valuenow='"+percentatge_ebike+"' aria-valuemin='0' aria-valuemax='100' style='width:"+percentatge_ebike+"%'>"+ebikes+"</div>"/* "/"+bicicletes_disponibles+" */
+                                            +"<div id = 'nbar"+stacio_id+"' class='progress-bar bg-secondary "+visibilitat+" nbar pt-2' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width:100%'>0</div>"
+                                        +"</div>"
+                                        +"<!--Fi barra progrés-->"
+                                        //Fi de la barra del progrés
+                                    +"</div>"
+                                    +"<div class='col offset-0 col-2 icon'>"
+                                        +"<svg viewBox='0 0 16 16' class='bi bi-plug-fill bg-danger rounded' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>"
+                                            +"<path fill-rule='evenodd' d='M6 0a.5.5 0 0 1 .5.5V3h3V.5a.5.5 0 0 1 1 0V3h1a.5.5 0 0 1 .5.5v3A3.5 3.5 0 0 1 8.5 10c-.002.434-.01.845-.04 1.22-.041.514-.126 1.003-.317 1.424a2.083 2.083 0 0 1-.97 1.028C6.725 13.9 6.169 14 5.5 14c-.998 0-1.61.33-1.974.718A1.922 1.922 0 0 0 3 16H2c0-.616.232-1.367.797-1.968C3.374 13.42 4.261 13 5.5 13c.581 0 .962-.088 1.218-.219.241-.123.4-.3.514-.55.121-.266.193-.621.23-1.09.027-.34.035-.718.037-1.141A3.5 3.5 0 0 1 4 6.5v-3a.5.5 0 0 1 .5-.5h1V.5A.5.5 0 0 1 6 0z'/>"
+                                        +"</svg>"
+                                    +"</div>"
+                                +"</div>"
+                            +"</div>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>"
+                +"<!--Fi de la primera card-->";
+                return etiqueta;
+            }
+
+            /*--------------------------Programació de la Circle Bar----------------------*/
+            function complete_graphic_info(capaid){
+
+                //Ajustem valors del circlebar
+                var value = $("#circle"+capaid).attr("data-value");
+                var left =  $("#circle"+capaid).find('.progress-left .progress-bar');
+                var right = $("#circle"+capaid).find('.progress-right .progress-bar');
+                if (value > 0) {
+                    if (value <= 50) {
+                        right.css('transform', 'rotate(' + percentageToDegrees(value) + 'deg)')
+                    } 
+                    else {
+                        right.css('transform', 'rotate(180deg)')
+                        left.css('transform', 'rotate(' + percentageToDegrees(value - 50) + 'deg)')
+                    }
+                }
+
+                //Ajustem paràmetres del normalbar
+
+                // var bic_electriques = info_estacio.num_bikes_available_types.ebike;
+                // var bic_mecaniques = info_estacio.num_bikes_available_types.mechanical;
+                // var percentatge_ebike = Math.floor((bic_electriques/bicicletes_disponibles)*100);
+                // var percentatge_mecbike = Math.floor((bic_mecaniques/bicicletes_disponibles)*100); 
+
+                // $("#mecbar"+stacio_id).attr("aria-valuenow",percentatge_mecbike);
+                // $("#mecbar"+stacio_id).attr("style","width:"+percentatge_mecbike+"%");
+                // $("#ebar"+stacio_id).attr("aria-valuenow",percentatge_ebike);
+                // $("#ebar"+stacio_id).attr("style","width:"+percentatge_ebike+"%");
+            }
+
+            function percentageToDegrees(percentage) {
+                return percentage / 100 * 360;
+            }
+        });
+    </script>
+</body>
+</html>
