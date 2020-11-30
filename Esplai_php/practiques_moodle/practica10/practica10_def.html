@@ -12,17 +12,29 @@
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     
     <!--Particular CSS-->
-    <style type = "text/css"></style>
+    <style type = "text/css">
+        *{
+            box-sizing: border-box;   
+        }
+        html,body{
+            width:100%;
+            height:100%;
+        }
+        #chart{
+            width:100%;
+            height:80%;
+        }
+    </style>
     <title>Document</title>
 
 </head>
 <body class = "p-4">
     <!--Capa Introducció / header-->
-    <div class = "container mb-4" id = "capa_header">
-        <h1 class = "mb-4">Evolució del preu del peix de tipus "Ossi blau"</h1>
+    <div class = "container mb-5" id = "capa_header">
+        <h1 class = "mb-4 text-center">Evolució del preu del peix "Ossi blau" (Passat a present)</h1>
     </div>
     <!--Capa de la gràfica-->    
-    <div class="ct-chart ct-golden-section" id="chart"></div>
+    <div class="ct-chart" id="chart"></div>
     
 
     <!--JQuery and Bootstrap Bundle (includes Popper)-->
@@ -38,13 +50,14 @@
             4) Paràmetres: CAP
             5) Resposta de la crida: Un Array d'objectes amb les següents columnes: ANY / GRUP / QUILOS / EUROS / Tn / MILERS PREU €/Kg 
             
-        -> Per fer la gràfica s'ha emprat un Plugin de "Chartist"*/            
+        -> Per fer la gràfica s'ha emprat un Plugin de "Chartist"*/    
+
         $(document).ready(function(){
             //Variables globals
             var anys = [];
             var preus = [];
-            //Cridem l'API
-            $.get("https://analisi.transparenciacatalunya.cat/resource/ge3m-4jgm.json",function(data,status){
+            //Cridem l'API amb els següents paràmetres: where grup=OSSIS-BLAU & order = Any ASC
+            $.get("https://analisi.transparenciacatalunya.cat/resource/ge3m-4jgm.json?$where=grup=%27OSSIS-BLAU%27&$order=any%20ASC",function(data,status){
                 var main_peix = "OSSIS-BLAU";
                 var peixos = data;
                 var peix = 0;
@@ -52,10 +65,9 @@
                 //Bucle per l'anàlisis de cada peix
                 for(i = 0; i < peixos.length; i++){
                     peix = peixos[i]; //Capturem el peix
-                    if(peix.grup == main_peix){
-                        anys.push(peix.any);
-                        preus.push(peix.preu_kg);
-                    }
+                    anys.push(peix.any);
+                    preus.push(peix.preu_kg);
+                    
                 }
                 //Creació de la gràfica definitiva
                 new Chartist.Line(".ct-chart",{

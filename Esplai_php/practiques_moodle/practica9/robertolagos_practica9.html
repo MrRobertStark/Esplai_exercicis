@@ -57,10 +57,10 @@
             //Inicialització variables globals
             //Ràpid manipulació dels limits generals
             var limit_minim_preus = 50;
-            var limit_maxim_preus = 1000;
+            var limit_maxim_preus = 800;
             //Limits actuals
-            var min_preu = min_preu;
-            var max_preu = max_preu;
+            var min_preu = limit_minim_preus;
+            var max_preu = limit_maxim_preus;
 
             //Slider inicialització i actualització
             $("#slider-range").slider({
@@ -72,22 +72,28 @@
                     $( "#amount" ).val( "€" + ui.values[ 0 ] + " - €" + ui.values[ 1 ] );
                     min_preu = ui.values[0];
                     max_preu = ui.values[1];
-                    carrega_dades(min_preu,max_preu)
+                    carrega_dades(min_preu,max_preu);
                 }
             });
             update_ui();
 
+            //Botó
             $("#buscar").click(function(){
                 carrega_dades(min_preu,max_preu);
             });
+
+
+            function mostrar_dades(min,max){
+                console.log(min+","+max);
+            }
 
 
             function carrega_dades(minim_preu,maxim_preu){
                 //Buidem la capa resposta
                 $("#capa_resultats").html("");
                 //Cridem l'API de l'opendata de la generalitat
-                $.get("https://analisi.transparenciacatalunya.cat/resource/qww9-bvhh.json",function(data,status){
-                    if(status=="success"){
+                $.get("https://analisi.transparenciacatalunya.cat/resource/qww9-bvhh.json?$order=renda&$where=renda%3E"+minim_preu+"%20AND%20renda%3C"+max_preu,function(data,status){
+                    if(data.length > 0){
                         //Capturem les dades i declarem les variables que seran protagonistes
                         var capa_resposta = $("#capa_resultats");
                         var municipis = data;
@@ -100,7 +106,7 @@
                             municipi = municipis[i];
                             renda = municipi.renda;
                             //Si la renda existeix i és dins dels limits establerts, llavors afegeix la informació a la capa dels resultats
-                            if((renda != undefined) && (renda >= minim_preu) && (renda <= maxim_preu)){
+                            if(renda != undefined){ //Una doble asegurança per tractar les dades correctament
                                 renda = parseInt(renda);
                                 nom_municipi = municipi.nom_territori;
                                 var etiqueta_municipi = generacio_etiqueta(nom_municipi, renda);
@@ -108,7 +114,7 @@
                             }
                         }
                     }
-                    else window.alert("Error: No s'han pogut carregar les dades correctament!");
+                    else window.alert("No s'han trobat resultats!");
                 });
             }
             function update_ui(){

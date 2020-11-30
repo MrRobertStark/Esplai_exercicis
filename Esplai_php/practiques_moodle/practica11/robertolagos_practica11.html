@@ -12,23 +12,121 @@
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     
     <!--Particular CSS-->
-    <style type = "text/css"></style>
+    <style type = "text/css">
+        *{
+            box-sizing: border-box;
+        }
+        html,body{
+            width:100%;
+            height:100%;
+        }
+        .ct-chart{
+            height:80%;
+            width:100%;
+        }
+        .requadre{
+            display:inline-block;
+            width:20px;
+            height:20px;
+            margin-bottom:-4px;
+        }
+        select{
+            margin-bottom:10px;
+        }
+        #r1{
+            background-color: #d70206;
+        }
+        #r2{
+            background-color: #f05b4f;
+        }
+        #r3{
+            background-color: #f4c63d;
+        }
+        #r4{
+            background-color: #d17905;
+        }
+        #r5{
+            background-color: #453d3f;  
+        }
+    </style>
     <title>Document</title>
 
 </head>
 <body class = "p-4">
     <!--Capa Introducció / header-->
     <div class = "container mb-4" id = "capa_header">
-        <h1 class = "mb-4">Evolució del preu del peix</h1>
+        <h1 class = "mb-4 text-center">Evolució del preu del peix (Passat a Present)</h1>
     </div>
     <!--Capa d'opcions-->
     <div class = "container" id = "capa_parametres">
-        <select>
-            <option value=""></option>
-        </select>
+        <div>
+            <span class = "requadre" id = "r1"></span>
+            <select id="s1">
+                <option value="0" selected>OSSIS BLAU</option>
+                <option value="1">OSSIS BLANC</option>
+                <option value="2">CEFALÒPODES</option>
+                <option value="3">CRUSTACIS</option>
+                <option value="4">BIVALVES</option>
+                <option value="5">GASTERÒPODES</option>
+                <option value="6">CARTILAGINOSOS</option>
+                <option value="7">ALTRES INVERTEBRATS"</option>
+            </select>
+        </div>
+        <div>
+            <span class = "requadre" id = "r2"></span>
+            <select id="s2">
+                <option value="0">OSSIS BLAU</option>
+                <option value="1" selected>OSSIS BLANC</option>
+                <option value="2">CEFALÒPODES</option>
+                <option value="3">CRUSTACIS</option>
+                <option value="4">BIVALVES</option>
+                <option value="5">GASTERÒPODES</option>
+                <option value="6">CARTILAGINOSOS</option>
+                <option value="7">ALTRES INVERTEBRATS"</option>
+            </select>
+        </div>
+        <div>
+            <span class = "requadre" id = "r3"></span>
+            <select id="s3">
+                <option value="0">OSSIS BLAU</option>
+                <option value="1">OSSIS BLANC</option>
+                <option value="2" selected>CEFALÒPODES</option>
+                <option value="3">CRUSTACIS</option>
+                <option value="4">BIVALVES</option>
+                <option value="5">GASTERÒPODES</option>
+                <option value="6">CARTILAGINOSOS</option>
+                <option value="7">ALTRES INVERTEBRATS"</option>
+            </select>
+        </div>
+        <div>
+            <span class = "requadre" id = "r4"></span>
+            <select id="s4">
+                <option value="0">OSSIS BLAU</option>
+                <option value="1">OSSIS BLANC</option>
+                <option value="2">CEFALÒPODES</option>
+                <option value="3">CRUSTACIS</option>
+                <option value="4" selected>BIVALVES</option>
+                <option value="5">GASTERÒPODES</option>
+                <option value="6">CARTILAGINOSOS</option>
+                <option value="7">ALTRES INVERTEBRATS"</option>
+            </select>
+        </div>
+        <div>
+            <span class = "requadre" id = "r5"></span>
+            <select id="s5">
+                <option value="0">OSSIS BLAU</option>
+                <option value="1">OSSIS BLANC</option>
+                <option value="2">CEFALÒPODES</option>
+                <option value="3">CRUSTACIS</option>
+                <option value="4">BIVALVES</option>
+                <option value="5" selected>GASTERÒPODES</option>
+                <option value="6">CARTILAGINOSOS</option>
+                <option value="7">ALTRES INVERTEBRATS"</option>
+            </select>
+        </div>
     </div>
     <!--Capa de la gràfica-->    
-    <div class="ct-chart ct-golden-section" id="chart"></div>
+    <div class='ct-chart ct-golden-section' id='chart'></div>
     
 
     <!--JQuery and Bootstrap Bundle (includes Popper)-->
@@ -47,20 +145,22 @@
         -> Per fer la gràfica s'ha emprat un Plugin de "Chartist"*/            
         $(document).ready(function(){
             //Variables globals
-            var num_selects = 5;
-            var anys = [];
-            var nom_peixos = [];
-            var registre_peixos = [[],[],[],[],[],[],[],[]];
+            var nom_peixos = ["OSSIS-BLAU","OSSIS-BLANC","CEFALÒPODES","CRUSTACIS","BIVALVES","GASTERÒPODES","CARTILAGINOSOS","ALTRES INVERTEBRATS"];
             
-            //Capturem i desem la informació de tots els peixos
-            //inicialitzacio_peixos();
+            //Capturem i desem la informació de tots els peixos quan carregui la plana
+            inicialitzacio_peixos();
 
-            //Actualitzem la gràfica principal
-            //actualitzacio_grafica();
+            //Si hi ha algun change en algun select repetim el procés de generar una gràfica
+            $("select").change(function(){
+                inicialitzacio_peixos();
+            });
+
 
             function inicialitzacio_peixos(){
                 //Cridem l'API per emplenar els Arrays que contindran la informació de tots els peixos
-                $.get("https://analisi.transparenciacatalunya.cat/resource/ge3m-4jgm.json",function(data,status){
+                $.get("https://analisi.transparenciacatalunya.cat/resource/ge3m-4jgm.json?$order=any%20ASC",function(data,status){
+                    var anys = [];
+                    var registre_peixos = [[],[],[],[],[],[],[],[]];
                     var peixos = data;
                     var peix = "";
                     var tipus_peix = 0;
@@ -69,11 +169,6 @@
                     //Bucle per analitzar cada cas dels peixos
                     for(i = 0; i < peixos.length; i++){
                         peix = peixos[i];
-
-                        //Tractament tipus de peix
-                        if((nom_peixos.length == 0) || (nom_peixos.indexOf(peix.grup) == -1)){
-                            nom_peixos.push(peix.grup);
-                        }
 
                         //Tractament de la informació del peix
                         tipus_peix = nom_peixos.indexOf(peix.grup);
@@ -85,38 +180,26 @@
                             any_actual = peix.any;
                         }
                     }
+                    //Un cop hem emplenat la informació als Arrays correponents, toca emplenar les opcions disponibles als selects
+                    actualitzacio_grafica(anys,registre_peixos);
                 });
-                //Un cop hem emplenat la informació als Arrays correponents, toca emplenar les opcions disponibles als selects
-                update_opcions_select();
-            }
+            }        
 
-            //La següent funció emplena el HTML principal amb les opcions disponibles que venen de l'API
-            function update_opcions_select(){
-                var capa_selects = $("#capa_parametres");
-                var i = 0;
-                $(capa_selects).html("");
-                //Generem els selects
-                for(i = 0; i < num_selects; i++) $(capa_selects).append("<select id = 's"+i+"' class = 'selects'></select>");
-
-                //Generem les opcions i les posem a cada <select></select>
-                var options = "";
-                for(i = 0; i < nom_peixos.length; i++  options += ("<option value='"+i+"'>"+(nom_peixos[i].replace("-"," "))+"</option>");
-
-                $(".selects").append(options);
-            }
-
-            function actualitzacio_grafica(){
+            function actualitzacio_grafica(array_anys, registre_peixos){
                 //Aquesta funció agafa els paràmetres seleccionats per l'usuari per actualitzar la informació mostrada a la gràfica
-                var parametres = [];
+                var selects = $("select");
+                var array_peixos = [];
                 var valor_actual = 0;
-                for(var i = 0; i < selects.length; i++){
+                var i = 0;
+                //Recollim els valors de cada select i carreguem a registre_peixos la info del peix seleccionat
+                for(i = 0; i < selects.length; i++){
                     valor_actual = $(selects[i]).val();
-                    parametres.push(registre_peixos[valor_actual]);
+                    array_peixos.push(registre_peixos[valor_actual]);
                 }
-                //Actualitzem la gràfica
-                new Chartist.Line(".ct-chart",{
-                    labels: anys,
-                    series: parametres
+                //Actualitzem/generem la gràfica
+                new Chartist.Line("#chart",{
+                    labels: array_anys,
+                    series: array_peixos
                 });
             }
         });
