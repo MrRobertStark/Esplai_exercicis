@@ -56,6 +56,11 @@
                         </div>
                     </div>
                     <div id = "capa_preus">
+                        <?php
+                            $data = date("j");
+                            $dia_setmana = date("N"); //1= Dilluns 7 = Diumenge
+                            $mes = date("");
+                        ?>
                         <h3 id = "preu_original">300€</h3>
                         <h2 id = "blackfriday">200€</h2>
                     </div>
