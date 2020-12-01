@@ -29,6 +29,9 @@
             position:absolute;
             left:50px;
         }
+        .tachon{
+            text-decoration:line-through;
+        }
         
     </style>
     <title>Document</title>
@@ -59,10 +62,27 @@
                         <?php
                             $data = date("j");
                             $dia_setmana = date("N"); //1= Dilluns 7 = Diumenge
-                            $mes = date("");
+                            $mes = date("m"); //1= Gener 12 = Desembre
+                            $dies_novembre = 30;
+
+                            $data = 27;
+                            $dia_setmana=5;
+                            $mes=11;
+
+                            if(($mes==11) && ($dia_setmana==5) && (($data+7)>$dies_novembre)){
                         ?>
-                        <h3 id = "preu_original">300€</h3>
-                        <h2 id = "blackfriday">200€</h2>
+                                <h3 id = "preu_original" class = "tachon">300€</h3>
+                                <h2 id = "blackfriday" class = "bg-danger p-4 text-white">200€</h2>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <h3 id = "preu_original"><mark>300€</mark></h3>
+                        <?php
+
+                            }
+                        ?>
+                        
                     </div>
                 </div>
             </div>
