@@ -29,4 +29,7 @@
         if(isset($_COOKIE["midaLletra"])) $midaLletra = $_COOKIE["midaLletra"];
         else $midaLletra = "mitja";
     }
+
+    include("traduccions.php");
+    include("mides.php");
 ?>
