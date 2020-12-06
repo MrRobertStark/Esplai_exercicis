@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style type = "text/css">
+        *{
+            box-sizing: border-box;
+            font-size:14pt;
+        }
+        input,select{
+            display:block;
+            margin-bottom:15px;
+            width:250px;
+        }
+        body{
+            min-width: 620px;
+        }
+        #capa_img{
+            width:60%;
+        }
+        input{
+            font-size:12pt;
+        }
+        @media screen and (max-width:767px){
+            #capa_img{
+                width:90%;
+                padding-left:50px;
+            }
+        }
+    </style>
+    <title>Document</title>
+
+</head>
+<body class = "p-4 bg-dark">
+
+    <form action="recepcio_dades.php" method = "POST" enctype = "multipart/form-data" class = "container pb-5 px-0 bg-white" >
+        <!--Introducció-->
+        <h1 class = "text-center p-4 bg-light w-100 mb-4 border border-bottom-dark">Alta al Club d'Esports Wii</h1>
+        <!--Fi Introducció-->
+        
+        <div class = "row mx-auto px-5">
+            <div class="col col-10 offset-1 col-md-6 offset-md-0 col-lg-5 offset-lg-1">
+                <!--Nom del Jugador-->
+                <label for="text_nom">Nom:</label>
+                <input type="text" id = "text_nom" name = "nomJugador" placeholder="Usuari">
+
+                <!--Cognoms del Jugador-->
+                <label for="text_cognoms">Cognoms:</label>
+                <input type="text" id = "text_cognoms" name = "cognomsJugador" placeholder="Cognoms Usuari">
+
+                <!--Domicili-->
+                <label for="text_domicili">Domicili:</label>
+                <input type="text" id = "text_domicili" name = "casaJugador" placeholder="C/ Narnia #6 3er">
+
+                <!--Disciplina-->
+                <label for="select_disciplina">Disciplina</label>
+                <select name="habilitatJugador" id="select_disciplina" class = "p-2">
+                    <option value="0">Escull una opció</option>
+                    <option value="1">Ciclisme</option>
+                    <option value="2">Footing</option>
+                    <option value="3">Bàsquetbol</option>
+                    <option value="4">Futbol</option>
+                    <option value="5">Bàdminton</option>
+                    <option value="6">Tennis</option>
+                    <option value="7">Natació</option>
+                    <option value="8">Hípica</option>
+                    <option value="9">Piragüisme</option>
+                </select>
+
+            </div>
+            <div class="col col-10 offset-1 col-md-5 offset-md-1 offset-lg-1">
+                <!--Correu-->
+                <label for="text_correu">Correu electrònic:</label>
+                <input type="text" id = "text_correu" name = "emailJugador" placeholder="usuari@gmail.com">
+
+                <!--Edat Jugador-->
+                <label for="number_edat">Edat:</label>
+                <input type="number" id = "number_edat" name = "ageJugador" placeholder="18" min = "0">
+
+                <!--Telèfon-->
+                <label for="number_telefon">Telèfon:</label>
+                <input type="number" id = "number_telefon" name = "telJugador" placeholder="555-55-55-55">
+            </div>
+            <div class = "col-10 offset-1 offset-lg-3">
+                <!--Foto Jugador-->
+                <label for="img_jugador" class = "d-block mt-4">Foto perfil</label>
+                <input type="file" name = "fotoJugador" id = "img_jugador" class = "">
+            </div>
+        </div>
+        <!-- <input type="submit" value = "Enviar Informació" class = "mx-auto my-3 d-block btn btn-primary"/> -->
+        <input type="button" value = "Enviar Informació" class = "mx-auto my-3 d-block btn btn-primary" id = "enviar"/>
+    </form>
+
+    <!--JQuery and Bootstrap Bundle (includes Popper)-->
+    <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script language= "javascript">
+        $(document).ready(function(){
+            $("#enviar").click(function(){
+                var form = $("form");
+                form.submit();
+            });
+        });
+    </script>
+</body>
+</html>
