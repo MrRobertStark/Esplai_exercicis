@@ -34,12 +34,27 @@
         $recepcio_correcte = (isset($_POST["nomJugador"])) && (isset($_POST["cognomsJugador"])) && (isset($_POST["casaJugador"])) && (isset($_POST["telJugador"])) && 
                             (isset($_POST["emailJugador"])) && (isset($_POST["ageJugador"])) && (isset($_POST["habilitatJugador"])); //Encara queda la foto
         if($recepcio_correcte){
+            //Array Esports
+            $esports = ["Ciclisme","Footing","Bàsquetbol","Futbol","Bàdminton","Tennis","Natació","Hípica","Piragüisime"];
+
+            //Informació bàsica del jugador
             $nomComplet = $_POST["nomJugador"]." ".$_POST["cognomsJugador"];
             $domicili = $_POST["casaJugador"];
             $telefon = $_POST["telJugador"];
             $email = $_POST["emailJugador"];
             $edat = $_POST["ageJugador"];
-            $esport = $_POST["habilitatJugador"];
+            $esport = $_POST["habilitatJugador"] - 1;
+            $esport = $esports[$esport];
+            
+            if($edat < 9) $rang = "Pre-Benjamin";
+            elseif($edat < 11) $rang = "Benjamin";
+            elseif($edat < 13) $rang = "Alevin";
+            elseif($edat < 15) $rang = "Infantil";
+            elseif($edat < 17) $rang = "Cadet";
+            elseif($edat < 19) $rang = "Junior";
+            elseif($edat < 24) $rang = "Palista";
+            else $rang = "Senior";
+
     ?>
             <div class = "container mx-auto mt-4" >
                 <div class = "card">
@@ -51,23 +66,30 @@
                     <div class = "card-body p-4">
                         <div class = "row mx-auto">
                             <div class="col col-12 col-md-4 my-auto">
-                                <img src="https://th.bing.com/th/id/OIP.81fadf1Wi0xhIK0VIkY-JAHaHa?pid=Api&rs=1" alt="fotoUsuari" class = "card-img-top rounded-circle mx-auto d-block">
+                                <?php
+                                    //Foto del jugador
+                                    if(move_uploaded_file($_FILES["fotoJugador"]["tmp_name"],"fotoUsuari.jpg")){
+                                        $fotoUsuari = "fotoUsuari.jpg";    
+                                    }
+                                    else $fotoUsuari = "https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png";
+                                ?>
+                                <img src="<?php echo $fotoUsuari?>" alt="fotoUsuari" class = "card-img-top rounded-circle mx-auto d-block">
                             </div>
                             <div class="col col-10 col-md-7 m-5 m-md-0 ml-md-4">
                                 <ul class = "list-unstyled">
-                                    <li class = "mx-4 my-2">Nom Complet: <span><?php echo $nomComplet?></span></li>
+                                    <li class = "mx-4 my-2">Nom Complet: <?php echo $nomComplet?></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Edat: <span><?php echo $edat?></span></li>
+                                    <li class = "mx-4 my-2">Edat: <?php echo $edat?></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Domicili: <span><?php echo $domicili?></span></li>
+                                    <li class = "mx-4 my-2">Domicili: <?php echo $domicili?></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Telèfon: <span><?php echo $telefon?></span></li>
+                                    <li class = "mx-4 my-2">Telèfon: <a href="tel:<?php echo $telefon?>"><?php echo $telefon?></a></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Correu Electrónic: <span><?php echo $email?></span></li>
+                                    <li class = "mx-4 my-2">Correu Electrónic: <a href="mailto:<?php echo $email?>"><?php echo $email?></a></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Esport Principal: <span><?php echo $esport?></span></li>
+                                    <li class = "mx-4 my-2">Esport Principal: <?php echo $esport?></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Rang: <span>Master Chief</span></li>
+                                    <li class = "mx-4 my-2">Rang: <?php echo $rang?></li>
                                 </ul>
                                     
                             </div>

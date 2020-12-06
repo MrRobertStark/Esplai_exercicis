@@ -48,11 +48,11 @@
             <div class="col col-10 offset-1 col-md-6 offset-md-0 col-lg-5 offset-lg-1">
                 <!--Nom del Jugador-->
                 <label for="text_nom">Nom:</label>
-                <input type="text" id = "text_nom" name = "nomJugador" placeholder="Usuari">
+                <input type="text" id = "text_nom" name = "nomJugador" placeholder="Mínim 3 caràcters">
 
                 <!--Cognoms del Jugador-->
                 <label for="text_cognoms">Cognoms:</label>
-                <input type="text" id = "text_cognoms" name = "cognomsJugador" placeholder="Cognoms Usuari">
+                <input type="text" id = "text_cognoms" name = "cognomsJugador" placeholder="Mínim 5 caràcters">
 
                 <!--Domicili-->
                 <label for="text_domicili">Domicili:</label>
@@ -81,11 +81,11 @@
 
                 <!--Edat Jugador-->
                 <label for="number_edat">Edat:</label>
-                <input type="number" id = "number_edat" name = "ageJugador" placeholder="18" min = "0">
+                <input type="number" id = "number_edat" name = "ageJugador" placeholder="Has de ser major d'edat!" min = "0">
 
                 <!--Telèfon-->
                 <label for="number_telefon">Telèfon:</label>
-                <input type="number" id = "number_telefon" name = "telJugador" placeholder="555-55-55-55">
+                <input type="number" id = "number_telefon" name = "telJugador" placeholder="123456789">
             </div>
             <div class = "col-10 offset-1 offset-lg-3">
                 <!--Foto Jugador-->
@@ -103,9 +103,88 @@
     <script language= "javascript">
         $(document).ready(function(){
             $("#enviar").click(function(){
-                var form = $("form");
-                form.submit();
+                capa_form = $("form");
+                var form_correcte = validacio_dades();
+                if(form_correcte) $(capa_form).submit();
+                else window.alert("Emplena correctament els camps senyalats");
             });
+
+            $("input").change(function(){
+                validacio_dades();
+            });
+
+            function validacio_dades(){
+                //Captació de dades
+                var nom = $("#text_nom");
+                var cognoms = $("#text_cognoms");
+                var domicili = $("#text_domicili");
+                var esport = $("#select_disciplina");
+                var capa_email = $("#text_correu");
+                var edat = $("#number_edat");
+                var telefon = $("#number_telefon");
+                //Variables de control
+                var formulari_correcte = true;
+
+                //Anàlisi dades
+                //Validació del nom
+                if($(nom).val().length < 3){
+                    formulari_correcte = false;
+                    marcar_incorrecte(nom);
+                }
+                else marcar_correcte(nom);
+
+                //Validacio Cognoms
+                if($(cognoms).val().length < 5){
+                    formulari_correcte = false;
+                    marcar_incorrecte(cognoms);
+                }
+                else marcar_correcte(cognoms);
+
+                //Validació Domicili
+                if($(domicili).val().length < 4){
+                    formulari_correcte = false;
+                    marcar_incorrecte(domicili);
+                }
+                else marcar_correcte(domicili);
+
+                //Validació Esport
+                if($(esport).val() < 1)  formulari_correcte = false;
+
+                //Validació Email
+                var email = $(capa_email).val();
+                var pos_arroba = email.indexOf("@");
+                var pos_ultim_punt = email.lastIndexOf(".");
+                var length_domini = pos_ultim_punt - pos_arroba;
+                if((pos_arroba < 2) || (pos_ultim_punt == -1) || (length_domini < 4) || ((email.length - pos_ultim_punt) < 3)){
+                    formulari_correcte = false;
+                    marcar_incorrecte(capa_email);
+                }
+                else marcar_correcte(capa_email);
+
+                //Validació edat
+                if($(edat).val() < 18){
+                    formulari_correcte = false;
+                    marcar_incorrecte(edat);
+                }
+                else marcar_correcte(edat);
+
+                //Validació telèfon
+                if($(telefon).val() < 9){
+                    formulari_correcte = false;
+                    marcar_incorrecte(telefon);
+                }
+                else marcar_correcte(telefon);
+
+                //Retornem el resultat general
+                return formulari_correcte;
+            }
+
+            function marcar_correcte(camp){
+                $(camp).css("border","2px solid #5cb85c");
+            }
+            function marcar_incorrecte(camp){
+                $(camp).css("border","2px solid #d9534f");
+            }
         });
     </script>
 </body>
