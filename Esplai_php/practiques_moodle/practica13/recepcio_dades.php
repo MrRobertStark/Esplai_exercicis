@@ -34,26 +34,57 @@
         $recepcio_correcte = (isset($_POST["nomJugador"])) && (isset($_POST["cognomsJugador"])) && (isset($_POST["casaJugador"])) && (isset($_POST["telJugador"])) && 
                             (isset($_POST["emailJugador"])) && (isset($_POST["ageJugador"])) && (isset($_POST["habilitatJugador"])); //Encara queda la foto
         if($recepcio_correcte){
+            //Creació Classe Jugador
+        
+            class Jugador{
+                public $nom;
+                public $cognoms;
+                public $domicili;
+                public $telefon;
+                public $email;
+                public $edat;
+                public $esport;
+                public $foto;
+
+                function __construct($nom,$cognoms,$domicili,$telefon,$email,$edat,$esport = 0){
+                    $this->nom = $nom;
+                    $this->cognoms = $cognoms;
+                    $this->domicili = $domicili;
+                    $this->telefon = $telefon;
+                    $this->email = $email;
+                    $this->edat = $edat;
+                    $this->esport = $esport;
+                }
+                
+                public function obtenirCategoria(){
+                    $rang = "";
+                    if($this->edat < 9) $rang = "Pre-Benjamin";
+                    elseif($this->edat < 11) $rang = "Benjamin";
+                    elseif($this->edat < 13) $rang = "Alevin";
+                    elseif($this->edat < 15) $rang = "Infantil";
+                    elseif($this->edat < 17) $rang = "Cadet";
+                    elseif($this->edat < 19) $rang = "Junior";
+                    elseif($this->edat < 24) $rang = "Palista";
+                    else $rang = "Senior";
+                    
+                    return $rang;
+                }
+            }
+
             //Array Esports
             $esports = ["Ciclisme","Footing","Bàsquetbol","Futbol","Bàdminton","Tennis","Natació","Hípica","Piragüisime"];
 
             //Informació bàsica del jugador
-            $nomComplet = $_POST["nomJugador"]." ".$_POST["cognomsJugador"];
+            $nomJugador =  $_POST["nomJugador"];
+            $cognomsJugador = $_POST["cognomsJugador"];
             $domicili = $_POST["casaJugador"];
             $telefon = $_POST["telJugador"];
             $email = $_POST["emailJugador"];
             $edat = $_POST["ageJugador"];
             $esport = $_POST["habilitatJugador"] - 1;
             $esport = $esports[$esport];
-            
-            if($edat < 9) $rang = "Pre-Benjamin";
-            elseif($edat < 11) $rang = "Benjamin";
-            elseif($edat < 13) $rang = "Alevin";
-            elseif($edat < 15) $rang = "Infantil";
-            elseif($edat < 17) $rang = "Cadet";
-            elseif($edat < 19) $rang = "Junior";
-            elseif($edat < 24) $rang = "Palista";
-            else $rang = "Senior";
+
+            $player = new Jugador($nomJugador,$cognomsJugador,$domicili,$telefon,$email,$edat,$esport);
 
     ?>
             <div class = "container mx-auto mt-4" >
@@ -69,27 +100,27 @@
                                 <?php
                                     //Foto del jugador
                                     if(move_uploaded_file($_FILES["fotoJugador"]["tmp_name"],"fotoUsuari.jpg")){
-                                        $fotoUsuari = "fotoUsuari.jpg";    
+                                        $player->foto = "fotoUsuari.jpg";    
                                     }
-                                    else $fotoUsuari = "https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png";
+                                    else $player->foto = "https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png";
                                 ?>
-                                <img src="<?php echo $fotoUsuari?>" alt="fotoUsuari" class = "card-img-top rounded-circle mx-auto d-block">
+                                <img src="<?php echo $player->foto?>" alt="fotoUsuari" class = "card-img-top rounded-circle mx-auto d-block">
                             </div>
                             <div class="col col-10 col-md-7 m-5 m-md-0 ml-md-4">
                                 <ul class = "list-unstyled">
-                                    <li class = "mx-4 my-2">Nom Complet: <?php echo $nomComplet?></li>
+                                    <li class = "mx-4 my-2">Nom Complet: <?php echo $player->nom?></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Edat: <?php echo $edat?></li>
+                                    <li class = "mx-4 my-2">Edat: <?php echo $player->edat?></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Domicili: <?php echo $domicili?></li>
+                                    <li class = "mx-4 my-2">Domicili: <?php echo $player->domicili?></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Telèfon: <a href="tel:<?php echo $telefon?>"><?php echo $telefon?></a></li>
+                                    <li class = "mx-4 my-2">Telèfon: <a href="tel:<?php echo $player->telefon?>"><?php echo $player->telefon?></a></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Correu Electrónic: <a href="mailto:<?php echo $email?>"><?php echo $email?></a></li>
+                                    <li class = "mx-4 my-2">Correu Electrónic: <a href="mailto:<?php echo $player->email?>"><?php echo $player->email?></a></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Esport Principal: <?php echo $esport?></li>
+                                    <li class = "mx-4 my-2">Esport Principal: <?php echo $player->esport?></li>
                                     <hr>
-                                    <li class = "mx-4 my-2">Rang: <?php echo $rang?></li>
+                                    <li class = "mx-4 my-2">Rang: <?php echo $player->obtenirCategoria()?></li>
                                 </ul>
                                     
                             </div>
