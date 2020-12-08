@@ -1,31 +1,29 @@
 <!--PHP-->
 <?php
 
-    function botiga_oberta(){
-        //Captació de dades
-        $dia_setmana = date("N"); //Dilluns = 1 & Diumenge = 7
-        $hora = date("H"); //Hora amb el format de 24h
+    $dia_setmana = date("N");
+    $hora = date("H");
+    $data = date("j");
+    $mes = date("n");
+
+    function botiga_oberta($dia_setmana,$hora,$data,$mes){
         
         //Comprovació del temps
         $es_horari_laboral = (($hora >= 9 && $hora<=13) || ($hora>=16 && $hora<=20));
         $es_dia_laboral = ($dia_setmana < 6);
-        $es_festiu = calcular_es_festiu();
+        $es_festiu = calcular_es_festiu($data,$mes);
 
         //Comprovació de l'horari laboral de la botiga
         return ($es_dia_laboral && $es_horari_laboral && !$es_festiu);
     }
 
-    function a_punt_de_obrir(){
+    function a_punt_de_obrir($dia_setmana,$hora,$data,$mes){
         $resultat = false;
-
-        //Captació de dades
-        $dia_setmana = date("N"); //Dilluns = 1 & Diumenge = 7
-        $hora = date("H"); //Hora amb el format de 24h
         
         //Comprovació del temps
         $es_horari_laboral = (($hora >= 9 && $hora<=13) || ($hora>=16 && $hora<=20));
         $es_dia_laboral = ($dia_setmana < 6);
-        $es_festiu = calcular_es_festiu();
+        $es_festiu = calcular_es_festiu($data,$mes);
 
         if ($es_dia_laboral && !$es_horari_laboral && !$es_festiu){
             //Detecció de la primera o segonda ronda
@@ -37,31 +35,40 @@
         return $resultat;
     }
 
-    function calcular_es_festiu(){
-        $data = date("j"); // data
-        $mes = date("n"); //1 - 12
+    function calcular_es_festiu($data,$mes){
         $resultat = false;
 
         /*Els mesos i dies festius s'han tret a partir de la següent pàgina web:
             https://www.girona-tourist-guide.com/es/acontecimientos/festividades-girona.html
         
-            Concepte: Es desa en un array els mesos on hi són els dies importants/festius
-            Si tant el mes com el dia són en aquests arrays significa que aquest dia és festiu
+            Concepte: Es desa en un array ordenat pels mesos, els dies festius de cadascun.
+            Es desen arrays buits (que són mesos sense dies festius) per tal de fer futures manipulacions com ara posar festius nous o 
+            personalizatció de l'horari d'una botiga concreta.
         */
-        //$mesos_festius = array(1,4,5,6,8,9,10,11,12);
-        //$dies_senyalats = array(1,5,6,8,10,11,13,15,24,25,26,29);
+        $dates_festius = array(
+            array(1,5,6), // Dies festius de gener
+            array(), //Dies festius febrer
+            array(), //Dies festius març
+            array(10,13), //Dies festius abril
+            array(1), //Dies festius maig
+            array(24), //Dies festius juny
+            array(), //Dies festius juliol
+            array(15), //Dies festius agost
+            array(11), //Dies festius septembre
+            array(29), //Dies festius octubre
+            array(1), //Dies festius novembre
+            array(6,8,25,26) //Dies festius desembre
+          );
+        
+          $resultat = in_array($data,$dates_festius[$mes-1]);
 
         return $resultat;
     }
 
-    function a_punt_de_tancar(){
+    function a_punt_de_tancar($dia_setmana, $hora,$data,$mes){
         $resultat = false;
-        
-        //Captació de dades
-        $dia_setmana = date("N"); //Dilluns = 1 & Diumenge = 7
-        $hora = date("H"); //Hora amb el format de 24h
 
-        if (botiga_oberta()){
+        if (botiga_oberta($dia_setmana,$hora,$data,$mes)){
             //Detecció de la primera o segonda ronda
             if($hora < 13) $temps_per_tancar = 13 - $hora;
             elseif($hora < 20) $temps_per_tancar = 20 - $hora;
@@ -278,7 +285,7 @@
                         <li class = "my-4">
                             <i class = "mx-4 fa fa-cogs"></i>
                                 Status:
-                            <?php if(botiga_oberta()){
+                            <?php if(botiga_oberta($dia_setmana,$hora,$data,$mes)){
                             ?>
                                     <span class = "text-success">OBERT</span>
                             <?php
@@ -291,21 +298,21 @@
                             ?>
                         </li>
                         <?php
-                            if(a_punt_de_obrir()){
+                            if(a_punt_de_obrir($dia_setmana,$hora,$data,$mes)){
                                 $temps_que_queden = calcular_temps_event();
                         ?>
                                 <li class = "my-4">
                                     <i class = "mx-4 fa fa-clock-o"></i>
-                                    Queden <span class = "text-info"><?php echo $temps_que_queden?> minuts per apertura</span>
+                                    Queden <span class = "text-success"><?php echo $temps_que_queden?> minuts per apertura</span>
                                 </li>
                         <?php
                             }
-                            elseif(a_punt_de_tancar()){
+                            elseif(a_punt_de_tancar($dia_setmana,$hora,$data,$mes)){
                                 $temps_que_falten = calcular_temps_event();
                         ?>
                                 <li class = "my-4">
                                     <i class = "mx-4 fa fa-clock-o"></i>
-                                    Queden <span class = "text-info"><?php echo $temps_que_falten?> minuts per tancament</span>
+                                    Queden <span class = "text-warning"><?php echo $temps_que_falten?> minuts per tancament</span>
                                 </li>
                         <?php
                             }
