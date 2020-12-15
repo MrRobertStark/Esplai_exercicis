@@ -40,20 +40,26 @@
                 if($categories->num_rows==1){
                     $categoria = $categories->fetch_assoc();
                     ?>
+                        <!--Formulari-->
                         <form action="actualitzar_categoria.php" method="POST" class = "p-4 w-75 mx-auto shadow-lg mt-5 pt-5 text-center">
+                            <!--Input nom categoria-->
                             <div class = "form-group">
                                 <label for="text_nom_categoria">Nom de la categoria:</label>
                                 <input type="text" name = "CategoryNom" id = "text_nom_categoria" class = "form-control w-50 mx-auto" value = "<?php echo $categoria["CategoryName"]?>"/>
                             </div>
+                            <!--Input descripció-->
                             <div class = "form-group my-4">
                                 <label for="text_descripcio">Descripció de la categoria:</label>
                                 <textarea name="CategoryDescription" class = "d-block mx-auto p-2" id="text_descripcio" cols="80" rows="5"><?php echo $categoria["Description"]?></textarea>
                             </div>
+                            <!--CategoriaID-->
                             <div class = "form-group">
                                 <input type="hidden" name="idCategoria" value = "<?php echo $categoryid?>">
                             </div>
+                            <!--Submit-->
                             <input type="submit" class = "btn btn-primary mx-auto d-block w-50 mt-3 py-3" value = "Actualitzar Categoria">
                         </form>
+                        <!--FI formulari-->
                     <?php
                 }
                 elseif($categories->num_rows>1) echo "<p>Categories repetides! Error de base de dades</p>";

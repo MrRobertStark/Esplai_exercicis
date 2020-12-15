@@ -47,11 +47,12 @@
         <div class ="row pt-5">
         <?php
             if(!$conn->connect_error){
-                $sql = "SELECT CategoryID, CategoryName, categories.Description FROM categories";
+                $sql = "SELECT CategoryID, CategoryName, categories.Description FROM categories ORDER BY CategoryName";
                 $categories = $conn->query($sql);
                 if($categories->num_rows>0){
                     while($categoria = $categories->fetch_assoc()){
                     ?>
+                        <!--Generació d'etiqueta-->
                         <div class="col col-12 col-md-6 col-lg-4 d-flex align-item-stretch mx-auto">
                             <div class = "card shadow-lg m-3 pb-5">
                                 <a href = "dades_categoria.php?category=<?php echo $categoria["CategoryID"]?>"><img src="<?php echo $img_categories[$categoria["CategoryID"] - 1]?>" alt="<?php echo $categoria["CategoryName"]?>" class = "card-img-top"></a>
