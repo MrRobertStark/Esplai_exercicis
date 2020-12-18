@@ -28,16 +28,10 @@
             box-sizing:border-box;
         }
         th{
-            width:7%;
+            width:9%;
         }
         tr:nth-child(even){
             background-color: #f7f7f7;
-        }
-        thead{
-            z-index:2;
-        }
-        tbody{
-            z-index:1;
         }
     </style>
     <title>Document</title>
@@ -52,7 +46,7 @@
     <!--Contingut-->
     <div class = "container-fluid mt-5 px-0">
     <?php
-        if(!$conn->connect_error){
+        if($servidor_connectat){
             if(isset($_GET["customer"])) $nomClient = $_GET["customer"];
             else $nomClient = "";
 
@@ -106,14 +100,11 @@
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">ID</th>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Companyia</th>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Nom client</th>
-                            <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Títol</th>
+                            <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Càrrec</th>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Adreça</th>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Ciutat</th>
-                            <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Regió</th>
-                            <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Codi Postal</th>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">País</th>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Telèfon</th>
-                            <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Fax</th>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Editar</th>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Comandes</th>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">El·liminar</th>
@@ -132,13 +123,10 @@
                                     <td class = "p-1"><?php echo correcio_dada($customer["ContactTitle"]) ?></td>
                                     <td class = "p-1"><?php echo correcio_dada($customer["Address"]) ?></td>
                                     <td class = "p-1"><?php echo correcio_dada($customer["City"]) ?></td>
-                                    <td class = "p-1"><?php echo correcio_dada($customer["Region"]) ?></td>
-                                    <td class = "p-1"><?php echo correcio_dada($customer["PostalCode"]) ?></td>
                                     <td class = "p-1"><?php echo correcio_dada($customer["Country"]) ?></td>
                                     <td class = "p-1"><?php echo correcio_dada($customer["Phone"]) ?></td>
-                                    <td class = "p-1"><?php echo correcio_dada($customer["Fax"]) ?></td>
                                     <td class = "p-1"><a href="formulari.php?customer=<?php echo $customer["CustomerID"]?>" class = "text-dark"><i class = "fa fa-pencil"></i></a></td>
-                                    <td class = "p-1"><a href="#!" class = "text-dark"><i class = "fa fa-book"></i></a></td>
+                                    <td class = "p-1"><a href="comandes_client.php?customer=<?php echo $customer["CustomerID"]?>" class = "text-dark"><i class = "fa fa-book"></i></a></td>
                                     <td class = "p-1"><a href="#!" class = "text-dark"><i class = "fa fa-times"></i></a></td>
                                 </tr>
                             <?php

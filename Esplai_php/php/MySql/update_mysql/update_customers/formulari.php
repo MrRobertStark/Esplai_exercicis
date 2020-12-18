@@ -25,7 +25,7 @@
     <!--Formulari-->
     <div class = "container-fluid mt-5 pt-3">
     <?php
-        if(!$conn->connect_error){
+        if($servidor_connectat){
             if(isset($_GET["customer"])){
                 $sql = "SELECT * FROM customers WHERE CustomerID = '".$_GET['customer']."'";
                 $customers = $conn->query($sql);
