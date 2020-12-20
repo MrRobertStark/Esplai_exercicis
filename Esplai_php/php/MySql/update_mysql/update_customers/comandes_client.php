@@ -33,6 +33,10 @@
         @media screen and (max-width:768px){
             .contenidor_taula{
                 overflow-x:scroll;
+                padding:0em!important;
+            }
+            .card{
+                width:100%!important;
             }
         }
     </style>
@@ -44,6 +48,13 @@
     <div class = "container-fluid px-0 py-4 bg-dark text-white text-center">
         <h1 class = "my-auto">Comandes del client</h1>
     </div>
+
+    <!--Link de navegació-->
+    <div class = "container-fluid px-3 my-3">
+        <a href="mostrar_clients.php">Mostrar customers > </a>
+        <a href="comandes_client.php">Comandes clients</a>
+    </div>
+
     <!--Contingut de la pàgina web-->
     <div class = "container-fluid px-0 mb-5">
     <?php
@@ -59,8 +70,9 @@
                 if($comandes->num_rows>0){
                 ?>
 
-                    <div class = "row w-100 mx-auto px-1">
+                    <div class = "row w-100 mx-auto px-0">
                         <div class="col col-12">
+                        <h2 class = "text-center mb-n3 mt-3">Client</h2>
                             <div class = "card m-5 shadow-lg w-75 mx-auto">
                                 <div class = "row">
                                     <div class="col col-12 col-md-6 d-flex align-items-stretch container-foto">

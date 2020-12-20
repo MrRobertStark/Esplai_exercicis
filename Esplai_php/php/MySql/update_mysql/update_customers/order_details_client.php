@@ -1,5 +1,11 @@
 <!--Connexió a la base de dades-->
-<?php include("connexio_basedades.php")?>
+<?php 
+    include("connexio_basedades.php");
+
+    function arreglar_format_preu($preu){
+        return  number_format((float)$preu, 2, ',', '.');
+    }
+?>
 
 <!--Detalls de la comanda-->
 <!DOCTYPE html>
@@ -16,6 +22,20 @@
         *{
             box-sizing:border-box;
         }
+        body{
+            min-width:280px;
+        }
+        .contenidor_taula{
+            overflow-x:scroll;
+        }
+        tbody tr:hover,tfoot tr:first-child:hover, tfoot tr:nth-child(2):hover{
+            background-color:#e0e0e0;
+        }
+        @media screen and (max-width:576px){
+            .contenidor_taula{
+                padding:1em 0em;
+            }
+        }
     </style>
     <title>Document</title>
 
@@ -23,84 +43,147 @@
 <body>
     <!--Header-->
     <div class = "container-fluid px-0 bg-dark text-white text-center py-4">
-        <h1>Detalls del producte</h1>
+        <h1>Detalls de la comanda</h1>
     </div>
+
+    <!--Link de navegació-->
+    <div class = "container-fluid px-3 my-4">
+        <a href="mostrar_clients.php" class = "position-relative float-left">Mostrar customers > </a>
+        <a href="comandes_client.php" class = "position-relative float-left">Comandes clients > </a>
+        <a href="order_details_client.php" class = "position-relative float-left">Detalls de la comanda</a>
+    </div>
+
     <!--Contingut-->
-    <div class = "container-fluid px-0">
+    <div class = "container-fluid px-0 position-relative float-left">
     <?php
         if($servidor_connectat){
             if(isset($_GET["order"])){
-                $sql =  "SELECT orders.OrderID, orders.CustomerID, orders.EmployeeID, orders.OrderDate, orders.ShipCountry,"
-                        ."order_details.ProductID, order_details.UnitPrice, order_details.Quantity, order_details.Discount, "
-                        ."customers.CompanyName, customers.ContactName, customers.ContactTitle, customers.Country, "
-                        ."employees.FirstName, employees.LastName, employees.Title, employees.Country, employees.HomePhone "
-                        ."FROM orders "
-                        ."INNER JOIN order_details ON order_details.OrderID = orders.OrderID "
-                        ."INNER JOIN customers ON customers.CustomerID = orders.CustomerID "
-                        ."INNER JOIN employees ON employees.EmployeeID = orders.EmployeeID "
-                        ."WHERE orders.OrderID = '10507'";
-                        
-                $paquets = $conn->query($sql);
-                if($paquets->num_rows>0){
+                //Comandes query
+                $sql_comandes =  "SELECT OrderID, ProductName, order_details.UnitPrice, Quantity, Discount, order_details.UnitPrice*Quantity*(1-Discount) AS FinalPrice FROM order_details INNER JOIN products ON products.ProductID = order_details.ProductID WHERE OrderID = '".$_GET['order']."'";
+                $sql_contracte = "SELECT customers.CompanyName,customers.ContactName,customers.ContactTitle,customers.Phone, CONCAT(employees.FirstName,' ',employees.LastName) AS EmployeeName ,employees.Title,employees.Country AS EmployeeCountry,employees.HomePhone FROM orders INNER JOIN customers ON customers.CustomerID = orders.CustomerID INNER JOIN employees ON employees.EmployeeID = orders.EmployeeID WHERE OrderID = '".$_GET['order']."'";
+
+                //Crides query
+                $comandes = $conn->query($sql_comandes);
+                $contracte = $conn->query($sql_contracte);
+                //if($comandes->num_rows>0 && $contracte->num_rows>0){
+                if(true){
+                    $info_contracte = $contracte->fetch_assoc();
                 ?>
+                    <!--Informació bàsica del customer i del employee-->
                     <div class = "container-fluid">
                         <div class = "row">
                             <div class="col col-12 col-sm-6">
-                                <!--Card-->
+                                <!--Card del customer-->
+                                <h3 class = "text-center my-4">Customer</h3>
                                 <div class = "card m-2 shadow-lg mx-auto">
                                     <div class = "row">
                                         <div class="col col-12 col-lg-6 d-flex align-items-stretch">
                                             <!--Header card-->
                                             <div class = "card-header w-100 bg-primary">
-                                                <img src="https://th.bing.com/th/id/OIP.81fadf1Wi0xhIK0VIkY-JAHaHa?pid=Api&rs=1" alt="" class = "card-img-top rounded-circle w-100 d-block mx-auto">
+                                                <img src="https://cdn0.iconfinder.com/data/icons/customers-and-service/512/5.png" alt="" class = "card-img-top rounded-circle w-100 d-block mx-auto">
                                             </div>
                                         </div>
                                         <div class="col col-12 col-lg-6 d-flex align-items-stretch">
                                             <!--Card-body-->
-                                            <div class = "card-body p-4">
-                                                <h3 class = "card-title text-center">Card-title</h3>
-                                                <h4 class = "card-subtitle text-center text-muted mb-4">Subtitle</h4>
-                                                <div class = "row">
-                                                    <div class="col col-12 col-lg-6">
-                                                        <p class = "card-text"><b>CompanyName</b><br> <span>CompanyName</span></p>
-                                                        <p class = "card-text"><b>Country:</b><br>Country</p>
-                                                    </div>
-                                                    <div class="col col-12 col-lg-6">
-                                                        <p class = "card-text"><b>Phone: </b><br><span>Phone</span></p>
-                                                    </div>
-                                                </div>
+                                            <div class = "card-body p-4 my-auto">
+                                                <h3 class = "card-title text-center"><?php echo $info_contracte["ContactName"]?></h3>
+                                                <h4 class = "card-subtitle text-center text-muted mb-3"><?php echo $info_contracte["ContactTitle"]?></h4>
+                                                <p class = "card-text text-center"><b>CompanyName</b><br> <span><?php echo $info_contracte["CompanyName"]?></span></p>
+                                                <p class = "card-text text-center"><b>Phone </b><br><span><?php echo $info_contracte["Phone"]?></span></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col col-12 col-sm-6">
-                                <!--Card-->
+                                <!--Card del employee-->
+                                <h3 class = "text-center my-4">Employee</h3>
                                 <div class = "card m-2 shadow-lg mx-auto">
                                     <div class = "row">
                                         <div class="col col-12 col-lg-6 d-flex align-items-stretch">
                                             <!--Header card-->
                                             <div class = "card-header w-100 bg-success">
-                                                <img src="https://th.bing.com/th/id/OIP.81fadf1Wi0xhIK0VIkY-JAHaHa?pid=Api&rs=1" alt="" class = "card-img-top rounded-circle w-100 d-block mx-auto">
+                                                <img src="https://cdn0.iconfinder.com/data/icons/customers-and-service/512/23.png" alt="" class = "card-img-top rounded-circle w-100 d-block mx-auto">
                                             </div>
                                         </div>
                                         <div class="col col-12 col-lg-6 d-flex align-items-stretch">
                                             <!--Card-body-->
-                                            <div class = "card-body p-4">
-                                                <h3 class = "card-title text-center">Card-title</h3>
-                                                <h4 class = "card-subtitle text-center text-muted mb-4">Subtitle</h4>
-                                                <div class = "row">
-                                                    <div class="col col-12 col-lg-12">
-                                                        <h4 class = "">Description</h4>
-                                                        <p class = "card-text">Education includes a BA in psychology from Colorado State University in 1970.  She also completed "The Art of the Cold Call."  Nancy is a member of Toastmasters International.</p>
-                                                    </div>
-                                                </div>
+                                            <div class = "card-body p-4 my-auto">
+                                                <h3 class = "card-title text-center"><?php echo $info_contracte["EmployeeName"]?></h3>
+                                                <h4 class = "card-subtitle text-center text-muted mb-3"><?php echo $info_contracte["Title"]?></h4>
+                                                <p class = "card-text text-center">
+                                                    <b>Country:</b><br><span><?php echo $info_contracte["EmployeeCountry"]?></span>
+                                                </p>
+                                                <p class = "card-text text-center">
+                                                    <b>Phone:</b><br><span><?php echo $info_contracte["HomePhone"]?></span>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!--Llistat de les comandes del customer-->
+                    <div class = "container-fluid contenidor_taula mt-3">
+                        <hr class = "my-5">
+                        <table class = "w-100 my-3">
+                            <!--Header del table-->
+                            <thead class = "bg-dark text-white text-center">
+                                <th class = "p-3 h5">ProductName</th>
+                                <th class = "p-3 h5">UnitPrice</th>
+                                <th class = "p-3 h5">Quantity</th>
+                                <th class = "p-3 h5">Discount</t1h>
+                                <th class = "p-3 h5">FinalPrice</th>
+                            </thead>
+                            <!--Body del table-->
+                            <tbody>
+                            <?php
+                                $total_preu = 0;
+                                while($comanda = $comandes->fetch_assoc()){
+                                    $preu_unitari = $comanda["UnitPrice"];
+                                    $preu_final = $comanda["FinalPrice"];
+                                    $total_preu += $preu_final;
+
+                                    $preu_unitari=arreglar_format_preu($preu_unitari);
+                                    $preu_final=arreglar_format_preu($preu_final);
+                                ?>
+                                    <tr class = "text-center">
+                                        <td class = "py-3 px-2"><?php echo $comanda["ProductName"]?></td>
+                                        <td class = "py-3 px-2"><?php echo $preu_unitari?>€</td>
+                                        <td class = "py-3 px-2"><?php echo $comanda["Quantity"]?></td>
+                                        <td class = "py-3 px-2"><?php echo arreglar_format_preu($comanda["Discount"])?>%</td>
+                                        <td class = "py-3 px-2"><?php echo $preu_final?>€</td>
+                                    </tr>
+                                <?php
+                                }
+                            ?>
+                            </tbody>
+                            <!--Suma total dels preus-->
+                            <tfoot class = "text-center">
+                                <tr>
+                                    <td class = "p-2">Import brut</td>
+                                    <td class = "p-2">-</td>
+                                    <td class = "p-2">-</td>
+                                    <td class = "p-2">-</td>
+                                    <td class = "p-2"><?php echo arreglar_format_preu($total_preu)?>€</td>
+                                </tr>
+                                <tr>
+                                    <td class = "py-2">IVA</td>
+                                    <td class = "py-2">-</td>
+                                    <td class = "py-2">-</td>
+                                    <td class = "py-2">-</td>
+                                    <td class = "py-2">21%</td>
+                                </tr>
+                                <tr class = "bg-dark text-white">
+                                    <td class="py-3 h4">Total Factura</td>
+                                    <td class="py-3 h4"></td>
+                                    <td class="py-3 h4"></td>
+                                    <td class="py-3 h4"></td>
+                                    <td class="py-3 h4"><?php echo arreglar_format_preu($total_preu*1.21)?>€</td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 <?php
                 }

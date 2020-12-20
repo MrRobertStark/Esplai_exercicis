@@ -12,18 +12,26 @@
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <style type = "text/css"></style>
+    <style type = "text/css">
+        body{
+            min-width:400px;
+        }
+        .alert{
+            min-width:300px;
+            max-width:700px;
+        }
+    </style>
     <title>Document</title>
 
 </head>
-<body class = "p-4">
+<body>
     <!--Header-->
-    <div class = "container-fluid fixed-top bg-dark text-white text-center py-4">
+    <div class = "container-fluid bg-dark text-white text-center py-4">
         <h1>Actualització customer</h1>
     </div>
     
     <!--Execució de l'actualizació-->
-    <div class = "container-fluid mt-5 pt-5">
+    <div class = "container-fluid">
     <?php
         if(isset($_POST["customerId"])){
             //Recepció de les dades
@@ -43,7 +51,7 @@
             $sql = "UPDATE customers SET CompanyName = '".$company."', ContactName = '".$nom."', ContactTitle = '".$titol."', customers.Address = '".$address."', PostalCode = '".$postal."' , City = '".$pais."', Region = '".$regio."', Country = '".$pais."', Phone = '".$tel."', Fax = '".$fax."' WHERE CustomerID = '".$id."'";
             if($conn->query($sql)){
             ?>
-                <div class = "alert alert-success p-4 w-50 mx-auto mt-5 pt-5">
+                <div class = "alert alert-success p-4 mx-auto mt-5 pt-5">
                     <h2 class = "alert-heading text-center mb-4">Actualizació Correcte</h2>
                     <p>Les dades del client <b><?php echo $nom?></b> s'han actualitzat correctament segons el formulari emplenat!</p>
                     <hr>
@@ -54,7 +62,7 @@
             }
             else{
             ?>
-                <div class = "alert alert-warning p-4 w-50 mx-auto mt-5 pt-5">
+                <div class = "alert alert-warning p-4 mx-auto mt-5 pt-5">
                     <h2 class = "alert-heading text-center mb-4">Error d'actualització</h2>
                     <p>No s'han pogut actualizat correctament les dades del client <b><?php echo $nom?></b> a causa d'un error inesperat. Torna a intentar-ho.</p>
                     <hr>
@@ -66,7 +74,7 @@
         }
         else{
         ?>
-            <div class = "alert alert-warning p-4 w-50 mx-auto mt-5 pt-5">
+            <div class = "alert alert-warning p-4 mx-auto mt-5 pt-5">
                 <h2 class = "alert-heading text-center mb-4">Error d'identificació</h2>
                 <p>No s'ha trobat el identificador del client per actualitzar les seves dades. Vés a veure els clients disponibles i gestiona la seva informació.</p>
                 <hr>

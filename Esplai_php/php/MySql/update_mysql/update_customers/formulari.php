@@ -12,18 +12,38 @@
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <style type = "text/css"></style>
+    <style type = "text/css">
+        @media screen and (max-width:768px){
+            h1{
+                font-size:25pt;
+            }
+            .form{
+                width:100%!important;
+                padding:1em!important;
+                margin-top:2em!important;
+            }
+            .form .form-group{
+                width:100%!important;
+            }
+        }
+    </style>
     <title>Document</title>
 
 </head>
-<body class = "p-4">
+<body>
     <!--Header-->
-    <div class = "container-fluid py-3 bg-dark text-center text-white fixed-top">
+    <div class = "container-fluid py-3 px-0 bg-dark text-center text-white shadow">
         <h1>Formulari: actualizació dades del client</h1>
     </div>
 
+    <!--Link de navegació-->
+    <div class = "container-fluid px-3 my-3">
+        <a href="mostrar_clients.php">Mostrar customers > </a>
+        <a href="formulari.php">Formulari</a>
+    </div>
+
     <!--Formulari-->
-    <div class = "container-fluid mt-5 pt-3">
+    <div class = "container-fluid">
     <?php
         if($servidor_connectat){
             if(isset($_GET["customer"])){
@@ -32,7 +52,7 @@
                 if($customers->num_rows>0){
                     $customer = $customers->fetch_assoc();
                 ?>
-                    <form action="execucio_update.php" method = "POST" class = "p-5 w-75 mx-auto">
+                    <form action="mostrar_clients.php" method = "POST" class = "p-5 w-75 mx-auto form">
                         <div class = "form-row">
                             <!--ID del client-->
                             <input type="hidden" value="<?php echo $_GET["customer"]?>" name = "customerId">
