@@ -57,7 +57,7 @@
         <h1>Llistat de clients</h1>
     </div>
 
-    <!--Link de navegació-->
+    <!--Links de navegació-->
     <div class = "container-fluid px-3 my-3">
         <a href="mostrar_clients.php">Mostrar customers > </a>
     </div>
@@ -68,125 +68,33 @@
         if($servidor_connectat){
 
             //Actualitzar informació customer
-            if(isset($_POST["customerId"])){
-                //Recepció de les dades
-                $id = $_POST["customerId"];
-                $nom = $_POST["nomClient"];
-                $company = $_POST["companyClient"];
-                $titol = $_POST["titolClient"];
-                $pais = $_POST["paisClient"];
-                $regio = $_POST["regioClient"];
-                $ciutat = $_POST["ciutatClient"];
-                $tel = $_POST["telClient"];
-                $fax = $_POST["faxClient"];
-                $address = $_POST["addressClient"];
-                $postal = $_POST["postalClient"];
-
-                //Execució de la query
-                $sql = "UPDATE customers SET CompanyName = '".$company."', ContactName = '".$nom."', ContactTitle = '".$titol."', customers.Address = '".$address."', PostalCode = '".$postal."' , City = '".$pais."', Region = '".$regio."', Country = '".$pais."', Phone = '".$tel."', Fax = '".$fax."' WHERE CustomerID = '".$id."'";
-                if($conn->query($sql)){
-                ?>
-                    <!-- Modal el·liminar client executat correctament-->
-                    <div class="modal fade modal_update" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title text-center"><i class = "fa fa-check text-success"></i> Client actualitzat correctament</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>El client "<?php echo $_POST["nomClient"]?>" s'ha actualitzat correctament de la llista dels customers.</p>
-                                </div>
-                                <div class="modal-footer w-100">
-                                    <a href="#!" class = "btn btn-primary mx-auto w-50" data-dismiss="modal">D'acord</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                }
-                else{
-                ?>
-                    <!-- Modal el·liminar client executat correctament-->
-                    <div class="modal fade model_update" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title text-center"><i class = "fa fa-times text-danger"></i> El client no s'ha actualitzat</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>El client "<?php echo $_POST["nomClient"]?>" no s'ha el·liminat correctament de la llista dels customers. Torna-ho a intentar.</p>
-                                </div>
-                                <div class="modal-footer w-100">
-                                    <a href="#!" class = "btn btn-primary mx-auto w-50" data-dismiss="modal">D'acord</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                }
-            }
+            if(isset($_POST["customerId"])) include("update_customer.php");
+            
 
             //Esborrar customer
-            if(isset($_GET["erase"])){
-                $sql = "SELECT CustomerID FROM customers WHERE CustomerID = '".$_GET['erase']."'";
-                $customers = $conn->query($sql);
-                if(false){
-                    $sql = "DELETE FROM customers WHERE CustomerID = '".$_GET['erase']."'";
-                    if(true){
-                    ?>
-                        <!-- Modal el·liminar client executat correctament-->
-                        <div class="modal fade modal_erase" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title text-center"><i class = "fa fa-check text-success"></i> Client el·liminat correctament</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>El client "<?php echo $_GET["erase"]?>" s'ha el·liminat correctament de la llista dels customers.</p>
-                                    </div>
-                                    <div class="modal-footer w-100">
-                                        <a href="#!" class = "btn btn-primary mx-auto w-50" data-dismiss="modal">D'acord</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php
-                    }
-                    else{
-                    ?>
-                        <!-- Modal el·liminar client executat correctament-->
-                        <div class="modal fade modal_erase" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title text-center"><i class = "fa fa-times text-danger"></i> Error el·liminant client</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>El client "<?php echo $_GET["erase"]?>" no s'ha pogut treure del llistat de customers a causa d'un error. Torna-ho a intentar</p>
-                                    </div>
-                                    <div class="modal-footer w-100">
-                                        <a href="#!" class = "btn btn-primary mx-auto w-50" data-dismiss="modal">D'acord</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php
-                    }
-                }
-            }
+            if(isset($_GET["erase"])) include("delete_customer.php");
+            
+
             //Criteris de cerca Customer
-            if(isset($_GET["customer"])) $nomClient = $_GET["customer"];
+
+            //Nom del customer
+            if(isset($_GET["customer"])){
+                $nomClient = $_GET["customer"];
+                setcookie("customer",$nomClient,time()+(60*60));
+            }
+            elseif(isset($_COOKIE["customer"])){
+                $nomClient = $_COOKIE["customer"];
+            }
             else $nomClient = "";
 
-            if(isset($_GET["pais"])) $pais = $_GET["pais"];
+            //País del customer
+            if(isset($_GET["pais"])){
+                $pais = $_GET["pais"];
+                setcookie("pais",$pais,time()+(60*60));
+            }
+            elseif(isset($_COOKIE["pais"])){
+                $pais = $_COOKIE["pais"];
+            }
             else $pais = "";
         ?>
             <!--Formulari per filtrar els customers-->
@@ -195,7 +103,19 @@
                 <!--Nom del client-->
                 <div class="form-group">
                     <label for="nomClient">Nom del client</label>
-                    <input type="text" id = "nomClient" name = "customer" class = "form-control" value = "<?php echo $nomClient?>">
+                <?php
+                    if($nomClient!=""){
+                    ?>
+                        <input type="text" id = "nomClient" name = "customer" class = "form-control" value = "<?php echo $nomClient?>">
+                    <?php
+                    }
+                    else{
+                    ?>
+                        <input type="text" id = "nomClient" name = "customer" class = "form-control" placeholder = "Nom del client">
+                    <?php
+                    }
+                ?>
+                    
                 </div>
                 <!--País del client-->
                 <div class="form-group">
@@ -262,8 +182,8 @@
                                     <td class = "p-1"><?php echo correcio_dada($customer["City"]) ?></td>
                                     <td class = "p-1"><?php echo correcio_dada($customer["Country"]) ?></td>
                                     <td class = "p-1"><?php echo correcio_dada($customer["Phone"]) ?></td>
-                                    <td class = "p-1"><a href="formulari.php?customer=<?php echo $customer["CustomerID"]?>" class = "text-dark"><i class = "fa fa-pencil"></i></a></td>
-                                    <td class = "p-1"><a href="comandes_client.php?customer=<?php echo $customer["CustomerID"]?>" class = "text-dark"><i class = "fa fa-book"></i></a></td>
+                                    <td class = "p-1"><a href="formulari.php?customer_id=<?php echo $customer["CustomerID"]?>" class = "text-dark"><i class = "fa fa-pencil"></i></a></td>
+                                    <td class = "p-1"><a href="comandes_client.php?customer_id=<?php echo $customer["CustomerID"]?>" class = "text-dark"><i class = "fa fa-book"></i></a></td>
                                     <td class = "p-1"><a href="#!" class = "text-dark"><i class = "fa fa-times eliminar" data-toggle="modal" data-target="#modal_erase"></i></a></td>
                                 </tr>
                             <?php

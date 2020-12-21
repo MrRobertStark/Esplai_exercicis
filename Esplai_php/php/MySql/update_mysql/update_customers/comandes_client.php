@@ -52,18 +52,28 @@
     <!--Link de navegació-->
     <div class = "container-fluid px-3 my-3">
         <a href="mostrar_clients.php">Mostrar customers > </a>
-        <a href="comandes_client.php">Comandes clients</a>
+    <?php
+        if(isset($_GET["customer_id"])){
+            $customer_id = $_GET["customer_id"];
+            setcookie("customer_id",$customer_id,time()+(60*60));
+        }
+        elseif(isset($_COOKIE["customer_id"])){
+            $customer_id = $_COOKIE["customer_id"];
+        }
+        else $customer_id = "FRANS";
+    ?>
+        <a href="comandes_client.php?customer_id=<?php echo $customer_id?>"></a>
     </div>
 
     <!--Contingut de la pàgina web-->
     <div class = "container-fluid px-0 mb-5">
     <?php
         if($servidor_connectat){
-            if(isset($_GET["customer"])){
+            //if(isset($_GET["customer"])){
                 //Si el servidor funciona i tenim seleccionat un customer podem fer el llistat de les comandes
-                $query_comandes = "SELECT OrderID, FirstName, LastName, OrderDate, CompanyName, ShipCountry FROM orders INNER JOIN shippers ON shippers.ShipperID = orders.ShipVia INNER JOIN employees ON employees.EmployeeID = orders.EmployeeID WHERE CustomerID = '".$_GET["customer"]."'";
+                $query_comandes = "SELECT OrderID, FirstName, LastName, OrderDate, CompanyName, ShipCountry FROM orders INNER JOIN shippers ON shippers.ShipperID = orders.ShipVia INNER JOIN employees ON employees.EmployeeID = orders.EmployeeID WHERE CustomerID = '".$customer_id."'";
                 $comandes = $conn->query($query_comandes);
-                $query_customer = "SELECT CustomerID, ContactName, ContactTitle, CompanyName, Phone FROM customers WHERE CustomerID = '".$_GET["customer"]."'";
+                $query_customer = "SELECT CustomerID, ContactName, ContactTitle, CompanyName, Phone FROM customers WHERE CustomerID = '".$customer_id."'";
                 $info_customer = $conn->query($query_customer);
                 $customer = $info_customer->fetch_assoc();
                 
@@ -129,8 +139,8 @@
                 <?php
                 }
                 else echo "<p>Aquest client no té comandes</p>";
-            }
-            else echo "<p>No s'ha trobat el client a consultar</p>";
+            //}
+            //else echo "<p>No s'ha trobat el client a consultar</p>";
         }
         else echo "<p>No s'ha pogut connectar amb el servidor</p>";
     ?>

@@ -39,15 +39,25 @@
     <!--Link de navegació-->
     <div class = "container-fluid px-3 my-3">
         <a href="mostrar_clients.php">Mostrar customers > </a>
-        <a href="formulari.php">Formulari</a>
+    <?php
+        if(isset($_GET["customer_id"])){
+            $customer_id = $_GET["customer_id"];
+            setcookie("customer_id",$customer_id,time()+(60*60));
+        }
+        elseif(isset($_COOKIE["customer_id"])){
+            $customer_id = $_COOKIE["customer_id"];
+        }
+        else $customer_id = "FRANS";
+    ?>
+        <a href="formulari.php?customer=<?php echo $customer_id?>"></a>
     </div>
 
     <!--Formulari-->
     <div class = "container-fluid">
     <?php
         if($servidor_connectat){
-            if(isset($_GET["customer"])){
-                $sql = "SELECT * FROM customers WHERE CustomerID = '".$_GET['customer']."'";
+            //if(isset($_GET["customer"])){
+                $sql = "SELECT * FROM customers WHERE CustomerID = '".$customer_id."'";
                 $customers = $conn->query($sql);
                 if($customers->num_rows>0){
                     $customer = $customers->fetch_assoc();
@@ -155,8 +165,8 @@
                 <?php
                 }
                 else echo "<p>No s'ha trobat el client a modificar</p>";
-            }
-            else echo "<p>Has d'escollir un client</p>";
+            //}
+            //else echo "<p>Has d'escollir un client</p>";
         }
         else echo "<p>Error de connexió</p>";
     ?>

@@ -50,6 +50,16 @@
     <div class = "container-fluid px-3 my-4">
         <a href="mostrar_clients.php" class = "position-relative float-left">Mostrar customers > </a>
         <a href="comandes_client.php" class = "position-relative float-left">Comandes clients > </a>
+    <?php
+        if(isset($_GET["order"])){
+            $order = $_GET["order"];
+            setcookie("order",$order,time()+(60*60));
+        }
+        elseif(isset($_COOKIE["order"])){
+            $order = $_COOKIE["order"];
+        }
+        else $order = "10355";
+    ?>
         <a href="order_details_client.php" class = "position-relative float-left">Detalls de la comanda</a>
     </div>
 
@@ -57,10 +67,10 @@
     <div class = "container-fluid px-0 position-relative float-left">
     <?php
         if($servidor_connectat){
-            if(isset($_GET["order"])){
+            //if(isset($_GET["order"])){
                 //Comandes query
-                $sql_comandes =  "SELECT OrderID, ProductName, order_details.UnitPrice, Quantity, Discount, order_details.UnitPrice*Quantity*(1-Discount) AS FinalPrice FROM order_details INNER JOIN products ON products.ProductID = order_details.ProductID WHERE OrderID = '".$_GET['order']."'";
-                $sql_contracte = "SELECT customers.CompanyName,customers.ContactName,customers.ContactTitle,customers.Phone, CONCAT(employees.FirstName,' ',employees.LastName) AS EmployeeName ,employees.Title,employees.Country AS EmployeeCountry,employees.HomePhone FROM orders INNER JOIN customers ON customers.CustomerID = orders.CustomerID INNER JOIN employees ON employees.EmployeeID = orders.EmployeeID WHERE OrderID = '".$_GET['order']."'";
+                $sql_comandes =  "SELECT OrderID, ProductName, order_details.UnitPrice, Quantity, Discount, order_details.UnitPrice*Quantity*(1-Discount) AS FinalPrice FROM order_details INNER JOIN products ON products.ProductID = order_details.ProductID WHERE OrderID = '".$order."'";
+                $sql_contracte = "SELECT customers.CompanyName,customers.ContactName,customers.ContactTitle,customers.Phone, CONCAT(employees.FirstName,' ',employees.LastName) AS EmployeeName ,employees.Title,employees.Country AS EmployeeCountry,employees.HomePhone FROM orders INNER JOIN customers ON customers.CustomerID = orders.CustomerID INNER JOIN employees ON employees.EmployeeID = orders.EmployeeID WHERE OrderID = '".$order."'";
 
                 //Crides query
                 $comandes = $conn->query($sql_comandes);
@@ -188,8 +198,8 @@
                 <?php
                 }
                 else echo "<p>Aquest client no té comandes al seu historial</p>";
-            }
-            else echo "<p>No s'ha trobat la comanda que es vol consultar</p>";
+            //}
+            //else echo "<p>No s'ha trobat la comanda que es vol consultar</p>";
         }
         else echo "<p>No s'ha pogut connectar amb la base de dades</p>";
     ?>
