@@ -1,9 +1,9 @@
 <?php
-    $sql = "SELECT CustomerID FROM customers WHERE CustomerID = '".$_GET['erase']."'";
-    $customers = $conn->query($sql);
-    if(true){
-        $sql = "DELETE FROM customers WHERE CustomerID = '".$_GET['erase']."'";
-        if(true){
+    $sql = "SELECT CustomerID FROM customers WHERE CustomerID = '".$_GET['erase']."'";//Comanda sql
+    $customers = $conn->query($sql);//execució de la comanda
+    if($customers->num_rows>0){//Si existeix el customer a esborrar...
+        $sql = "DELETE FROM customers WHERE CustomerID = '".$_GET['erase']."'";//comanda sql per esborrar customer
+        if($conn->query($sql)){//Execució correcte la query
         ?>
             <!-- Modal el·liminar client executat correctament-->
             <div class="modal fade modal_erase" role="dialog">
@@ -25,7 +25,7 @@
             </div>
         <?php
         }
-        else{
+        else{ // Execució incorrecte de la comanda query
         ?>
             <!-- Modal el·liminar client executat correctament-->
             <div class="modal fade modal_erase" role="dialog">

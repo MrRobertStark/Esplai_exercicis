@@ -1,5 +1,5 @@
 <?php
-    //Recepció de les dades
+    //Recepció de les dades del formulari
     $id = $_POST["customerId"];
     $nom = $_POST["nomClient"];
     $company = $_POST["companyClient"];

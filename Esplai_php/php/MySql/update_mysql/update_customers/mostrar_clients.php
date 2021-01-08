@@ -23,31 +23,8 @@
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <style type = "text/css">
-        *{
-            box-sizing:border-box;
-        }
-        th{
-            width:9%;
-        }
-        tr:nth-child(even){
-            background-color: #f7f7f7;
-        }
-        tbody tr:hover{
-            background-color:#e0e0e0;
-        }
-        @media screen and (max-width:1100px){
-            .container_taula{
-                overflow-x:scroll;
-            }
-        }
-        .modal{
-            position:fixed;
-            top:30%;
-            left:50%;
-            margin-left:-50%;
-        }
-    </style>
+    <style type = "text/css"></style>
+    <link rel = "stylesheet" type = "text/css" href = "estils.css"/>
     <title>Document</title>
 
 </head>
@@ -58,12 +35,12 @@
     </div>
 
     <!--Links de navegació-->
-    <div class = "container-fluid px-3 my-3">
-        <a href="mostrar_clients.php">Mostrar customers > </a>
+    <div class = "container-fluid px-3 mt-3">
+        <a href="mostrar_clients.php">Buscar clients > </a>
     </div>
 
     <!--Contingut-->
-    <div class = "container-fluid mt-5 px-0">
+    <div class = "container-fluid px-0">
     <?php
         if($servidor_connectat){
 
@@ -100,7 +77,8 @@
             <!--Formulari per filtrar els customers-->
             <form action="mostrar_clients.php" method = "GET" class = "w-75 mx-auto">
                 <h2 class = "text-center h3">Filtre <span class = "fa fa-filter"></span></h2>
-                <!--Nom del client-->
+
+                <!--Formulari: nom del client-->
                 <div class="form-group">
                     <label for="nomClient">Nom del client</label>
                 <?php
@@ -117,7 +95,7 @@
                 ?>
                     
                 </div>
-                <!--País del client-->
+                <!--Formulari: país del client-->
                 <div class="form-group">
                     <label for="paisClients">País del client</label>
                     <select type="text" id = "paisClients" name = "pais" class = "form-control">
@@ -151,8 +129,9 @@
                 if($customers->num_rows>0){
                 ?>
 
+                    <!--Exposició de la informació cridada de la base de dades-->
                     <table class = "d-block mx-auto mb-5 p-0 text-center">
-                        <!--table header-->
+                        <!--table header: índex de la informació-->
                         <thead>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">ID</th>
                             <th class = "bg-dark text-white py-3 px-1 position-sticky sticky-top">Companyia</th>
@@ -168,7 +147,7 @@
                         </thead>
                         <!--Fi table header-->
 
-                        <!--Cos de la taula-->
+                        <!--Cos de la taula / contingut de la informació-->
                         <tbody>
                         <?php
                             while($customer = $customers->fetch_assoc()){
@@ -182,8 +161,8 @@
                                     <td class = "p-1"><?php echo correcio_dada($customer["City"]) ?></td>
                                     <td class = "p-1"><?php echo correcio_dada($customer["Country"]) ?></td>
                                     <td class = "p-1"><?php echo correcio_dada($customer["Phone"]) ?></td>
-                                    <td class = "p-1"><a href="formulari.php?customer_id=<?php echo $customer["CustomerID"]?>" class = "text-dark"><i class = "fa fa-pencil"></i></a></td>
-                                    <td class = "p-1"><a href="comandes_client.php?customer_id=<?php echo $customer["CustomerID"]?>" class = "text-dark"><i class = "fa fa-book"></i></a></td>
+                                    <td class = "p-1"><a href="formulari.php?cid=<?php echo $customer["CustomerID"]?>" class = "text-dark"><i class = "fa fa-pencil"></i></a></td>
+                                    <td class = "p-1"><a href="comandes_client.php?cid=<?php echo $customer["CustomerID"]?>" class = "text-dark"><i class = "fa fa-book"></i></a></td>
                                     <td class = "p-1"><a href="#!" class = "text-dark"><i class = "fa fa-times eliminar" data-toggle="modal" data-target="#modal_erase"></i></a></td>
                                 </tr>
                             <?php
@@ -194,29 +173,53 @@
                     </table>
                 <?php
                 }
-                else echo "<p>No s'han trobat resultats que coincideixin amb el filtre</p>";
+                else{
+                    //Missatge d'error: No s'han trobat customers amb el filtre aplicat-->
+                ?>
+                    <div class = "alert alert-primary p-4 mx-auto mt-5 pt-5">
+                        <h2 class = "alert-heading mb-4">No s'han trobat resultats</h2>
+                        <p>No existeix clients que coincideixin amb el filtre aplicat. Aplica un altre filtre o mira tots els clients existents.</p>
+                        <hr>
+                        <a href="mostrar_clients.php?customer=&pais=" class = "d-block w-50 mx-auto py-2 btn btn-success my-4">Mostrar tots els clients</a>
+                    </div>
+                <?php   
+                } 
             ?>
             </div>
             <!--Fi resultat de la cerca-->
         <?php
         }
-        else echo "<p>Error de connexió amb la base de dades</p>";
+        else{
+            //Missatge d'error: No s'ha pogut connectar amb el servidor
+        ?>
+            <div class = "alert alert-warning p-4 mx-auto mt-5 pt-5">
+                <h2 class = "alert-heading mb-4">Error de connexió</h2>
+                <p>Hi ha hagut un problema amb la connexió a la xarxa o connectant amb el servidor.</p>
+                <hr>
+                <p>Refresca la plana o intenta connectar-te un altre cop.</p>
+                <a href="mostrar_clients.php" class = "d-block w-50 mx-auto py-2 btn btn-primary my-4">Tornar a connectar-se</a>
+            </div>
+        <?php
+        }
     ?>
     </div>
 
-    <!--Modal alerta el·liminar producte--->
+    <!--Modal alerta el·liminar producte (Pop-up)--->
     <div class="modal fade" id="modal_erase" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
+                    <!--Titol de l'alerta pop up-->
                     <h4 class="modal-title text-center"><i class = "fa fa-warning"></i> El·liminar client <span class = "nom_client"></span></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
+                    <!--Missatge d'alerta-->
                     <p>Estàs segur que vols el·liminar el client "<span class = "nom_client"></span>"? No podràs tornar enrere si continues l'acció.</p>
                 </div>
                 <div class="modal-footer w-100">
+                    <!--Opcions per a procedir amb l'operació-->
                     <div class = "row mx-auto">
                         <div class="col col-6">
                             <a href="#!" class = "btn btn-primary link_erase">Continuar</a>
